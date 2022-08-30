@@ -5,29 +5,33 @@
 ## Lectures
 
 1. What is data science?
-\[[**.html**](https://raw.githack.com/intro-to-data-science-21/lectures/main/01-introduction/01-introduction.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-21/lectures/main/01-introduction/01-introduction.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-21/lectures/main/01-introduction/01-introduction.Rmd)\]
+\[[**.html**](https://raw.githack.com/intro-to-data-science-22/lectures/main/01-introduction/01-introduction.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-22/lectures/main/01-introduction/01-introduction.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-22/lectures/main/01-introduction/01-introduction.Rmd)\]
 
-2. Version control and project management \[[**.html**](https://raw.githack.com/intro-to-data-science-21/lectures/main/02-version-control/02-version-control.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-21/lectures/main/02-version-control/02-version-control.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-21/lectures/main/02-version-control/02-version-control.Rmd)\]
+2. Version control and project management \[[**.html**](https://raw.githack.com/intro-to-data-science-22/lectures/main/02-version-control/02-version-control.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-22/lectures/main/02-version-control/02-version-control.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-22/lectures/main/02-version-control/02-version-control.Rmd)\]
 
-3. R and the tidyverse \[[**.html**](https://raw.githack.com/intro-to-data-science-21/lectures/main/03-tidyverse/03-tidyverse.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-21/lectures/main/03-tidyverse/03-tidyverse.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-21/lectures/main/03-tidyverse/03-tidyverse.Rmd)\]
+3. R and the tidyverse \[[**.html**](https://raw.githack.com/intro-to-data-science-22/lectures/main/03-tidyverse/03-tidyverse.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-22/lectures/main/03-tidyverse/03-tidyverse.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-22/lectures/main/03-tidyverse/03-tidyverse.Rmd)\]
 
-4. Databases \[[**.html**](https://raw.githack.com/intro-to-data-science-21/lectures/main/04-databases/04-databases.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-21/lectures/main/04-databases/04-databases.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-21/lectures/main/04-databases/04-databases.Rmd)\]
+4. Debugging, automation and functions \[[**.html**](https://raw.githack.com/intro-to-data-science-22/lectures/main/04-debugging-automation/04-debugging-automation.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-22/lectures/main/04-debugging-automation/04-debugging-automation.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-22/lectures/main/10-debugging-automation/10-debugging-automation.Rmd)\]
 
-5. Web data and technologies \[[**.html**](https://raw.githack.com/intro-to-data-science-21/lectures/main/05-webdata/05-webdata.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-21/lectures/main/05-webdata/05-webdata.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-21/lectures/main/05-webdata/05-webdata.Rmd)\]
+5. Databases \[[**.html**](https://raw.githack.com/intro-to-data-science-22/lectures/main/05-databases/05-databases.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-22/lectures/main/05-databases/05-databases.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-22/lectures/main/05-databases/05-databases.Rmd)\]
 
-6. Modeling \[[**.html**](https://raw.githack.com/intro-to-data-science-21/lectures/main/06-modeling/06-modeling.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-21/lectures/main/06-modeling/06-modeling.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-21/lectures/main/06-modeling/06-modeling.Rmd)\]
+6. Web data and technologies \[[**.html**](https://raw.githack.com/intro-to-data-science-22/lectures/main/06-webdata/06-webdata.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-22/lectures/main/06-webdata/06-webdata.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-22/lectures/main/06-webdata/06-webdata.Rmd)\]
 
-7. Visualization \[[**.html**](https://raw.githack.com/intro-to-data-science-21/lectures/main/07-visualization/07-visualization.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-21/lectures/main/07-visualization/07-visualization.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-21/lectures/main/07-visualization/07-visualization.Rmd)\]
+7. Web scraping and APIs \[[**.html**](https://raw.githack.com/intro-to-data-science-22/lectures/main/07-scraping/07-scraping.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-22/lectures/main/07-scraping/07-scraping.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-22/lectures/main/07-scraping/07-scraping.Rmd)\]
 
-8. I2DS Tools for Data Science Workshop  \[[**website**](https://intro-to-data-science-21-workshop.github.io/) | [**materials**](https://github.com/intro-to-data-science-21-workshop)\]
 
-9. Working at the command line \[[**.html**](https://raw.githack.com/intro-to-data-science-21/lectures/main/09-command-line/09-command-line.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-21/lectures/main/09-command-line/09-command-line.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-21/lectures/main/09-command-line/09-command-line.Rmd)\]
+8. Modeling \[[**.html**](https://raw.githack.com/intro-to-data-science-22/lectures/main/08-modeling/08-modeling.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-22/lectures/main/08-modeling/08-modeling.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-22/lectures/main/08-modeling/08-modeling.Rmd)\]
 
-10. Debugging, automation and packaging \[[**.html**](https://raw.githack.com/intro-to-data-science-21/lectures/main/10-debugging-automation/10-debugging-automation.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-21/lectures/main/10-debugging-automation/10-debugging-automation.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-21/lectures/main/10-debugging-automation/10-debugging-automation.Rmd)\]
+9. Visualization \[[**.html**](https://raw.githack.com/intro-to-data-science-22/lectures/main/09-visualization/09-visualization.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-22/lectures/main/09-visualization/09-visualization.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-22/lectures/main/09-visualization/09-visualization.Rmd)\]
 
-11. Monitoring and communication \[[**.html**](https://raw.githack.com/intro-to-data-science-21/lectures/main/11-communication/11-communication.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-21/lectures/main/11-communication/11-communication.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-21/lectures/main/11-communication/11-communication.Rmd)\]
+10. I2DS Tools for Data Science Workshop  \[[**website**](https://intro-to-data-science-22-workshop.github.io/) | [**materials**](https://github.com/intro-to-data-science-22-workshop)\]
 
-12. Data science ethics \[[**.html**](https://raw.githack.com/intro-to-data-science-21/lectures/main/12-ethics/12-ethics.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-21/lectures/main/12-ethics/12-ethics.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-21/lectures/main/12-ethics/12-ethics.Rmd)\]
+11. Monitoring and communication \[[**.html**](https://raw.githack.com/intro-to-data-science-22/lectures/main/11-communication/11-communication.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-22/lectures/main/11-communication/11-communication.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-22/lectures/main/11-communication/11-communication.Rmd)\]
+
+12. Data science ethics \[[**.html**](https://raw.githack.com/intro-to-data-science-22/lectures/main/12-ethics/12-ethics.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-22/lectures/main/12-ethics/12-ethics.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-22/lectures/main/12-ethics/12-ethics.Rmd)\]
+
+13. [BONUS] Working at the command line \[[**.html**](https://raw.githack.com/intro-to-data-science-22/lectures/main/13-command-line/13-command-line.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-22/lectures/main/13-command-line/13-command-line.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-22/lectures/main/13-command-line/13-command-line.Rmd)\]
+
 
 
 ## Summary
