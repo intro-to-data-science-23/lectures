@@ -82,6 +82,8 @@ name: webdata
 ---
 # What is web data?
 
+THIS SESSION: ALSO REGULAR EXPRESSIONS, STRING MANIPULATION (NOT PART OF TOOLS WORKSHOP ANYMORE)
+
 <br>
 <div align="center">
 <img src="pics/upworthy-paper.png" height=440>

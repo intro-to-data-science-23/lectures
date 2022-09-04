@@ -2,7 +2,7 @@
 title: "Introduction to Data Science"
 subtitle: "Session 1: What is data science?"
 author: "Simon Munzert"
-institute: "Hertie School | [GRAD-C11/E1339](https://github.com/intro-to-data-science-21)" #"`r format(Sys.time(), '%d %B %Y')`"
+institute: "Hertie School"
 output:
   xaringan::moon_reader:
     css: [default,'simons-touch.css', metropolis, metropolis-fonts] 
@@ -14,6 +14,7 @@ output:
       ratio: '16:9'
       hash: true
 ---
+
 class: inverse, center, middle
 name: welcome
 
@@ -64,7 +65,7 @@ library(fontawesome)
 
 ### Course
 
-`r fa('globe')` https://github.com/intro-to-data-science-21
+`r fa('globe')` https://github.com/intro-to-data-science-22
 
 Much of this course lives on GitHub. You will find lecture materials, code, assignments, and other people's presentations there. We also have Moodle, which is is for everything else.
 
@@ -76,13 +77,13 @@ Much of this course lives on GitHub. You will find lecture materials, code, assi
 
 `r fa('envelope')` [munzert@hertie-school.org](mailto:munzert@hertie-school.org)
 
-`r fa('graduation-cap')` Assistant Professor (data science and public policy)
+`r fa('graduation-cap')` Professor of data science and public policy
 
 --
 
 ### You
 
-What's your name? Why are you here? And would you share a funny fact about yourself?
+What's your name? What's your favorite number? And would you share a fun fact about yourself?
 
 ---
 
@@ -136,9 +137,6 @@ What's your name? Why are you here? And would you share a funny fact about yours
 
 
 
-
-
-
 ---
 
 # The labs
@@ -148,17 +146,18 @@ What's your name? Why are you here? And would you share a funny fact about yours
 ## Who & how
 
 - This course is accompanied by labs administered by **Lisa Oswald** and **Tom Arend**.
-- The labs are mandatory. Please attend them.
+- The labs are mandatory (MDS) / optional (the rest). Please attend them in any case.
 - As with the regular classes, please stick to the lab you are assigned to.
 
 ## What for
 
 - What these sessions are meant for:
-  - Discussion of issues related to the content covered in the lecture
+  - Applying tools in practice
   - Discussion of issues related to the assignments
   - Boosting your R skills
 - What these sessions are **not** meant for: 
   - Solving the assignments for you
+  - Taking care of developing your coding skills
 ]
 
 .pull-right-small-center[
@@ -177,16 +176,18 @@ What's your name? Why are you here? And would you share a funny fact about yours
 # Class etiquette
 
 .pull-left-wide[
-- Learning programming with R can be challenging and might lead you out of your comfort zone. If you have problems with the pace of the course, let me know. I expect your commitment to the class, but **I do not want anyone to fail.**
+<br>
+
+- Learning how to code can be challenging and might lead you out of your comfort zone. If you have problems with the pace of the course, let me and the TAs know. I expect your commitment to the class, but **I do not want anyone to fail.**
 - You are all genuinely interested in data science. But there is also considerable variation in your backgrounds. This is how we like it! Some sessions will be more informative for you than others. If you feel bored, **look out for and help others**, or explore other corners of R you don't know yet.
-- The pandemic is still around. We are differentially affected by it. We are located in different time zones. **Let's support each other.** 
-- **Be respectful** to each other, all the time.
+- The pandemic is still around, and other crises have emerged. We are affected by them in different ways. **Let's support each other.** 
+- **Be respectful** to each other, all the time. This includes the TAs and me.
 - **Ask questions** whenever you feel the need to do so!
 ]
 
 .pull-right-small-center[
 <div align="center">
-<br>
+<br><br>
 <img src="pics/stupid-questions.jpg" height=400>
 </div>
 ]
@@ -453,6 +454,7 @@ background-color: #000000
   - **Publish**: journals/proceedings, blogs, software
   - **Productize**: make usable, robust, scalable
 
+**Meta skill: programming**
 
 ]
 
@@ -489,7 +491,7 @@ background-color: #000000
   - **Publish**: journals/proceedings, blogs, software
   - **Productize**: make usable, robust, scalable
 
-
+**Meta skill: programming with R**
 ]
 
 .pull-right-center[
@@ -509,6 +511,15 @@ name: preview
 # Sneak preview
 <html><div style='float:left'></div><hr color='#EB811B' size=1px style="width:1000px; margin:auto;"/></html>
 
+
+---
+
+# Introduction to Data Science in a nutshell
+
+<div align="center">
+<br>
+<img src="pics/ids-syllabus-2022.png" height=500>
+</div>
 
 
 
@@ -667,11 +678,11 @@ class: inverse, center, middle
 
 # Calling bullsh*t when you see it
 
-.pull-left-small[
+.pull-left-vsmall[
 
 <br> 
 
-Learn not to be fooled by 
+**Learn not to be fooled** by 
 - big data
 - garbage data
 - garbage models
@@ -685,19 +696,19 @@ Learn not to be fooled by
 And much more...
 ]
 
-.pull-right-wide-center[
+.pull-right-vwide[
 <br>
 <div align="center">
-<img src="pics/sc01.png" height=150> 
-<img src="pics/gigo.png" height=150>
+<img src="pics/sc01.png" height=130> 
+<img src="pics/gigo.png" height=130>
 </br>
-<img src="pics/criminal-faces-2.png" height=150>
-<img src="pics/calling-bullshit-2.jpg" height=150>
-<img src="pics/survivorship-bias.png" height=150>
+<img src="pics/criminal-faces-2.png" height=130>
+<img src="pics/calling-bullshit-2.jpg" height=130>
+<img src="pics/survivorship-bias.png" height=130>
 </br>
-<img src="pics/cor-examples7.png" height=150>
-<img src="pics/overfitting.png" height=150>
-<img src="pics/nyt-opera.png" height=150>
+<img src="pics/cor-examples7.png" height=130>
+<img src="pics/overfitting.png" height=130>
+<img src="pics/nyt-opera.png" height=130>
 </div>
 ]
 
@@ -770,8 +781,6 @@ background-color: #000000
 
 
 
-
-
 ---
 class: inverse, center, middle
 name: logistics
@@ -780,9 +789,7 @@ name: logistics
 <html><div style='float:left'></div><hr color='#EB811B' size=1px style="width:1000px; margin:auto;"/></html>
 
 
-
 ---
-
 # The plan
 
 .pull-left[
@@ -806,16 +813,14 @@ name: logistics
 
 - Version control and project management
 - R and the tidyverse
+- Programming workflow: debugging, automation, packaging
 - Relational databases and SQL
 - Web data and technologies
-- Model fitting and simulation
+- Model fitting and evaluation
 - Viusalization
-- The command line
-- Programming workflow: debugging, automation, packaging
 - Monitoring and communication
 - Data science ethics
-
-]
+- (The command line)
 
 ]
 
@@ -871,10 +876,11 @@ programming languages and APIs.
 # The popularity data
 pop_df = 
   data.frame(
-  lang = c("Python", "SQL", "R", "SAS", "Matlab", "SPSS", "Stata"),
-  n_jobs = c(8150, 7264, 3484, 950, 687, 270, 74),
+  lang = c("Python", "SQL", "R", "SAS", "Matlab", "Julia", "SPSS", "Stata"),
+  n_jobs = c(12203, 10291, 6812, 1005, 838, 474, 296, 67), # 2022/09/03
+  #n_jobs = c(8150, 7264, 3484, 950, 687, 270, 74), # 2021/08/27
   #n_jobs = c(99756, 132860, 41242, 31943, NA, 4843, 2302),
-  free = c(T, T, T, F, F, F, F)
+  free = c(T, T, T, F, F, T, F, F)
   )
 ## Plot it
 pop_df %>% 
@@ -888,7 +894,7 @@ pop_df %>%
   ylab("Number of jobs") +
   labs(
     title = "Comparing statistical languages",
-    subtitle = "Number of job postings for '<language> data' on de.indeed.com, 2021/08/27"
+    subtitle = "Number of job postings for '<language> data' on de.indeed.com, 2022/09/03"
     ) +
   scale_fill_manual(
     "Free?",
@@ -905,15 +911,14 @@ pop_df %>%
 # Why R and RStudio? (cont.)
 
 <div align="center">
-<img src="pics/facebook-programming-languages.png" width=700>
+<img src="pics/facebook-programming-languages.png" width=600>
 </div>
-˚Credit` [Left_Ad8361/Reddit](https://www.reddit.com/r/dataisbeautiful/comments/qw1bew/oc_which_programming_language_is_required_to_land/)
+`Credit` [Left_Ad8361/Reddit](https://www.reddit.com/r/dataisbeautiful/comments/qw1bew/oc_which_programming_language_is_required_to_land/)
 
 
 
 
 ---
-
 # Core (and optional) readings
 
 <br><br><br>
@@ -929,34 +934,21 @@ pop_df %>%
 
 
 ---
-
 # Attendance
 
 ## General rules
 
-- Switching on-site groups will not be possible during the course of the semester. - However, if you happen to be unavailable on your slot but not on the other, please tune in (**only online!**). Also, please let Ayamba know (see below).
-- You cannot miss more than two sessions. If you have to miss a session for medical reasons or personal emergencies, please inform Examination Office.
-- We will check attendance on-site + online. If you attend online, type your full name in the chat when you log in.
-- For on-site attendance, the current Hertie hygiene rules apply!
-
---
-
-## On-site rotation scheme
-
-- There is more interest in attending the course on-site than we have space.
-- I have set up a rotation scheme that tries to balance on-site attendance across participants, within groups. Check it out on Moodle.
-- If you are not listed as on-site participant for a particular session, please do not sneak into the on-site session. 
-- **If you plan to attend online instead of on-site on short notice**, please drop Ayamba ([kwoyila@hertie-school.org](mailto:kwoyila@hertie-school.org)) a line until Wednesday noon so that she can inform successors. 
+- You cannot miss more than two sessions. If you have to miss a session for medical reasons or personal emergencies, please **inform Examination Office** and they will inform me about your absence. There is no need to notify me in advance or ex post.
+- We will check attendance on-site.
+- The current **Hertie hygiene rules** apply!
 
 
 ---
-
 # Office hours and advice
 
 -  If you want to discuss content from class, please first do so in the lab sessions. 
-- If you still need more feedback, get in touch with me (`r fa('envelope')` [munzert@hertie-school.org](mailto:munzert@hertie-school.org)).
-- If you want to discuss any other matters with me, just drop me a message and we'll arrange a meeting.
-- My (virtual) office hours (by appointment) are Tuesdays, 3-4pm CET.
+- If you still need more feedback on course topics, use the Moodle forum.
+- If you want to discuss any other matters with me, drop my assistance a message (`r fa('envelope')` [kwoyila@hertie-school.org](mailto:kwoyila@hertie-school.org)) and she will arrange a meeting.
 - For general technical advice, the [Research Consulting Team at the Data Science Lab](https://hertie-data-science-lab.github.io/research-consulting/) is there for you.
 
 
@@ -967,18 +959,18 @@ pop_df %>%
 | Component                           | Weight |
 |:-|-:|
 | 4 × homework assignments (10% each) | 40% |
-| 1 × workshop presentation	  	| 25% |
-| 1 × final data science project	        | 35% |
+| 1 × workshop presentation	         	| 30% |
+| 1 × data science project exam       | 30% |
 
 --
 
 ### Homework assignments 
-- The assignments are distributed via our own [GitHub Classroom](https://classroom.github.com/classrooms/88543430-introduction-to-data-science).
+- The assignments are distributed via our own [GitHub Classroom](https://classroom.github.com/classrooms/112495184-introduction-to-data-science-fall-2022).
 - Each assignment is a mix of practical problems that are to be solved with R.
 - You are encouraged to collaborate, but everyone will hand in a separate solution.
 - There will be 5 assignments (one every ~2 weeks) and the 4 best will contribute to the final grade.
-- You'll have roughly 2 weeks to work on each assignment.
-- You submit your solutions via GitHub Classroom.
+- You'll have one week to work on each assignment (deadline: Mondays, 11.59pm).
+- You submit your solutions via GitHub.
 - Grades will be based on (1) the accuracy of your solutions and (2) the adherence of a clean and efficient coding style that you will learn in the first sessions.
 
 
@@ -989,17 +981,19 @@ pop_df %>%
 | Component                           | Weight |
 |:-|-:|
 | 4 × homework assignments (10% each) | 40% |
-| 1 × workshop presentation	  	| 25% |
-| 1 × final data science project	        | 35% |
+| 1 × workshop presentation	         	| 30% |
+| 1 × data science project exam       | 30% |
 
 ### Workshop presentation
-- About halfway through the semester, we will flip the roles and you will become the instructor for one session of a workshop on **Tools for Data Science**. Whether this will happen onsite (hybrid) or online will still be determined.
-- You, in (randomly allocated) groups of 2 students, will present a preexisting tool or package that is useful for the data science workflow.
-- Topics are listed on [GitHub](https://github.com/intro-to-data-science-21/workshop-presentations) and will be randomly allocated.
+- In one of the last sessions of the course, we will flip the roles and you will become the instructor of a workshop on **Tools for Data Science**. Whether this will happen onsite (hybrid) or online will still be determined.
+- Timing: November 21 (regular class times)
+- You, in (randomly allocated) groups of 2 students, will present a data science workflow tool (randomly [allocated](https://github.com/intro-to-data-science-22/workshop-presentations)).
 - Your contribution will include
   1. A lightning talk (recorded) where you briefly introduce and motivate the tool
   2. A hands-on session where you showcase the tool and provide practice material
 - Both the talk and the prepared exercise materials, which must also be hosted openly on GitHub, will be graded.
+- Check out the materials from last year's workshop [online](https://intro-to-data-science-21-workshop.github.io/)!
+
 
 
 
@@ -1009,23 +1003,21 @@ pop_df %>%
 | Component                           | Weight |
 |:-|-:|
 | 4 × homework assignments (10% each) | 40% |
-| 1 × workshop presentation	  	| 25% |
-| 1 × final data science project	        | 35% |
+| 1 × workshop presentation	         	| 30% |
+| 1 × data science project exam       | 30% |
 
-### Final data science project
-- In the component, to be submitted a couple of weeks after classes have finished, you will design and implement your own data science project.
-- You are supposed to collaborate in groups of two or three students.
-- Student groups choose their topic subject to approval by the instructor.
-- A wide variety of project types are imaginable and include
-  1. A report about a statistical data analysis
-  2. A policy explainer project enriched with data (think: a piece of data journalism)
-  3. A dashboard to make data / analyses accessible in an interactive fashion
-  4. An R package with a dedicated use case (e.g., API binding, visualization tools, etc.)
+### Data science project exam
+- You get to solve a set of coding problems and develop a creative solution to a resarch problem. 
+- Timing: Week of December 12 or 19 (exact date TBD)
+- After the instructions have been made available, you will have 48 hours to submit your solutions.
+- You are supposed to collaborate in groups of three students.
+- The task is similar to the homework assignments but put more emphasis on creative problem-solving using the tools and techniques you have learned in class.
+- On the first day of the exam, we plan to host a hackathon at Hertie where we introduce the data and provide an environment that should facilitate you getting started with the project.
+
 
 
 
 ---
-
 # Further reading
 
 <div align="center">
@@ -1039,7 +1031,6 @@ pop_df %>%
 
 
 ---
-
 # Further listening
 
 <div align="center">
@@ -1059,7 +1050,6 @@ pop_df %>%
 
 
 ---
-
 # Further watching
 
 <div align="center">
@@ -1075,12 +1065,11 @@ pop_df %>%
 
 
 ---
-
 # Getting started for the course
 
 ### Software
 
-1. Download [R](https://www.r-project.org/).
+1. Download [R](https://cran.rstudio.com/.
 
 2. Download [RStudio](https://www.rstudio.com/products/rstudio/download/preview/).
 
@@ -1098,7 +1087,6 @@ pop_df %>%
 
 
 ---
-
 # Checklist
 
 ☑ Do you have the most recent version of R?
@@ -1119,7 +1107,6 @@ pop_df %>%
   ```
   
 ---
-
 # Checklist (cont.)
 
 Open up the [shell](http://happygitwithr.com/shell.html#shell).
@@ -1131,7 +1118,7 @@ Open up the [shell](http://happygitwithr.com/shell.html#shell).
   ```
 
 ☑ Did you introduce yourself to Git? (Substitute in your details.)
-  ```{bash eval=FALSE}
+  ```{bash, eval=FALSE}
   git config --global user.name 'Simon Munzert'
   git config --global user.email 'munzert@hertie-school.org'
   git config --global --list
@@ -1139,16 +1126,24 @@ Open up the [shell](http://happygitwithr.com/shell.html#shell).
 
 ☑ Did you register an account in GitHub? 
 
+
 ---
+# This semester
+
+<div align="center">
+<br>
+<img src="pics/wickham-shitty-code.jpeg" height=400>
+</div>
 
 
+---
 # Coming up
 
 <br><br><br> 
 
 ### The first lab session
 
-Wednesday is lab day. Get to know Lisa, Tom, R, and RStudio, four of your best friends for the next months!
+Get to know Lisa, Tom, R, and RStudio, four of your best friends for the next months!
 
 ### Next lecture
 
