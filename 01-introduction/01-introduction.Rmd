@@ -968,7 +968,7 @@ pop_df %>%
 - The assignments are distributed via our own [GitHub Classroom](https://classroom.github.com/classrooms/112495184-introduction-to-data-science-fall-2022).
 - Each assignment is a mix of practical problems that are to be solved with R.
 - You are encouraged to collaborate, but everyone will hand in a separate solution.
-- There will be 5 assignments (one every ~2 weeks) and the 4 best will contribute to the final grade.
+- There will be 5 assignments (one every ~2 weeks; see [overview on GitHub](https://github.com/intro-to-data-science-22/assignments)) and the 4 best will contribute to the final grade.
 - You'll have one week to work on each assignment (deadline: Tuesdays at noon).
 - You submit your solutions via GitHub.
 - Grades will be based on (1) the accuracy of your solutions and (2) the adherence of a clean and efficient coding style that you will learn in the first sessions.
