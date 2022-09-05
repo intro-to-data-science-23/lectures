@@ -1069,7 +1069,7 @@ pop_df %>%
 
 ### Software
 
-1. Download [R](https://cran.rstudio.com/.
+1. Download [R](https://cran.rstudio.com/).
 
 2. Download [RStudio](https://www.rstudio.com/products/rstudio/download/preview/).
 
