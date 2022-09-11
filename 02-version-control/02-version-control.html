@@ -14,10 +14,18 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Introduction to Data Science
+]
+.subtitle[
 ## Session 2: Version control and project management
+]
+.author[
 ### Simon Munzert
-### Hertie School | <a href="https://github.com/intro-to-data-science-21">GRAD-C11/E1339</a>
+]
+.institute[
+### Hertie School
+]
 
 ---
 
@@ -44,11 +52,11 @@ class: center, middle, inverse, title-slide
 
 4. [Git(Hub) + RStudio](#rstudio)
 
-5. [Git from the shell](#shell)
+5. [Branches and forking](#branches)
 
 6. [Merge conflicts](#merge)
 
-7. [Branches and forking](#branches)
+7. [Git from the shell](#shell)
 
 8. [Other tips](#other)
 
@@ -70,7 +78,7 @@ name: projects
 # Taming chaos
 
 .pull-left[
-In the data science workflow there are two sorts of **surprises** and cognitive stress:
+In the data science workflow, there are two sorts of **surprises** and cognitive stress:
 
 1. Analytical (often good)
 2. Infrastructural (almost always bad)
@@ -90,7 +98,7 @@ Good project management lets you focus on the right kind of stress.
 .pull-right[
 &lt;br&gt;
 &lt;div align="center"&gt;
-&lt;img src="pics/pippi-langstrumpf.gif" height=400&gt;
+&lt;img src="pics/pippi-langstrumpf.gif" height=400 loop=infinite&gt;
 &lt;/div&gt;
 ]
 
@@ -102,7 +110,7 @@ Good project management lets you focus on the right kind of stress.
 - That’s almost never true.
 - Coauthors and collaborators happen to the best of us.
 - Even if not, there's someone else who you always have to keep happy: Future-you.
-- Future-you is really the one you do organize your projects for.
+- Future-you is really the one you organize your projects for.
 - They are who you use version control for (see later).
 - Most importantly, they are who will enjoy the fruits of your data science labor, or have to fight back your chaos.
 - So, be kind to Future-you. Establish a good workflow. You'll thank yourself later.
@@ -395,6 +403,7 @@ name: git
 
 .pull-right-small-center[
 &lt;div align="center"&gt;
+&lt;br&gt;
 &lt;img src="pics/linus-torvalds.jpeg" height=250&gt;
 &lt;br&gt;
 &lt;br&gt;
@@ -446,7 +455,7 @@ name: git
 
 - Data science involves product building, collaboration, transparency. GH helps with all that.
 - Journals have increasingly strict requirements regarding reproducibility and access. GH makes this easy (DOI integration, off-the-shelf licenses, etc.).
-- I host most of the code and data for my [papers](https://simonmunzert.github.io/publications.html) on GH. My [website](https://simonmunzert.github.io/) lives there. And this [course](https://github.com/intro-to-data-science-21) does, too.
+- I host most of the code and data for my [papers](https://simonmunzert.github.io/publications.html) on GH. My [website](https://simonmunzert.github.io/) lives there. And this [course](https://github.com/intro-to-data-science-22) does, too.
 ]
 
 .pull-right-center[
@@ -509,7 +518,7 @@ $ which git
 ```
 
 ```
-## /usr/local/bin/git
+## /usr/bin/git
 ```
 
 And here's how you can check the version:
@@ -520,7 +529,7 @@ $ git --version
 ```
 
 ```
-## git version 2.28.0
+## git version 2.32.1 (Apple Git-133)
 ```
 
 If you want to install (or update) Git on your Mac/Linux machine, I recommend using [Homebrew](https://brew.sh/), "the missing package manager for macOS (or Linux)":
@@ -666,8 +675,8 @@ Ready for more GIFs?
 # Recap
 
 Here's a step-by-step summary of what we just did.
-- Made some changes to a file and saved them locally.
-- *Staged* these local changes.
+- Made some changes to a file and saved them locally
+- *Added/Staged* these local changes.
 - *Committed* these local changes to our Git history with a helpful message.
 - *Pulled* from the GitHub repo just in case anyone else made changes too (not expected here, but good practice).
 - *Pushed* our changes to the GitHub repo.
@@ -701,100 +710,135 @@ Here's a step-by-step summary of what we just did.
 
 .footnote[&lt;sup&gt;1&lt;/sup&gt; You know that calling files from `YourComputer/YourName/Documents/Special-Subfolder/etc` in your scripts is one of the deadly sins of programming, right?]
 
+
 ---
 class: inverse, center, middle
-name: shell
+name: branches
 
-# Git from the shell
+# Branches and forking
 &lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px style="width:1000px; margin:auto;"/&gt;&lt;/html&gt;
 
 ---
 
-# Why bother with the shell?
+# What are branches and why use them?
 
-.pull-left[
-**The GitHub + RStudio Project combo is ideal for new users.**
+.pull-left-wide[
+### Branches are cool.
+- Think of your repo as a growing tree.
+- Branches allow you to take a snapshot of your existing repo and try out a whole new idea *without affecting* your main (formerly "master") branch.
+- Only once you (and your collaborators) are 100% satisfied, would you merge it back into the master branch.&lt;sup&gt;1&lt;/sup&gt;
+  - This is how most new features in modern software and apps are developed.
+  - It is also how bugs are caught and fixed.
+  - But researchers can easily use it to try out new ideas and analysis (e.g. robustness checks, revisions, etc.).
+- If you aren't happy, then you can just delete the experimental branch and continue as if nothing happened.
 
-- RStudio's Git integration and built-in GUI cover all the major operations.
-- RStudio Projects FTW.
-
-However, there are **some benefits of the shell**:
-- The shell is more powerful and flexible. It lets you do things that the RStudio Git GUI can't.
-- Working in the shell is potentially more appropriate for projects that aren't primarily based in R.
-- Knowing the basic Git commands in the shell is generally a good thing for a data scientist.
-- We're going to cover the shell in more detail in a later session, so this is a sneak preview.
+.footnote[&lt;sup&gt;1&lt;/sup&gt; As with real trees, you can actually have branches of branches (of branches). But let's not get ahead of ourselves.]
 ]
-
-.pull-right[
-&lt;br&gt;
+.pull-right-small-center[
+&lt;/br&gt;
 &lt;div align="center"&gt;
-&lt;img src="pics/hacker-cat.gif" height=400&gt;
+&lt;img src="pics/git-branches-merge.png" height=150&gt;
 &lt;/div&gt;
+
+`Credit` [noble desktop](https://www.nobledesktop.com/learn/git/git-branches)
 ]
 
 ---
 
-# Main Git shell commands
+# Create a new branch in RStudio
 
-Clone a repo into current directory.
-
-```bash
-$ git clone REPOSITORY-URL
-```
-
-See the commit history (hit spacebar to scroll down or q to exit). You need to be in a git repo to see something.
-
-```bash
-$ git log
-```
-
-What has changed? 
-
-```bash
-$ git status
-```
----
-
-# Main Git shell commands (cont.)
-
-Stage ("add") a file or group of files.
-```bash
-$ git add NAME-OF-FILE-OR-FOLDER
-```
-
-You can use [wildcard](https://ryanstutorials.net/linuxtutorial/wildcards.php) characters to stage a group of files (e.g. sharing a common prefix). There are a bunch of useful flag options too:
-
-- Stage all files.
-```bash
-$ git add -A
-```
-- Stage updated files only (modified or deleted, but not new).
-```bash
-$ git add -u
-```
-- Stage new files only (not updated).
-```bash
-$ git add .
-```
+&lt;div align="center"&gt;
+&lt;img src="pics/github-rstudio-new-branch.gif" height=500&gt;
+&lt;/div&gt;
 
 ---
 
-# Main Git shell commands (cont.)
+# Merging branches + Pull requests
 
-Commit your changes.
-```bash
-$ git commit -m "Helpful message"
-```
+You have two options:
 
-Pull from the upstream repository (i.e. GitHub).
-```bash
-$ git pull
-```
+--
 
-Push any local changes that you've committed to the upstream repo (i.e. GitHub).
-```bash
-$ git push
-```
+### 1. Locally
+- Commit your final changes to the new branch (say we call it "new-idea").
+- Switch back to the master branch: `$ git checkout master`
+- Merge in the new-idea branch changes: `$ git merge new-idea`
+- Delete the new-idea branch (optional): `$ git branch -d new-idea`
+  
+--
+
+### 2. Remotely (i.e. *pull requests* on GitHub)
+- PRs are a way to notify collaborators — or yourself! — that you have completed a feature.
+- You write a summary of all the changes contained in the branch.
+- You then assign suggested reviewers of your code — including yourself potentially — who are then able to approve these changes ("Merge pull request") on GitHub.
+
+--
+
+Let's see how that works in practice.
+
+---
+
+# Your first pull request
+
+### Enter new branch
+
+- First, operate in the new branch.
+- Switch over to it if you haven't already.
+- Remember: `$ git checkout new-idea` (or just click on the branches tab in RStudio)
+
+--
+
+### Make edits
+
+- Make some local changes and then commit + push them to GitHub.
+- For a start, the changes themselves don't really matter. Add text to the README, add some new files, whatever.
+
+--
+
+### Create pull request
+
+- After pushing these changes, head over to your repo on GitHub.
+- You should see a new green button with "Compare &amp; pull request". Click it.
+- Add a meta description of what this PR accomplishes. You can also change the title if you want.
+- Click "Create pull request".
+- (Here's where you or your collaborators would review all the changes.)
+- Once satisfied, click "Merge pull request" and then confirm.
+
+---
+
+# Your first pull request (cont.)
+
+&lt;div align="center"&gt;
+&lt;img src="pics/github-rstudio-pr.gif" height=500&gt;
+&lt;/div&gt;
+
+---
+
+# Forks
+
+### What are forks?
+
+- Git forks lie somewhere between cloning a repo and branching from it.
+- In fact, if you fork a repo then you are really creating a copy of it.
+
+--
+
+### How does it work?
+
+- Forking a repo on GitHub is [very simple](https://help.github.com/articles/fork-a-repo/); just click the "Fork" button in the top-right corner of said repo.
+- This will create an independent copy of the repo under your GitHub account.
+
+--
+
+### What to do with a forked repo?
+
+- Once you fork a repo, you are free to do anything you want to it. (It's yours.) However, forking — in combination with pull requests — is actually how much of the world's software is developed. For example:
+  - Outside user *B* forks *A*'s repo. She adds a new feature (or fixes a bug she's identified) and then [issues an upstream pull request](https://help.github.com/articles/creating-a-pull-request-from-a-fork/).
+  - *A* is notified and can then decide whether to merge *B*'s contribution with the main project.
+- If the original repo is still under active development, you might want to stay up to date. Learn more about syncing a fork [here](https://help.github.com/articles/syncing-a-fork/).
+
+
+
 
 ---
 class: inverse, center, middle
@@ -969,7 +1013,7 @@ What do these symbols mean?
 ### Caveats
 - C1 gets to decide what to keep because they fixed the merge conflict.
 - But: The full commit history is preserved, so C2 can always recover their changes if desired.
-- A more elegant and democratic solution to merge conflicts (and repo changes in general) is provided by Git **branches**. We'll get there next.
+- A more elegant and democratic solution to merge conflicts (and repo changes in general) is provided by Git **branches**.
 
 ---
 
@@ -997,49 +1041,107 @@ $ git config --global core.autocrlf input
 
 (Windows users: Change `input` to `true`).
 
+
+
 ---
 class: inverse, center, middle
-name: branches
+name: shell
 
-# Branches and forking
+# Git from the shell
 &lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px style="width:1000px; margin:auto;"/&gt;&lt;/html&gt;
 
 ---
 
-# What are branches and why use them?
+# Why bother with the shell?
 
-.pull-left-wide[
-### Branches are cool.
-- Think of your repo as a growing tree.
-- Branches allow you to take a snapshot of your existing repo and try out a whole new idea *without affecting* your main (formerly "master") branch.
-- Only once you (and your collaborators) are 100% satisfied, would you merge it back into the master branch.&lt;sup&gt;1&lt;/sup&gt;
-  - This is how most new features in modern software and apps are developed.
-  - It is also how bugs are caught and fixed.
-  - But researchers can easily use it to try out new ideas and analysis (e.g. robustness checks, revisions, etc.).
-- If you aren't happy, then you can just delete the experimental branch and continue as if nothing happened.
+.pull-left[
+**The GitHub + RStudio Project combo is ideal for new users.**
 
-.footnote[&lt;sup&gt;1&lt;/sup&gt; As with real trees, you can actually have branches of branches (of branches). But let's not get ahead of ourselves.]
+- RStudio's Git integration and built-in GUI cover all the major operations.
+- RStudio Projects FTW.
+
+However, there are **some benefits of the shell**:
+- The shell is more powerful and flexible. It lets you do things that the RStudio Git GUI can't.
+- Working in the shell is potentially more appropriate for projects that aren't primarily based in R.
+- Knowing the basic Git commands in the shell is generally a good thing for a data scientist.
+- For a hands-on intro to the shell/command line, check out the optional session in our GitHub organization.
 ]
-.pull-right-small-center[
-&lt;/br&gt;
-&lt;div align="center"&gt;
-&lt;img src="pics/git-branches-merge.png" height=150&gt;
-&lt;/div&gt;
 
-`Credit` [noble desktop](https://www.nobledesktop.com/learn/git/git-branches)
+.pull-right[
+&lt;br&gt;
+&lt;div align="center"&gt;
+&lt;img src="pics/shell-spongebob.webp" height=400&gt;
+&lt;/div&gt;
 ]
 
 ---
 
-# Create a new branch in RStudio
+# Git clone/status
 
-&lt;div align="center"&gt;
-&lt;img src="pics/github-rstudio-new-branch.gif" height=500&gt;
-&lt;/div&gt;
+Clone a repo into current directory.
+
+```bash
+$ git clone REPOSITORY-URL
+```
+
+See the commit history (hit spacebar to scroll down or q to exit). You need to be in a git repo to see something.
+
+```bash
+$ git log
+```
+
+What has changed? 
+
+```bash
+$ git status
+```
+
+---
+# Git stage
+
+Stage ("add") a file or group of files.
+```bash
+$ git add NAME-OF-FILE-OR-FOLDER
+```
+
+You can use [wildcard](https://ryanstutorials.net/linuxtutorial/wildcards.php) characters to stage a group of files (e.g. sharing a common prefix). There are a bunch of useful flag options too:
+
+- Stage all files.
+```bash
+$ git add -A
+```
+- Stage updated files only (modified or deleted, but not new).
+```bash
+$ git add -u
+```
+- Stage new files only (not updated).
+```bash
+$ git add .
+```
 
 ---
 
-# Branch shell commands
+# Git commit/pull/push
+
+Commit your changes.
+```bash
+$ git commit -m "Helpful message"
+```
+
+Pull from the upstream repository (i.e. GitHub).
+```bash
+$ git pull
+```
+
+Push any local changes that you've committed to the upstream repo (i.e. GitHub).
+```bash
+$ git push
+```
+
+
+---
+
+# Git checkout/branch
 
 Create a new branch on your local machine and switch to it:
 ```bash
@@ -1067,91 +1169,6 @@ $ git branch -d NAME-OF-YOUR-FAILED-BRANCH
 $ git push origin :NAME-OF-YOUR-FAILED-BRANCH
 ```
 
----
-
-# Merging branches + Pull requests
-
-You have two options:
-
---
-
-### 1. Locally
-- Commit your final changes to the new branch (say we call it "new-idea").
-- Switch back to the master branch: `$ git checkout master`
-- Merge in the new-idea branch changes: `$ git merge new-idea`
-- Delete the new-idea branch (optional): `$ git branch -d new-idea`
-  
---
-
-### 2. Remotely (i.e. *pull requests* on GitHub)
-- PRs are a way to notify collaborators — or yourself! — that you have completed a feature.
-- You write a summary of all the changes contained in the branch.
-- You then assign suggested reviewers of your code — including yourself potentially — who are then able to approve these changes ("Merge pull request") on GitHub.
-
---
-
-Let's see how that works in practice.
-
----
-
-# Your first pull request
-
-### Enter new branch
-
-- First, operate in the new branch.
-- Switch over to it if you haven't already.
-- Remember: `$ git checkout new-idea` (or just click on the branches tab in RStudio)
-
---
-
-### Make edits
-
-- Make some local changes and then commit + push them to GitHub.
-- For a start, the changes themselves don't really matter. Add text to the README, add some new files, whatever.
-
---
-
-### Create pull request
-
-- After pushing these changes, head over to your repo on GitHub.
-- You should see a new green button with "Compare &amp; pull request". Click it.
-- Add a meta description of what this PR accomplishes. You can also change the title if you want.
-- Click "Create pull request".
-- (Here's where you or your collaborators would review all the changes.)
-- Once satisfied, click "Merge pull request" and then confirm.
-
----
-
-# Your first pull request (cont.)
-
-&lt;div align="center"&gt;
-&lt;img src="pics/github-rstudio-pr.gif" height=500&gt;
-&lt;/div&gt;
-
----
-
-# Forks
-
-### What are forks?
-
-- Git forks lie somewhere between cloning a repo and branching from it.
-- In fact, if you fork a repo then you are really creating a copy of it.
-
---
-
-### How does it work?
-
-- Forking a repo on GitHub is [very simple](https://help.github.com/articles/fork-a-repo/); just click the "Fork" button in the top-right corner of said repo.
-- This will create an independent copy of the repo under your GitHub account.
-
---
-
-### What to do with a forked repo?
-
-- Once you fork a repo, you are free to do anything you want to it. (It's yours.) However, forking — in combination with pull requests — is actually how much of the world's software is developed. For example:
-  - Outside user *B* forks *A*'s repo. She adds a new feature (or fixes a bug she's identified) and then [issues an upstream pull request](https://help.github.com/articles/creating-a-pull-request-from-a-fork/).
-  - *A* is notified and can then decide whether to merge *B*'s contribution with the main project.
-- If the original repo is still under active development, you might want to stay up to date. Learn more about syncing a fork [here](https://help.github.com/articles/syncing-a-fork/).
 
 
 ---
@@ -1183,7 +1200,7 @@ name: other
 ### How README?
 
 - READMEs should be written in Markdown, which GH automatically renders.
-- You'll learn more about [Markdown](https://www.markdownguide.org/) (and its close relation, [R Markdown](https://rmarkdown.rstudio.com/)) during the course of our homework assignments.
+- You'll learn more about [Markdown](https://www.markdownguide.org/) (and its cousin, [R Markdown](https://rmarkdown.rstudio.com/)) during the course of our homework assignments.
 
 ---
 
@@ -1244,9 +1261,9 @@ name: other
 ### How to deal with issues?
 
 - Before filing an issue, you should check the list of open (and maybe also closed) issues.
-- If you spot any problems with these lecture notes, feel free to file an issue [here](https://github.com/Fall2021-GRAD-C11-Intro-to-DS/lectures/issues)!
+- If you spot any problems with these lecture notes, feel free to file an issue [here](https://github.com/intro-to-data-science-22/lectures/issues)!
   
-  
+
   
 ---
 class: inverse, center, middle
@@ -1402,6 +1419,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
