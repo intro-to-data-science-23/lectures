@@ -10,3 +10,4 @@
 **/logs/
 clips/
 .DS_Store
+slides-to-pdf.R
