@@ -11,7 +11,7 @@
 
 3. R and the tidyverse \[[**.html**](https://raw.githack.com/intro-to-data-science-22/lectures/main/03-tidyverse/03-tidyverse.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-22/lectures/main/03-tidyverse/03-tidyverse.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-22/lectures/main/03-tidyverse/03-tidyverse.Rmd)\]
 
-4. Debugging, automation and functions \[[**.html**](https://raw.githack.com/intro-to-data-science-22/lectures/main/04-debugging-automation/04-debugging-automation.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-22/lectures/main/04-debugging-automation/04-debugging-automation.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-22/lectures/main/10-debugging-automation/10-debugging-automation.Rmd)\]
+4. Functions and debugging \[[**.html**](https://raw.githack.com/intro-to-data-science-22/lectures/main/04-functions-debugging/04-functions-debugging.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-22/lectures/main/04-functions-debugging/04-functions-debugging.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-22/lectures/main/04-functions-debugging/04-functions-debugging.Rmd)\]
 
 5. Databases \[[**.html**](https://raw.githack.com/intro-to-data-science-22/lectures/main/05-databases/05-databases.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-22/lectures/main/05-databases/05-databases.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-22/lectures/main/05-databases/05-databases.Rmd)\]
 
@@ -31,6 +31,9 @@
 12. Data science ethics \[[**.html**](https://raw.githack.com/intro-to-data-science-22/lectures/main/12-ethics/12-ethics.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-22/lectures/main/12-ethics/12-ethics.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-22/lectures/main/12-ethics/12-ethics.Rmd)\]
 
 13. [BONUS] Working at the command line \[[**.html**](https://raw.githack.com/intro-to-data-science-22/lectures/main/13-command-line/13-command-line.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-22/lectures/main/13-command-line/13-command-line.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-22/lectures/main/13-command-line/13-command-line.Rmd)\]
+
+14. [BONUS] Automation, scheduling, and packages \[[**.html**](https://raw.githack.com/intro-to-data-science-22/lectures/main/14-automation-packages/14-automation-packages.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-22/lectures/main/14-automation-packages/14-automation-packages.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-22/lectures/main/14-automation-packages/14-automation-packages.Rmd)\]
+
 
 
 

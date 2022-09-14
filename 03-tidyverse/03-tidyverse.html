@@ -14,18 +14,10 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-.title[
 # Introduction to Data Science
-]
-.subtitle[
 ## Session 3: R and the tidyverse
-]
-.author[
 ### Simon Munzert
-]
-.institute[
 ### Hertie School
-]
 
 ---
 
@@ -54,11 +46,9 @@ class: center, middle, inverse, title-slide
 
 4. [Data tidying with tidyr](#tidyr)
 
-5. [Tidy programming](#programming)
+5. [Coding style](#style)
 
-6. [Coding style](#style)
-
-7. [Summary](#summary)
+6. [Summary](#summary)
 
 .footnote[&lt;sup&gt;1&lt;/sup&gt; Parts of this lecture draw on materials from Grant McDermott's excellent [*Data Science for Economists*](https://github.com/uo-ec607/lectures) class.]
 
@@ -145,14 +135,20 @@ R&gt; library(tidyverse)
 ```
 
 ```
-## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-## ✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
-## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
-## ✔ tidyr   1.2.0      ✔ stringr 1.4.1 
-## ✔ readr   2.1.2      ✔ forcats 0.5.2 
+## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
+```
+
+```
+## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+## ✓ tibble  3.1.3     ✓ dplyr   1.0.7
+## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
+## ✓ readr   2.0.0     ✓ forcats 0.5.1
+```
+
+```
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
 ```
 
 --
@@ -175,8 +171,8 @@ R&gt; tidyverse_packages()
 
 ```
 ##  [1] "broom"         "cli"           "crayon"        "dbplyr"       
-##  [5] "dplyr"         "dtplyr"        "forcats"       "ggplot2"      
-##  [9] "googledrive"   "googlesheets4" "haven"         "hms"          
+##  [5] "dplyr"         "dtplyr"        "forcats"       "googledrive"  
+##  [9] "googlesheets4" "ggplot2"       "haven"         "hms"          
 ## [13] "httr"          "jsonlite"      "lubridate"     "magrittr"     
 ## [17] "modelr"        "pillar"        "purrr"         "readr"        
 ## [21] "readxl"        "reprex"        "rlang"         "rstudioapi"   
@@ -288,7 +284,7 @@ Check out the [tidyverse design guide](https://design.tidyverse.org/) for a comp
 .pull-left[
 ### Stories from the past
 
-- When I started to learn R ~13 years ago, there was no tidyverse. The learning curve felt much steeper. I often switched back to Stata for data wrangling.
+- When I started to learn R ~14 years ago, there was no tidyverse. The learning curve felt much steeper. I often switched back to Stata for data wrangling.
 - As the tidyverse grew, R became more convenient to use for the entire research pipeline.
 - There's simply no need for you to live through the same pain.
 
@@ -598,15 +594,14 @@ R&gt; starwars %&gt;%
 
 ```
 ## # A tibble: 4 × 14
-##   name         height  mass hair_…¹ skin_…² eye_c…³ birth…⁴ sex   gender homew…⁵
-##   &lt;chr&gt;         &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  
-## 1 Darth Vader     202   136 none    white   yellow     41.9 male  mascu… Tatooi…
-## 2 Qui-Gon Jinn    193    89 brown   fair    blue       92   male  mascu… &lt;NA&gt;   
-## 3 Dooku           193    80 white   fair    brown     102   male  mascu… Serenno
-## 4 Bail Presto…    191    NA black   tan     brown      67   male  mascu… Aldera…
-## # … with 4 more variables: species &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;,
-## #   starships &lt;list&gt;, and abbreviated variable names ¹​hair_color, ²​skin_color,
-## #   ³​eye_color, ⁴​birth_year, ⁵​homeworld
+##   name      height  mass hair_color skin_color eye_color birth_year sex   gender
+##   &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 Darth Va…    202   136 none       white      yellow          41.9 male  mascu…
+## 2 Qui-Gon …    193    89 brown      fair       blue            92   male  mascu…
+## 3 Dooku        193    80 white      fair       brown          102   male  mascu…
+## 4 Bail Pre…    191    NA black      tan        brown           67   male  mascu…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;
 ```
 
 ---
@@ -622,14 +617,13 @@ R&gt; starwars %&gt;%
 
 ```
 ## # A tibble: 3 × 14
-##   name         height  mass hair_…¹ skin_…² eye_c…³ birth…⁴ sex   gender homew…⁵
-##   &lt;chr&gt;         &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  
-## 1 Luke Skywal…    172    77 blond   fair    blue       19   male  mascu… Tatooi…
-## 2 Anakin Skyw…    188    84 blond   fair    blue       41.9 male  mascu… Tatooi…
-## 3 Shmi Skywal…    163    NA black   fair    brown      72   fema… femin… Tatooi…
-## # … with 4 more variables: species &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;,
-## #   starships &lt;list&gt;, and abbreviated variable names ¹​hair_color, ²​skin_color,
-## #   ³​eye_color, ⁴​birth_year, ⁵​homeworld
+##   name     height  mass hair_color skin_color eye_color birth_year sex    gender
+##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; 
+## 1 Luke Sk…    172    77 blond      fair       blue            19   male   mascu…
+## 2 Anakin …    188    84 blond      fair       blue            41.9 male   mascu…
+## 3 Shmi Sk…    163    NA black      fair       brown           72   female femin…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;
 ```
 
 ---
@@ -645,17 +639,16 @@ R&gt; starwars %&gt;%
 
 ```
 ## # A tibble: 6 × 14
-##   name         height  mass hair_…¹ skin_…² eye_c…³ birth…⁴ sex   gender homew…⁵
-##   &lt;chr&gt;         &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  
-## 1 Arvel Crynyd     NA    NA brown   fair    brown        NA male  mascu… &lt;NA&gt;   
-## 2 Finn             NA    NA black   dark    dark         NA male  mascu… &lt;NA&gt;   
-## 3 Rey              NA    NA brown   light   hazel        NA fema… femin… &lt;NA&gt;   
-## 4 Poe Dameron      NA    NA brown   light   brown        NA male  mascu… &lt;NA&gt;   
-## 5 BB8              NA    NA none    none    black        NA none  mascu… &lt;NA&gt;   
-## 6 Captain Pha…     NA    NA unknown unknown unknown      NA &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;   
-## # … with 4 more variables: species &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;,
-## #   starships &lt;list&gt;, and abbreviated variable names ¹​hair_color, ²​skin_color,
-## #   ³​eye_color, ⁴​birth_year, ⁵​homeworld
+##   name     height  mass hair_color skin_color eye_color birth_year sex    gender
+##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; 
+## 1 Arvel C…     NA    NA brown      fair       brown             NA male   mascu…
+## 2 Finn         NA    NA black      dark       dark              NA male   mascu…
+## 3 Rey          NA    NA brown      light      hazel             NA female femin…
+## 4 Poe Dam…     NA    NA brown      light      brown             NA male   mascu…
+## 5 BB8          NA    NA none       none       black             NA none   mascu…
+## 6 Captain…     NA    NA unknown    unknown    unknown           NA &lt;NA&gt;   &lt;NA&gt;  
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;
 ```
 
 --
@@ -678,13 +671,12 @@ R&gt; starwars %&gt;%
 
 ```
 ## # A tibble: 2 × 14
-##   name         height  mass hair_…¹ skin_…² eye_c…³ birth…⁴ sex   gender homew…⁵
-##   &lt;chr&gt;         &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  
-## 1 Luke Skywal…    172    77 blond   fair    blue       19   male  mascu… Tatooi…
-## 2 Anakin Skyw…    188    84 blond   fair    blue       41.9 male  mascu… Tatooi…
-## # … with 4 more variables: species &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;,
-## #   starships &lt;list&gt;, and abbreviated variable names ¹​hair_color, ²​skin_color,
-## #   ³​eye_color, ⁴​birth_year, ⁵​homeworld
+##   name      height  mass hair_color skin_color eye_color birth_year sex   gender
+##   &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 Luke Sky…    172    77 blond      fair       blue            19   male  mascu…
+## 2 Anakin S…    188    84 blond      fair       blue            41.9 male  mascu…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;
 ```
 
 --
@@ -712,21 +704,20 @@ R&gt; starwars %&gt;%
 
 ```
 ## # A tibble: 87 × 14
-##    name        height  mass hair_…¹ skin_…² eye_c…³ birth…⁴ sex   gender homew…⁵
-##    &lt;chr&gt;        &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  
-##  1 Wicket Sys…     88  20   brown   brown   brown       8   male  mascu… Endor  
-##  2 IG-88          200 140   none    metal   red        15   none  mascu… &lt;NA&gt;   
-##  3 Luke Skywa…    172  77   blond   fair    blue       19   male  mascu… Tatooi…
-##  4 Leia Organa    150  49   brown   light   brown      19   fema… femin… Aldera…
-##  5 Wedge Anti…    170  77   brown   fair    hazel      21   male  mascu… Corell…
-##  6 Plo Koon       188  80   none    orange  black      22   male  mascu… Dorin  
-##  7 Biggs Dark…    183  84   black   light   brown      24   male  mascu… Tatooi…
-##  8 Han Solo       180  80   brown   fair    brown      29   male  mascu… Corell…
-##  9 Lando Calr…    177  79   black   dark    brown      31   male  mascu… Socorro
-## 10 Boba Fett      183  78.2 black   fair    brown      31.5 male  mascu… Kamino 
-## # … with 77 more rows, 4 more variables: species &lt;chr&gt;, films &lt;list&gt;,
-## #   vehicles &lt;list&gt;, starships &lt;list&gt;, and abbreviated variable names
-## #   ¹​hair_color, ²​skin_color, ³​eye_color, ⁴​birth_year, ⁵​homeworld
+##    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Wicket …     88  20   brown      brown      brown            8   male  mascu…
+##  2 IG-88       200 140   none       metal      red             15   none  mascu…
+##  3 Luke Sk…    172  77   blond      fair       blue            19   male  mascu…
+##  4 Leia Or…    150  49   brown      light      brown           19   fema… femin…
+##  5 Wedge A…    170  77   brown      fair       hazel           21   male  mascu…
+##  6 Plo Koon    188  80   none       orange     black           22   male  mascu…
+##  7 Biggs D…    183  84   black      light      brown           24   male  mascu…
+##  8 Han Solo    180  80   brown      fair       brown           29   male  mascu…
+##  9 Lando C…    177  79   black      dark       brown           31   male  mascu…
+## 10 Boba Fe…    183  78.2 black      fair       brown           31.5 male  mascu…
+## # … with 77 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
+## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;
 ```
 
 --
@@ -747,21 +738,20 @@ R&gt; starwars %&gt;%
 
 ```
 ## # A tibble: 87 × 14
-##    name        height  mass hair_…¹ skin_…² eye_c…³ birth…⁴ sex   gender homew…⁵
-##    &lt;chr&gt;        &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  
-##  1 Yoda            66    17 white   green   brown       896 male  mascu… &lt;NA&gt;   
-##  2 Jabba Desi…    175  1358 &lt;NA&gt;    green-… orange      600 herm… mascu… Nal Hu…
-##  3 Chewbacca      228   112 brown   unknown blue        200 male  mascu… Kashyy…
-##  4 C-3PO          167    75 &lt;NA&gt;    gold    yellow      112 none  mascu… Tatooi…
-##  5 Dooku          193    80 white   fair    brown       102 male  mascu… Serenno
-##  6 Qui-Gon Ji…    193    89 brown   fair    blue         92 male  mascu… &lt;NA&gt;   
-##  7 Ki-Adi-Mun…    198    82 white   pale    yellow       92 male  mascu… Cerea  
-##  8 Finis Valo…    170    NA blond   fair    blue         91 male  mascu… Corusc…
-##  9 Palpatine      170    75 grey    pale    yellow       82 male  mascu… Naboo  
-## 10 Cliegg Lars    183    NA brown   fair    blue         82 male  mascu… Tatooi…
-## # … with 77 more rows, 4 more variables: species &lt;chr&gt;, films &lt;list&gt;,
-## #   vehicles &lt;list&gt;, starships &lt;list&gt;, and abbreviated variable names
-## #   ¹​hair_color, ²​skin_color, ³​eye_color, ⁴​birth_year, ⁵​homeworld
+##    name    height  mass hair_color skin_color  eye_color birth_year sex   gender
+##    &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Yoda        66    17 white      green       brown            896 male  mascu…
+##  2 Jabba …    175  1358 &lt;NA&gt;       green-tan,… orange           600 herm… mascu…
+##  3 Chewba…    228   112 brown      unknown     blue             200 male  mascu…
+##  4 C-3PO      167    75 &lt;NA&gt;       gold        yellow           112 none  mascu…
+##  5 Dooku      193    80 white      fair        brown            102 male  mascu…
+##  6 Qui-Go…    193    89 brown      fair        blue              92 male  mascu…
+##  7 Ki-Adi…    198    82 white      pale        yellow            92 male  mascu…
+##  8 Finis …    170    NA blond      fair        blue              91 male  mascu…
+##  9 Palpat…    170    75 grey       pale        yellow            82 male  mascu…
+## 10 Cliegg…    183    NA brown      fair        blue              82 male  mascu…
+## # … with 77 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
+## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;
 ```
 
 ---
@@ -873,16 +863,15 @@ R&gt; starwars %&gt;%
 
 ```
 ## # A tibble: 5 × 14
-##   species homeworld name      height  mass hair_…¹ skin_…² eye_c…³ birth…⁴ sex  
-##   &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;
-## 1 Human   Tatooine  Luke Sky…    172    77 blond   fair    blue       19   male 
-## 2 Droid   Tatooine  C-3PO        167    75 &lt;NA&gt;    gold    yellow    112   none 
-## 3 Droid   Naboo     R2-D2         96    32 &lt;NA&gt;    white,… red        33   none 
-## 4 Human   Tatooine  Darth Va…    202   136 none    white   yellow     41.9 male 
-## 5 Human   Alderaan  Leia Org…    150    49 brown   light   brown      19   fema…
-## # … with 4 more variables: gender &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;,
-## #   starships &lt;list&gt;, and abbreviated variable names ¹​hair_color, ²​skin_color,
-## #   ³​eye_color, ⁴​birth_year
+##   species homeworld name           height  mass hair_color skin_color  eye_color
+##   &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;           &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;    
+## 1 Human   Tatooine  Luke Skywalker    172    77 blond      fair        blue     
+## 2 Droid   Tatooine  C-3PO             167    75 &lt;NA&gt;       gold        yellow   
+## 3 Droid   Naboo     R2-D2              96    32 &lt;NA&gt;       white, blue red      
+## 4 Human   Tatooine  Darth Vader       202   136 none       white       yellow   
+## 5 Human   Alderaan  Leia Organa       150    49 brown      light       brown    
+## # … with 6 more variables: birth_year &lt;dbl&gt;, sex &lt;chr&gt;, gender &lt;chr&gt;,
+## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;
 ```
 
 --
@@ -992,8 +981,7 @@ R&gt; starwars %&gt;%
 ```
 
 ```
-## `summarise()` has grouped output by 'species'. You can override using the
-## `.groups` argument.
+## `summarise()` has grouped output by 'species'. You can override using the `.groups` argument.
 ```
 
 ```
@@ -1087,21 +1075,20 @@ R&gt; by_species_gender
 ```
 ## # A tibble: 87 × 14
 ## # Groups:   species, gender [42]
-##    name        height  mass hair_…¹ skin_…² eye_c…³ birth…⁴ sex   gender homew…⁵
-##    &lt;chr&gt;        &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  
-##  1 Luke Skywa…    172    77 blond   fair    blue       19   male  mascu… Tatooi…
-##  2 C-3PO          167    75 &lt;NA&gt;    gold    yellow    112   none  mascu… Tatooi…
-##  3 R2-D2           96    32 &lt;NA&gt;    white,… red        33   none  mascu… Naboo  
-##  4 Darth Vader    202   136 none    white   yellow     41.9 male  mascu… Tatooi…
-##  5 Leia Organa    150    49 brown   light   brown      19   fema… femin… Aldera…
-##  6 Owen Lars      178   120 brown,… light   blue       52   male  mascu… Tatooi…
-##  7 Beru White…    165    75 brown   light   blue       47   fema… femin… Tatooi…
-##  8 R5-D4           97    32 &lt;NA&gt;    white,… red        NA   none  mascu… Tatooi…
-##  9 Biggs Dark…    183    84 black   light   brown      24   male  mascu… Tatooi…
-## 10 Obi-Wan Ke…    182    77 auburn… fair    blue-g…    57   male  mascu… Stewjon
-## # … with 77 more rows, 4 more variables: species &lt;chr&gt;, films &lt;list&gt;,
-## #   vehicles &lt;list&gt;, starships &lt;list&gt;, and abbreviated variable names
-## #   ¹​hair_color, ²​skin_color, ³​eye_color, ⁴​birth_year, ⁵​homeworld
+##    name    height  mass hair_color  skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Luke S…    172    77 blond       fair       blue            19   male  mascu…
+##  2 C-3PO      167    75 &lt;NA&gt;        gold       yellow         112   none  mascu…
+##  3 R2-D2       96    32 &lt;NA&gt;        white, bl… red             33   none  mascu…
+##  4 Darth …    202   136 none        white      yellow          41.9 male  mascu…
+##  5 Leia O…    150    49 brown       light      brown           19   fema… femin…
+##  6 Owen L…    178   120 brown, grey light      blue            52   male  mascu…
+##  7 Beru W…    165    75 brown       light      blue            47   fema… femin…
+##  8 R5-D4       97    32 &lt;NA&gt;        white, red red             NA   none  mascu…
+##  9 Biggs …    183    84 black       light      brown           24   male  mascu…
+## 10 Obi-Wa…    182    77 auburn, wh… fair       blue-gray       57   male  mascu…
+## # … with 77 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
+## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;
 ```
 
 ---
@@ -1160,13 +1147,12 @@ R&gt; starwars %&gt;% slice(c(1, 5))
 
 ```
 ## # A tibble: 2 × 14
-##   name         height  mass hair_…¹ skin_…² eye_c…³ birth…⁴ sex   gender homew…⁵
-##   &lt;chr&gt;         &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  
-## 1 Luke Skywal…    172    77 blond   fair    blue         19 male  mascu… Tatooi…
-## 2 Leia Organa     150    49 brown   light   brown        19 fema… femin… Aldera…
-## # … with 4 more variables: species &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;,
-## #   starships &lt;list&gt;, and abbreviated variable names ¹​hair_color, ²​skin_color,
-## #   ³​eye_color, ⁴​birth_year, ⁵​homeworld
+##   name     height  mass hair_color skin_color eye_color birth_year sex    gender
+##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; 
+## 1 Luke Sk…    172    77 blond      fair       blue              19 male   mascu…
+## 2 Leia Or…    150    49 brown      light      brown             19 female femin…
+## # … with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;
 ```
 
 --
@@ -1245,14 +1231,13 @@ R&gt; starwars %&gt;%
 
 ```
 ## # A tibble: 3 × 14
-##   name      heigh…¹ mass[…² hair_…³ skin_…⁴ eye_c…⁵ birth…⁶ sex   gender homew…⁷
-##   &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  
-## 1 Luke Sky… -0.0678  -0.120 blond   fair    blue     -0.443 male  mascu… Tatooi…
-## 2 C-3PO     -0.212   -0.132 &lt;NA&gt;    gold    yellow    0.158 none  mascu… Tatooi…
-## 3 R2-D2     -2.25    -0.385 &lt;NA&gt;    white,… red      -0.353 none  mascu… Naboo  
-## # … with 4 more variables: species &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;,
-## #   starships &lt;list&gt;, and abbreviated variable names ¹​height[,1], ²​mass[,1],
-## #   ³​hair_color, ⁴​skin_color, ⁵​eye_color, ⁶​birth_year[,1], ⁷​homeworld
+##   name  height[,1] mass[,1] hair_color skin_color eye_color birth_year[,1] sex  
+##   &lt;chr&gt;      &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;              &lt;dbl&gt; &lt;chr&gt;
+## 1 Luke…    -0.0678   -0.120 blond      fair       blue              -0.443 male 
+## 2 C-3PO    -0.212    -0.132 &lt;NA&gt;       gold       yellow             0.158 none 
+## 3 R2-D2    -2.25     -0.385 &lt;NA&gt;       white, bl… red               -0.353 none 
+## # … with 6 more variables: gender &lt;chr&gt;, homeworld &lt;chr&gt;, species &lt;chr&gt;,
+## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;
 ```
 
 
@@ -1417,9 +1402,9 @@ R&gt; stocks
 ```
 
 ```
-##         time         X         Y          Z
-## 1 2009-01-01  1.993956 -2.042372  0.8050876
-## 2 2009-01-02 -1.755463  3.550351 -2.2360425
+##         time          X          Y         Z
+## 1 2009-01-01  0.1267408  0.2643455 -4.691890
+## 2 2009-01-02 -0.3423176 -2.8171097  4.139957
 ```
 
 --
@@ -1434,12 +1419,12 @@ R&gt; tidy_stocks
 ## # A tibble: 6 × 3
 ##   time       stock  price
 ##   &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;
-## 1 2009-01-01 X      1.99 
-## 2 2009-01-01 Y     -2.04 
-## 3 2009-01-01 Z      0.805
-## 4 2009-01-02 X     -1.76 
-## 5 2009-01-02 Y      3.55 
-## 6 2009-01-02 Z     -2.24
+## 1 2009-01-01 X      0.127
+## 2 2009-01-01 Y      0.264
+## 3 2009-01-01 Z     -4.69 
+## 4 2009-01-02 X     -0.342
+## 5 2009-01-02 Y     -2.82 
+## 6 2009-01-02 Z      4.14
 ```
 
 
@@ -1455,10 +1440,10 @@ R&gt; tidy_stocks %&gt;% pivot_wider(names_from = stock, values_from = price)
 
 ```
 ## # A tibble: 2 × 4
-##   time           X     Y      Z
-##   &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
-## 1 2009-01-01  1.99 -2.04  0.805
-## 2 2009-01-02 -1.76  3.55 -2.24
+##   time            X      Y     Z
+##   &lt;date&gt;      &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1 2009-01-01  0.127  0.264 -4.69
+## 2 2009-01-02 -0.342 -2.82   4.14
 ```
 
 --
@@ -1472,9 +1457,9 @@ R&gt; tidy_stocks %&gt;% pivot_wider(names_from= time, values_from = price)
 ## # A tibble: 3 × 3
 ##   stock `2009-01-01` `2009-01-02`
 ##   &lt;chr&gt;        &lt;dbl&gt;        &lt;dbl&gt;
-## 1 X            1.99         -1.76
-## 2 Y           -2.04          3.55
-## 3 Z            0.805        -2.24
+## 1 X            0.127       -0.342
+## 2 Y            0.264       -2.82 
+## 3 Z           -4.69         4.14
 ```
 
 
@@ -1584,10 +1569,10 @@ R&gt; gdp
 ```
 
 ```
-##     yr mnth dy      gdp
-## 1 2016    1  1 102.4304
-## 2 2016    1  2 101.1704
-## 3 2016    1  3 101.5928
+##     yr mnth dy       gdp
+## 1 2016    1  1  99.81941
+## 2 2016    1  2 103.55388
+## 3 2016    1  3  97.38401
 ```
 
 ```r
@@ -1596,10 +1581,10 @@ R&gt; gdp %&gt;% unite(date, c("yr", "mnth", "dy"), sep = "-")
 ```
 
 ```
-##       date      gdp
-## 1 2016-1-1 102.4304
-## 2 2016-1-2 101.1704
-## 3 2016-1-3 101.5928
+##       date       gdp
+## 1 2016-1-1  99.81941
+## 2 2016-1-2 103.55388
+## 3 2016-1-3  97.38401
 ```
 
 ---
@@ -1622,9 +1607,9 @@ R&gt; gdp_u
 ## # A tibble: 3 × 2
 ##   date       gdp
 ##   &lt;chr&gt;    &lt;dbl&gt;
-## 1 2016-1-1  102.
-## 2 2016-1-2  101.
-## 3 2016-1-3  102.
+## 1 2016-1-1  99.8
+## 2 2016-1-2 104. 
+## 3 2016-1-3  97.4
 ```
 ]
 
@@ -1643,9 +1628,9 @@ R&gt; gdp_u %&gt;% mutate(date = ymd(date))
 ## # A tibble: 3 × 2
 ##   date         gdp
 ##   &lt;date&gt;     &lt;dbl&gt;
-## 1 2016-01-01  102.
-## 2 2016-01-02  101.
-## 3 2016-01-03  102.
+## 1 2016-01-01  99.8
+## 2 2016-01-02 104. 
+## 3 2016-01-03  97.4
 ```
 ]
 
@@ -1681,729 +1666,6 @@ R&gt; crossing(side=c("left", "right"), height=c("top", "bottom"))
 --
 
 `fill(data, ..., direction = c("down", "up"))`: Fill in NAs in `...` columns with most recent non-NA values.
-
-
----
-class: inverse, center, middle
-name: programming
-
-# Tidy programming
-
-&lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px style="width:1000px; margin:auto;"/&gt;&lt;/html&gt;
-
-
----
-
-# Tidy programming basics
-
-"Tidy programming" is not a strictly defined practice in the tidyverse. However, there are some common programming strategies that help you keep your code and workflow tidy. These include:
-
-- Pipes (you already know that ✅)
-- User-generated functions
-- Functional programming with `purrr`
-
---
-
-The latter two are extremely helpful - in particular when you are confronted with iterative tasks.
-
---
-
-We will now learn the basics of creating your own functions and functional programming with R. There is much more to learn about these topics, so we will revisit them as the course progresses.
-
----
-
-# Creating functions
-
-### Why creating functions?
-
-That's a legit question. There are 18,000+ **packages** on CRAN (and many, many more on GitHub and other repositories) containing zillions of functions. Why should you create yet another one?
-- Every data science project is unique. There are problems only you have to solve. 
-- For problems that are repetitive, you'll quickly look for options to automate the task.
-- Functions are a great way to automate.
-
---
-
-### Examples where creating functions makes sense
-
---
-
-1. You want to scrape thousands of websites. This implies multiple steps, from downloading to parsing and cleaning. All these steps can be achieved with existing functions, but the fine-tuning is specific to the set of websites. You build one (or a set of) scraping functions that take the websites as input and return a cleaned data frame ready to be analyzed.
-
---
-
-2. You want to estimate not one but multiple models on your dataset. The models vary both in terms of data input and specification. Again, based on existing modeling functions you tailor your own, allowing you to run all these models automatically and to parse the results into one clean data frame.
-
----
-
-# Basic syntax
-
-.pull-left[
-Writing your own function in R is easy with the `function()` function&lt;sup&gt;1&lt;/sup&gt;. The basic syntax is as follows:
-
-
-```r
-R&gt; my_func &lt;- function(ARGUMENTS) {
-+     OPERATIONS
-+     return(VALUE)
-+   }
-```
-
-.footnote[&lt;sup&gt;1&lt;/sup&gt; Yes, a function to create functions. 🤯]
-]
-
----
-
-# Basic syntax
-
-.pull-left[
-Writing your own function in R is easy with the `function()` function&lt;sup&gt;1&lt;/sup&gt;. The basic syntax is as follows:
-
-
-```r
-*R&gt; my_func &lt;- function(ARGUMENTS) {
-+     OPERATIONS
-+     return(VALUE)
-+   }
-```
-
-- We write functions to apply them later. So, we have to give them a name. Here, we name it "`my_func`".
-- Also, our function (almost) always needs input, plus we want to specify how exactly the function should behave. We can use arguments for this, which are specified as arguments of the `function()` function.
-
-.footnote[&lt;sup&gt;1&lt;/sup&gt; Yes, a function to create functions. 🤯]
-]
-
----
-
-# Basic syntax
-
-.pull-left[
-Writing your own function in R is easy with the `function()` function&lt;sup&gt;1&lt;/sup&gt;. The basic syntax is as follows:
-
-
-```r
-R&gt; my_func &lt;- function(ARGUMENTS) {
-*+     OPERATIONS
-+     return(VALUE)
-+   }
-```
-
-- Next, we specify anything we want the function to to.
-- This comes in between curly brackets, `{...}`.
-- Importantly, we can recycle arguments by calling them by their name.
-
-.footnote[&lt;sup&gt;1&lt;/sup&gt; Yes, a function to create functions. 🤯]
-]
-
----
-
-# Basic syntax
-
-.pull-left[
-Writing your own function in R is easy with the `function()` function&lt;sup&gt;1&lt;/sup&gt;. The basic syntax is as follows:
-
-
-```r
-R&gt; my_func &lt;- function(ARGUMENTS) {
-+     OPERATIONS 
-*+     return(VALUE)
-+   }
-```
-
-- Finally, we specify what the function should return. 
-- This could be a list, data.frame, vector, sentence - or anything else really.
-
-.footnote[&lt;sup&gt;1&lt;/sup&gt; Yes, a function to create functions. 🤯]
-]
-
----
-
-# Basic syntax
-
-.pull-left[
-Writing your own function in R is easy with the `function()` function&lt;sup&gt;1&lt;/sup&gt;. The basic syntax is as follows:
-
-
-```r
-R&gt; my_func &lt;- function(ARGUMENTS) {
-+     OPERATIONS 
-+     return(VALUE) 
-*+   }
-```
-
-- Oh, and don't forget to close the curly brackets...
-
-.footnote[&lt;sup&gt;1&lt;/sup&gt; Yes, a function to create functions. 🤯]
-]
-
----
-
-# Basic syntax
-
-.pull-left[
-Writing your own function in R is easy with the `function()` function&lt;sup&gt;1&lt;/sup&gt;. The basic syntax is as follows:
-
-
-```r
-R&gt; my_func &lt;- function(ARGUMENTS) {
-+     OPERATIONS 
-+     return(VALUE) 
-+   } 
-```
-
-.footnote[&lt;sup&gt;1&lt;/sup&gt; Yes, a function to create functions. 🤯]
-]
-
-.pull-right[
-Let's try it out with a simple example function - one that converts temperatures from [Fahrenheit to Celsius](https://en.wikipedia.org/wiki/Conversion_of_scales_of_temperature#Fahrenheit):&lt;sup&gt;2&lt;/sup&gt;
-
-
-```r
-R&gt; fahrenheit_to_celsius &lt;- function(temp_F) {
-+   temp_C &lt;- (temp_F - 32) * (5/9)
-+   return(temp_C)
-+ }
-```
-
-.footnote[&lt;sup&gt;2&lt;/sup&gt; Courtesy of [Software Carpentry](https://swcarpentry.github.io/r-novice-inflammation/02-func-R/).]
-
-]
-
----
-
-# Basic syntax
-
-.pull-left[
-Writing your own function in R is easy with the `function()` function&lt;sup&gt;1&lt;/sup&gt;. The basic syntax is as follows:
-
-
-```r
-R&gt; my_func &lt;- function(ARGUMENTS) {
-+     OPERATIONS 
-+     return(VALUE) 
-+   } 
-```
-
-.footnote[&lt;sup&gt;1&lt;/sup&gt; Yes, a function to create functions. 🤯]
-]
-
-.pull-right[
-Let's try it out with a simple example function - one that converts temperatures from [Fahrenheit to Celsius](https://en.wikipedia.org/wiki/Conversion_of_scales_of_temperature#Fahrenheit):&lt;sup&gt;2&lt;/sup&gt;
-
-
-```r
-*R&gt; fahrenheit_to_celsius &lt;- function(temp_F) {
-+   temp_C &lt;- (temp_F - 32) * (5/9)
-+   return(temp_C)
-+ }
-```
-
-- Our function has an intuitive name.
-- Also, it takes just one thing as input, which we call `temp_F`.
-
-.footnote[&lt;sup&gt;2&lt;/sup&gt; Courtesy of [Software Carpentry](https://swcarpentry.github.io/r-novice-inflammation/02-func-R/).]
-
-]
-
----
-
-# Basic syntax
-
-.pull-left[
-Writing your own function in R is easy with the `function()` function&lt;sup&gt;1&lt;/sup&gt;. The basic syntax is as follows:
-
-
-```r
-R&gt; my_func &lt;- function(ARGUMENTS) {
-+     OPERATIONS 
-+     return(VALUE) 
-+   } 
-```
-
-.footnote[&lt;sup&gt;1&lt;/sup&gt; Yes, a function to create functions. 🤯]
-]
-
-.pull-right[
-Let's try it out with a simple example function - one that converts temperatures from [Fahrenheit to Celsius](https://en.wikipedia.org/wiki/Conversion_of_scales_of_temperature#Fahrenheit):&lt;sup&gt;2&lt;/sup&gt;
-
-
-```r
-R&gt; fahrenheit_to_celsius &lt;- function(temp_F) {
-*+   temp_C &lt;- (temp_F - 32) * (5/9)
-+   return(temp_C)
-+ }
-```
-
-- We now take up the argument `temp_F`, do something with it, and store the output in a new object, `temp_C`.
-- Importantly, that object only lives within the function. When the function is run, we cannot access it from the environment.
-
-
-.footnote[&lt;sup&gt;2&lt;/sup&gt; Courtesy of [Software Carpentry](https://swcarpentry.github.io/r-novice-inflammation/02-func-R/).]
-
-]
-
----
-
-# Basic syntax
-
-.pull-left[
-Writing your own function in R is easy with the `function()` function&lt;sup&gt;1&lt;/sup&gt;. The basic syntax is as follows:
-
-
-```r
-R&gt; my_func &lt;- function(ARGUMENTS) {
-+     OPERATIONS 
-+     return(VALUE) 
-+   } 
-```
-
-.footnote[&lt;sup&gt;1&lt;/sup&gt; Yes, a function to create functions. 🤯]
-]
-
-.pull-right[
-Let's try it out with a simple example function - one that converts temperatures from [Fahrenheit to Celsius](https://en.wikipedia.org/wiki/Conversion_of_scales_of_temperature#Fahrenheit):&lt;sup&gt;2&lt;/sup&gt;
-
-
-```r
-R&gt; fahrenheit_to_celsius &lt;- function(temp_F) {
-+   temp_C &lt;- (temp_F - 32) * (5/9)
-*+   return(temp_C)
-+ }
-```
-
-- Finally, the output is returned.
-
-
-.footnote[&lt;sup&gt;2&lt;/sup&gt; Courtesy of [Software Carpentry](https://swcarpentry.github.io/r-novice-inflammation/02-func-R/).]
-
-]
-
----
-
-# Basic syntax
-
-.pull-left[
-Writing your own function in R is easy with the `function()` function&lt;sup&gt;1&lt;/sup&gt;. The basic syntax is as follows:
-
-
-```r
-R&gt; my_func &lt;- function(ARGUMENTS) {
-+     OPERATIONS 
-+     return(VALUE) 
-+   } 
-```
-
-.footnote[&lt;sup&gt;1&lt;/sup&gt; Yes, a function to create functions. 🤯]
-]
-
-.pull-right[
-Let's try it out with a simple example function - one that converts temperatures from [Fahrenheit to Celsius](https://en.wikipedia.org/wiki/Conversion_of_scales_of_temperature#Fahrenheit):
-
-
-```r
-R&gt; fahrenheit_to_celsius &lt;- function(temp_F) {
-+   temp_C &lt;- (temp_F - 32) * (5/9)
-+   return(temp_C)
-+ }
-```
-
-Now, let's try out the function:
-{{content}}
-]
-
---
-
-
-```r
-R&gt; fahrenheit_to_celsius(451)
-```
-
-```
-## [1] 232.7778
-```
-{{content}}
-
---
-
-Pretty hot, isn't it?
-{{content}}
-
----
-
-# Functions: default argument values, if(), else()
-
-.pull-left[
-
-Let's make the function a bit more complex, but also more fun.
-]
-
-.pull-right[
-
-
-```r
-R&gt; temp_convert &lt;- 
-+   function(temp, from = "f") {
-+   if (!(from %in% c("f", "c"))){ 
-+     stop("No valid input 
-+           temperature specified.")
-+   }
-+   if (from == "f") {
-+     out &lt;- (temp - 32) * (5/9)
-+   } else {
-+     out &lt;- temp * (9/5) + 32
-+   }
-+   if((from == "c" &amp; temp &gt; 30) | 
-+      (from == "f" &amp; out &gt; 30)) {
-+     message("That's damn hot!")
-+   }else{
-+     message("That's not so hot.")
-+   }
-+   return(out) # return temperature
-+ }
-```
-]
-
----
-
-# Functions: default argument values, if(), else()
-
-.pull-left[
-
-Let's make the function a bit more complex, but also more fun.
-
-- By giving `from` a default value (`"f"`), we ensure that the function returns valid output when only the key input, `temp`, is provided.
-]
-
-.pull-right[
-
-
-```r
-R&gt; temp_convert &lt;- 
-*+   function(temp, from = "f") {
-+   if (!(from %in% c("f", "c"))){ 
-+     stop("No valid input 
-+           temperature specified.")
-+   }
-+   if (from == "f") {
-+     out &lt;- (temp - 32) * (5/9)
-+   } else {
-+     out &lt;- temp * (9/5) + 32
-+   }
-+   if((from == "c" &amp; temp &gt; 30) | 
-+      (from == "f" &amp; out &gt; 30)) {
-+     message("That's damn hot!")
-+   }else{
-+     message("That's not so hot.")
-+   }
-+   return(out) # return temperature
-+ }
-```
-]
-
-
-
----
-
-# Functions: default argument values, if(), else()
-
-.pull-left[
-
-Let's make the function a bit more complex, but also more fun.
-
-- By giving `from` a default value (`"f"`), we ensure that the function returns valid output when only the key input, `temp`, is provided.
-- `if() {...}` allows us to make conditional statements. Here, we test for the validity of the input for argument `from`.
-
-]
-
-.pull-right[
-
-
-```r
-R&gt; temp_convert &lt;- 
-+   function(temp, from = "f") { 
-*+   if (!(from %in% c("f", "c"))){
-+     stop("No valid input 
-+           temperature specified.")
-+   }
-+   if (from == "f") {
-+     out &lt;- (temp - 32) * (5/9)
-+   } else {
-+     out &lt;- temp * (9/5) + 32
-+   }
-+   if((from == "c" &amp; temp &gt; 30) | 
-+      (from == "f" &amp; out &gt; 30)) {
-+     message("That's damn hot!")
-+   }else{
-+     message("That's not so hot.")
-+   }
-+   return(out) # return temperature
-+ }
-```
-]
-
-
----
-
-# Functions: default argument values, if(), else()
-
-.pull-left[
-
-Let's make the function a bit more complex, but also more fun.
-
-- By giving `from` a default value (`"f"`), we ensure that the function returns valid output when only the key input, `temp`, is provided.
-- `if() {...}` allows us to make conditional statements. Here, we test for the validity of the input for argument `from`.
-- If the condition is not met, the function breaks and prints a message.
-
-]
-
-.pull-right[
-
-
-```r
-R&gt; temp_convert &lt;- 
-+   function(temp, from = "f") { 
-+   if (!(from %in% c("f", "c"))){ 
-+     stop("No valid input 
-*+           temperature specified.")
-+   }
-+   if (from == "f") {
-+     out &lt;- (temp - 32) * (5/9)
-+   } else {
-+     out &lt;- temp * (9/5) + 32
-+   }
-+   if((from == "c" &amp; temp &gt; 30) | 
-+      (from == "f" &amp; out &gt; 30)) {
-+     message("That's damn hot!")
-+   }else{
-+     message("That's not so hot.")
-+   }
-+   return(out) # return temperature
-+ }
-```
-]
-
----
-
-# Functions: default argument values, if(), else()
-
-.pull-left[
-
-Let's make the function a bit more complex, but also more fun.
-
-- By giving `from` a default value (`"f"`), we ensure that the function returns valid output when only the key input, `temp`, is provided.
-- `if() {...}` allows us to make conditional statements. Here, we test for the validity of the input for argument `from`.
-- If the condition is not met, the function breaks and prints a message.
-- We `else()` we specify what to do if the `if()` condition is not met.
-]
-
-.pull-right[
-
-
-```r
-R&gt; temp_convert &lt;- 
-+   function(temp, from = "f") { 
-+   if (!(from %in% c("f", "c"))){ 
-+     stop("No valid input 
-+           temperature specified.")
-+   }
-+   if (from == "f") {
-+     out &lt;- (temp - 32) * (5/9)
-*+   } else {
-+     out &lt;- temp * (9/5) + 32
-+   }
-+   if((from == "c" &amp; temp &gt; 30) | 
-+      (from == "f" &amp; out &gt; 30)) {
-+     message("That's damn hot!")
-+   }else{
-+     message("That's not so hot.")
-+   }
-+   return(out) # return temperature
-+ }
-```
-]
-
----
-
-# Functions: default argument values, if(), else()
-
-.pull-left[
-
-Let's make the function a bit more complex, but also more fun.
-
-- By giving `from` a default value (`"f"`), we ensure that the function returns valid output when only the key input, `temp`, is provided.
-- `if() {...}` allows us to make conditional statements. Here, we test for the validity of the input for argument `from`.
-- If the condition is not met, the function breaks and prints a message.
-- We `else()` we specify what to do if the `if()` condition is not met.
-- Make R more talkative with `message()`. Future-You will like it!
-]
-
-.pull-right[
-
-
-```r
-R&gt; temp_convert &lt;- 
-+   function(temp, from = "f") { 
-+   if (!(from %in% c("f", "c"))){ 
-+     stop("No valid input 
-+           temperature specified.")
-+   }
-+   if (from == "f") {
-+     out &lt;- (temp - 32) * (5/9)
-+   } else {  
-+     out &lt;- temp * (9/5) + 32
-+   }
-+   if((from == "c" &amp; temp &gt; 30) | 
-+      (from == "f" &amp; out &gt; 30)) {
-*+     message("That's damn hot!")
-+   }else{
-*+     message("That's not so hot.")
-+   }
-+   return(out) # return temperature
-+ }
-```
-]
-
----
-
-# Functional programming
-
-R is a functional language. It encourages to use and build your own functions to solve problems. Often, this implies decomposing a large problem into small pieces, and solving each of them with independent functions.
-
-There is much more to learn about functions and [functional programming](https://en.wikipedia.org/wiki/Functional_programming). Useful resources include:
-
-- The chapter on functions in [R for Data Science](https://r4ds.had.co.nz/functions.html).
-- The section on functional programming in [Advanced R](https://adv-r.hadley.nz/fp.html).
-- The [R packages](https://r-pkgs.org/) book, which we will turn to later in more detail. In a way, bundling functions in a package is sometimes the next logical step.
-
-
----
-
-# Iteration
-
-### The ubiquity of iteration
-
-- Often we have to run the same task over and over again, with minor variations. Examples:
-  - Standardize values of a variable
-  - Recode all numeric variables in a dataset
-  - Running multiple models with varying covariate sets
-- A benefit of scripting languages in data (as opposed to point-and-click solutions) is that we can easily automate the process of iteration
-
---
-
-### Ways to iterate
-
-- A simple approach is to copy-and-paste code with minor modifications (→ "[duplicate code](https://en.wikipedia.org/wiki/Duplicate_code)", → "[copy-and-paste programming](https://en.wikipedia.org/wiki/Copy-and-paste_programming)"). This is lazy, error-prone, not very efficient, and violates the "[Don't repeat yourself](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)" (DRY) principle. 
-- In R, [vectorization](https://adv-r.hadley.nz/perf-improve.html#vectorise), that is applying a function to every element of a vector at once, already does a good share of iteration for us.
-- `for()` [loops](https://r4ds.had.co.nz/iteration.html) are intuitive and straightforward to build, but sometimes not very efficient.
-- Finally, we learned about functions. Now, we learn how to unleash their power by applying them to anything we interact with in R at scale.
-
-
----
-
-# Iteration with purrr
-
-.pull-left-wide[
-
-### The tidyverse way to iterate
-
-- For *real* functional programming in base R, we can use the `*apply()` family of functions (`lapply()`, `sapply()`, etc.). See [here](https://nsaunders.wordpress.com/2010/08/20/a-brief-introduction-to-apply-in-r/) for an excellent summary.
-- In the tidyverse, this functionality comes with the `purrr` package.
-- At its core is the `map*()` family of functions. 
-
-
-### How `purrr` works
-
-- The idea is always to **apply** a function to **x**, where x can be a list, vector, data.frame, or something more complex. 
-- The output is then returned as output of a pre-defined type (e.g., a list).
-- The set of `map()`-style functions is quite comprehensive; see this [cheat sheet](https://github.com/rstudio/cheatsheets/blob/master/purrr.pdf) for an overview.
-]
-
-.pull-right-small-center[
-&lt;div align="center"&gt;
-&lt;br&gt;
-&lt;img src="pics/purrr.png" height=250&gt;
-&lt;/div&gt;
-]
-
----
-
-# Iteration with purrr: map()
-
-The `map*()` functions all follow a similar syntax:
-
-&lt;div align="center"&gt;
-`map(.x, .f, ...)`
-&lt;/div&gt;
-
-We use it to apply a function `.f` to each piece in `.x`. Additional arguments to `.f` can be passed on in `...`.
-
---
-
-For instance, if we want to identify the object class of every column of a data.frame, we can write:
-
-
-```r
-R&gt; map(starwars, class)
-```
-
-```
-## $name
-## [1] "character"
-## 
-## $height
-## [1] "integer"
-## 
-## $mass
-## [1] "numeric"
-## 
-## $hair_color
-## [1] "character"
-## 
-## $skin_color
-## [1] "character"
-## 
-## $eye_color
-## [1] "character"
-## 
-## $birth_year
-## [1] "numeric"
-## 
-## $sex
-## [1] "character"
-## 
-## $gender
-## [1] "character"
-## 
-## $homeworld
-## [1] "character"
-## 
-## $species
-## [1] "character"
-## 
-## $films
-## [1] "list"
-## 
-## $vehicles
-## [1] "list"
-## 
-## $starships
-## [1] "list"
-```
-
-
----
-
-# Iteration with purrr: map() *cont.*
-
-By default, `map()` returns a list. But we can also use other `map*()`functions to give us an atomic vector of an indicated type (e.g., `map_int()` to return an integer vector) or a data.frame created by row- or column-binding (`map_dfr()`, `map_dfc()`).
-
-The `purrr` function set is quite comprehensive. Be sure to check out the [cheat sheet](https://github.com/rstudio/cheatsheets/blob/master/purrr.pdf) and the [tutorials](https://jennybc.github.io/purrr-tutorial/index.html). You'll survive without `purrr` but you probably don't want to live without it. Together with `dplyr` it's easily the most powerful package for data wrangling in the tidyverse. If you master it, it will save you a lot of time and headaches.
-
-&lt;div align="center"&gt;
-&lt;br&gt;
-&lt;img src="pics/purrr-cheatsheet.png" height=250&gt;
-&lt;img src="pics/purrr-cheatsheet-2.png" height=250&gt;
-
-&lt;/div&gt;
 
 
 
@@ -2544,8 +1806,8 @@ row_adder()
 permutation()
 ```
 - Also, try avoiding function names that already exist, in particular those that come with a loaded package.
-- This often implies a trade-off between shortness and uniqueness. In any case, you would try to avoid situations that force you disambiguate functions with the same name (as in `dplyr::select`; see ["R packages"](https://r-pkgs.org/namespace.html)).
-- Check out this [Wikipedia page](https://en.wikipedia.org/wiki/Naming_convention_(programming) or this [Stackoverflow post](https://stackoverflow.com/questions/17326185/what-are-the-different-kinds-of-cases) for more background on naming conventions in programming!
+- This often implies a trade-off between shortness and uniqueness. In any case, you would try to avoid situations that force you disambiguate functions with the same name (as in `dplyr::select`; see ["R packages"](https://r-pkgs.org/dependencies.html#namespace)).
+- Check out this [Wikipedia page](https://en.wikipedia.org/wiki/Naming_convention_(programming)) or this [Stackoverflow post](https://stackoverflow.com/questions/17326185/what-are-the-different-kinds-of-cases) for more background on naming conventions in programming!
 - For more good advice on how to name stuff, see [this legendary presentation](http://www2.stat.duke.edu/~rcs46/lectures_2015/01-markdown-git/slides/naming-slides/naming-slides.pdf) by Jenny Bryan.
 
 ---
@@ -2722,12 +1984,12 @@ R&gt; sample(tidyverse_packages(), 1)
 
 ### The first **real** assignment
 
-Now we get serious: Assignment 2 is up on GitHub Classroom. Check it out and solve problems with the tidyverse.
+Now we get serious: Assignment 1 is up on GitHub Classroom. Check it out and solve problems with the tidyverse.
 
 
 ### Next lecture
 
-Relational databases and SQL. Buckle up and bring coffee, because it'll get both exciting and tedious at the same time.
+Functions and debugging. Note that the automation and scheduling part has been outsourced, but not abandoned. Stay tuned!
 
 
     </textarea>
@@ -2779,19 +2041,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
-// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
-// screen reader (see PR #262)
-(function(d) {
-  let res = {};
-  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
-    const t = tr.querySelector('td:nth-child(2)').innerText;
-    tr.querySelectorAll('td:first-child .key').forEach(key => {
-      const k = key.innerText;
-      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
-    });
-  });
-  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
-})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
