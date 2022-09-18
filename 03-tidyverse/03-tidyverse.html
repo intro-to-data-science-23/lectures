@@ -320,7 +320,7 @@ Check out the [tidyverse design guide](https://design.tidyverse.org/) for a comp
 
   ☑ [**tidyverse**](https://www.tidyverse.org/)
 
-  ☑ [**nycflights13**](hhttps://github.com/hadley/nycflights13)
+  ☑ [**nycflights13**](https://github.com/hadley/nycflights13)
 
 You can install/update them both with the following command.
 
@@ -480,7 +480,7 @@ R&gt; alex_hertie &lt;- hertie(alex_on_train,
 
 - The pipe was originally created in 2014 by [Stefan Milton Bache](https://stefanbache.dk/) and published with the [`magrittr`](https://magrittr.tidyverse.org/) package.
 - Magrittr? [Get it?](https://en.wikipedia.org/wiki/The_Treachery_of_Images) 🤡
-- The basics come with the tidyverse by default, but `magrittr` can do more (watch out for the "tee" pipe, `%T&gt;%`, the "exposition" pipe, `%$%`, and the "assignment" pipe, `%&lt;&gt;%`). Also, be sure to check out [aliases](https://rdrr.io/cran/magrittr/man/aliases.html).
+- The basics come with the tidyverse by default, but `magrittr` can do more (watch out for the ["tee" pipe](https://magrittr.tidyverse.org/reference/tee.html), `%T&gt;%`, the ["exposition" pipe](https://magrittr.tidyverse.org/reference/exposition.html), `%$%`, and the ["assignment" pipe](https://magrittr.tidyverse.org/reference/compound.html), `%&lt;&gt;%`). Also, be sure to check out [aliases](https://rdrr.io/cran/magrittr/man/aliases.html).
 
 
 ---
@@ -1015,7 +1015,7 @@ R&gt; starwars %&gt;%
 
 # 5) dplyr::summarize() *cont.*
 
-Note that including `na.rm = TRUE` is usually a good idea with the functions fed into `summarize()` Otherwise, any missing value will propagate to the summarized value too.
+Note that including `na.rm = TRUE` is usually a good idea with the functions fed into `summarize()`. Otherwise, any missing value will propagate to the summarized value too.
 
 
 ```r
@@ -1286,7 +1286,7 @@ There are also a whole class of [window functions](https://cran.r-project.org/we
 
 --
 
-`inner_join()`, `left_join()`, `right_join()`: Enough already, we'll talk about this in the next session!
+`inner_join()`, `left_join()`, `right_join()`: Enough already, we'll talk about this in the session on databases!
 
 
 ---
@@ -1342,7 +1342,7 @@ Remember the **key philosophy for tidy data**?
 
 One of the most common tasks for data scientists is to **reshape** data from one form to the other. 
 
-There are **multiple ways to store the same data in a dataset** (or across multiple tables; but more on that in the next session).
+There are **multiple ways to store the same data in a dataset** (or across multiple tables; but more on that in the session on databases).
 
 Here, we learn how to shift between 
 - **"wider"** formats, i.e. data being stored across more columns and
@@ -1369,7 +1369,7 @@ Benefits of tidy data
 
 ### From wider to longer
 
-- `pivot_longer()` pivots `cols` columns, moving column names into a `names_to`column, and column values into a `values_to`column.
+- `pivot_longer()` pivots `cols` columns, moving column names into a `names_to` column, and column values into a `values_to` column.
 - Recall a panel study design with multiple observations per unit.
 - In the classical long format, each row represents one observation.
 - Note how this is approaching the ideal of **tidy data**.
@@ -1807,7 +1807,7 @@ day-one # kebab-case
 
 ---
 
-# Naming objects and variables (cont.)
+# Naming objects and variables *cont.*
 
 .pull-left-center[
 &lt;div align="center"&gt;
