@@ -1312,6 +1312,37 @@ day-one # kebab-case
 `Credit` [cassert24/Reddit](https://www.reddit.com/r/ProgrammerHumor/comments/cj5g0f/any_pascalcase_supports_out_there/)
 ]
 
+
+
+---
+
+# Naming objects and variables (cont.)
+
+.pull-left-center[
+<div align="center">
+<br>
+<img src="pics/alarid-3.png" width=530>
+<br>
+</div>
+
+`Credit` [Alarid et al. 2019](https://pubmed.ncbi.nlm.nih.gov/31549359/)
+]
+
+.pull-right-center[
+<div align="center">
+<br>
+<img src="pics/alarid-1.png" width=530>
+<img src="pics/alarid-2.png" width=530>
+<br>
+</div>
+
+`Credit` [Alarid et al. 2019](https://pubmed.ncbi.nlm.nih.gov/31549359/)
+]
+
+
+
+
+
 ---
 
 # Naming functions
