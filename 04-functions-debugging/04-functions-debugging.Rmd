@@ -60,7 +60,7 @@ library(kableExtra)
 
 1. [Functions](#functions)
 
-2. [Functional programming](#functionalprogramming)
+2. [Iteration](#iteration)
 
 3. [Strategies for debugging](#debugging)
 
@@ -97,8 +97,24 @@ The latter two are extremely helpful - in particular when you are confronted wit
 
 We will now learn the basics of creating your own functions and functional programming with R. There is much more to learn about these topics, so we will revisit them as the course progresses.
 
----
 
+---
+# Functional programming
+
+R is a functional programming (FP) language. As Hadley Wickham puts it in [Advanced R](http://adv-r.had.co.nz/Functional-programming.html):
+
+> This means that it provides many tools for the creation and manipulation of functions. In particular, R has what’s known as first class functions. You can do anything with functions that you can do with vectors: you can assign them to variables, store them in lists, pass them as arguments to other functions, create them inside functions, and even return them as the result of a function.
+
+R encourages you to use and build your own functions to solve problems. Often, this implies decomposing a large problem into small pieces, and solving each of them with independent functions.
+
+There is much more to learn about functions and [functional programming](https://en.wikipedia.org/wiki/Functional_programming). Useful resources include:
+
+- The chapter on functions in [R for Data Science](https://r4ds.had.co.nz/functions.html).
+- The section on functional programming in [Advanced R](https://adv-r.hadley.nz/fp.html).
+- The [R packages](https://r-pkgs.org/) book. In a way, bundling functions in a package is sometimes the next logical step.
+
+
+---
 # Creating functions
 
 ### Why creating functions?
@@ -194,6 +210,7 @@ my_func <- function(ARGUMENTS) {
 
 - Finally, we specify what the function should return. 
 - This could be a list, data.frame, vector, sentence - or anything else really.
+- Not that R automatically returns the final object that write (not: assign!) in your function by default. Still, my recommendation is that you get into the habit of assigning the return object(s) explicitly with `return()`.
 
 .footnote[<sup>1</sup> Yes, a function to create functions. 🤯]
 ]
@@ -624,27 +641,125 @@ temp_convert <-
 ]
 
 
+---
+
+# Anonymous functions
+
+In R, functions are objects in their own right. They aren’t automatically bound to a name. If you choose not to give the function a name, you get an **anonymous function**. You use an anonymous function when it’s not worth the effort to give it a name.
+
+--
+
+**Examples:**
+
+```{r, eval = FALSE}
+map(char_vec, function(x) paste(x, collapse = "|")) 
+integrate(function(x) sin(x) ^ 2, 0, pi)
+```
+
+
+
+---
+
+# Anonymous functions
+
+In R, functions are objects in their own right. They aren’t automatically bound to a name. If you choose not to give the function a name, you get an **anonymous function**. You use an anonymous function when it’s not worth the effort to give it a name.
+
+As of `R 4.1.0`, there's a new shorthand syntax for anonymous functions: `\(x)`.
+
+--
+
+**Example:**
+
+```{r, eval = TRUE}
+(function (x) {paste(x, 'is awesome!')})('Data science') # old syntax
+(\(x) {paste(x, 'is awesome!')})('Data science') # new syntax
+```
+
+
+
+---
+
+# Anonymous functions
+
+In R, functions are objects in their own right. They aren’t automatically bound to a name. If you choose not to give the function a name, you get an **anonymous function**. You use an anonymous function when it’s not worth the effort to give it a name.
+
+As of `R 4.1.0`, there's a new shorthand syntax for anonymous functions: `\(x)`. This plays along nicely with the (native) pipe when we want to pass content to the RHS but not to the first argument.
+
+
+---
+
+# Anonymous functions
+
+In R, functions are objects in their own right. They aren’t automatically bound to a name. If you choose not to give the function a name, you get an **anonymous function**. You use an anonymous function when it’s not worth the effort to give it a name.
+
+As of `R 4.1.0`, there's a new shorthand syntax for anonymous functions: `\(x)`. This plays along nicely with the (native) pipe when we want to pass content to the RHS but not to the first argument.
+
+**Example:**
+
+```{r, eval = FALSE}
+mtcars |> subset(cyl == 4) |> (\(x) lm(mpg ~ disp, data = x))()
+```
+
+
+
+---
+# `...` (Dot-dot-dot)
+
+Functions can have a special argument `...` (pronounced *dot-dot-dot*). In other programming languages, this type of argument is often called varargs (short for variable arguments), or ellipsis. With it, a function can take any number of additional arguments. That is potentially very powerful!
+
+A common application is to use `...` to pass those additional arguments on to another function.
+
+--
+
+.pull-left[
+**Toy example:**
+
+```{r, eval = TRUE}
+my_list_generator <- function(y, z) {
+  list(y = y, z = z)
+}
+
+my_list_generator_2 <- function(x, ...) {
+  my_list_generator(...)
+}
+
+str(my_list_generator_2(x = 1, y = 2, z = 3))
+```
+]
+
+--
+
+.pull-right[
+**Real-life example:**
+
+```{r, eval = FALSE}
+map(.x, .f, ...)
+map(mtcars, mean, na.rm = TRUE)
+```
+
+Arguments:
+
+- `.x`: A list or atomic vector
+- `.f`: A function
+- `...`: Additional arguments passed on to the mapped function.
+
+]
+
+
+
+
+
+
+
+
 <!-- ############################################ -->
 ---
 class: inverse, center, middle
-name: functionalprogramming
+name: iteration
 
-# Functional programming
+# Iteration
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px style="width:1000px; margin:auto;"/></html>
-
-
----
-
-# Functional programming
-
-R is a functional language. It encourages to use and build your own functions to solve problems. Often, this implies decomposing a large problem into small pieces, and solving each of them with independent functions.
-
-There is much more to learn about functions and [functional programming](https://en.wikipedia.org/wiki/Functional_programming). Useful resources include:
-
-- The chapter on functions in [R for Data Science](https://r4ds.had.co.nz/functions.html).
-- The section on functional programming in [Advanced R](https://adv-r.hadley.nz/fp.html).
-- The [R packages](https://r-pkgs.org/) book, which we will turn to later in more detail. In a way, bundling functions in a package is sometimes the next logical step.
 
 
 ---
