@@ -203,7 +203,7 @@ R&gt; my_func &lt;- function(ARGUMENTS) {
 
 - Finally, we specify what the function should return. 
 - This could be a list, data.frame, vector, sentence - or anything else really.
-- Not that R automatically returns the final object that write (not: assign!) in your function by default. Still, my recommendation is that you get into the habit of assigning the return object(s) explicitly with `return()`.
+- Note that R automatically returns the final object that is written (not: assigned!) in your function by default. Still, my recommendation is that you get into the habit of assigning the return object(s) explicitly with `return()`.
 
 .footnote[&lt;sup&gt;1&lt;/sup&gt; Yes, a function to create functions. 🤯]
 ]
@@ -1222,7 +1222,7 @@ Sometimes the mistake in your code is hard to diagnose, and googling doesn't hel
 
 ### Motivation and usage
 - When an error occurs with an unidentifiable error message or an error message that you are in principle familiar with but cannot locate its sources, the `traceback()` function comes in handy.
-- The `traceback()` function prints the sequence of calls that led to an uncaught error error.
+- The `traceback()` function prints the sequence of calls that led to an uncaught error.
 - The `traceback()` output reads from bottom to top.
 - Note that errors caught via `try()` or `tryCatch()` do not generate a traceback!
 -  If you’re calling code that you `source()`d into R, the traceback will also display the location of the function, in the form `filename.r#linenumber`. 
@@ -1233,7 +1233,7 @@ Sometimes the mistake in your code is hard to diagnose, and googling doesn't hel
 .pull-right[
 ### Example
 
-In the call sequence below the execution of `g()` triggers an error:
+In the call sequence below, the execution of `g()` triggers an error:
 
 
 ```r
@@ -1446,9 +1446,9 @@ Browse[2]&gt;
 
 ### Assignment
 
-Assignment 2 is online!
+Assignment 2 is online soon! You'll have more time than usual to work on it - final upload deadline is Oct 11.
 
-### Next lecture
+### Next lecture (not next week, but on Oct 10!)
 
 **Relational databases and SQL.** Buckle up and bring coffee, because it'll get both exciting and tedious at the same time.
 
