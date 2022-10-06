@@ -1,8 +1,8 @@
 ---
 title: "Introduction to Data Science"
-subtitle: "Session 4: Relational databases and SQL"
+subtitle: "Session 5: Relational databases and SQL"
 author: "Simon Munzert"
-institute: "Hertie School | [GRAD-C11/E1339](https://github.com/intro-to-data-science-21)" #"`r format(Sys.time(), '%d %B %Y')`"
+institute: "Hertie School | [GRAD-C11/E1339](https://github.com/intro-to-data-science-22)" #"`r format(Sys.time(), '%d %B %Y')`"
 output:
   xaringan::moon_reader:
     css: [default, 'simons-touch.css', metropolis, metropolis-fonts] 
@@ -132,7 +132,7 @@ name: whydb
 # When databases become useful
 
 .pull-left[
-### Size and speed
+### Size and structure
 - You have **loads of data that exceed the working memory** on your computer. Databases are only limited by available disk size (or can be distributed across multiple disks/machines).
 - Your **data structure is complex**. Databases allow/encourage you to store, retrieve and subset data with complex data structures.
 - Your data is big and you have to **access/subset/operate frequently**. Querying databases is fast.
@@ -439,66 +439,6 @@ The **normal forms** (from least normalized to most normalized):
 `Credit` [Timo Tijhof/Wikimedia Commons](https://en.wikipedia.org/wiki/Database_schema#/media/File:MediaWiki_1.28.0_database_schema.svg)
 ]
 
-
-
-
----
-
-# Databases and Database Management Systems
-
-.pull-left-wide[
-
-### What are databases?
-
-- Databases are an organized collection of data.
-- They are organized to afford efficient retrieval of (selections) of data.
-- They entail data + metadata about structure and organization.
-- They are generally accessed through a database management system.
-
-
-### Where are databases?
-
-- Databases can exist locally or remotely, in-memory or on-disk.
-- When they are stored locally, they are stored as binary file (not text file). 
-- Commonly, we think of a **client-server model**:
-  - Databases live on a **server**, which manages them
-  - Users interact with the server through a **client** program.
-  - Lets multiple users **access** the same database **simultaneously**.
-
-]
-
-
----
-# Databases and Database Management Systems
-
-.pull-left-wide[
-### What are DBMS?
-
-- Database Management Systems (DBMS) provide **efficient**, **reliable**, **convenient**, **safe**, **multi-user** storage of and access to **massive** data.
-    - **Massive**: Think Terabytes, not Gigabytes. Handle data that resides outside memory.
-    - **Safe**: Robust to power outages, node failures, etc.
-    - **Multi-user**: Concurrency control. Not one user, but multiple.
-    - **Convenient**: High-level query languages.
-    - **Efficient**: Just fast.
-    - **Reliable**: High uptime.
-- There are [so many DBMS](https://en.wikipedia.org/wiki/List_of_relational_database_management_systems) for relational database structures alone.
-- RDBMS differ in terms of capabilities, implemented features, operating system support, and much more. 
-- You'll probably not be in the position to decide which database to use. If you're still interested in the differences, [this](https://www.digitalocean.com/community/tutorials/sqlite-vs-mysql-vs-postgresql-a-comparison-of-relational-database-management-systems) or [this overview](https://en.wikipedia.org/wiki/Comparison_of_relational_database_management_systems) might be a good starting point.
-- Also, I've heard good things about [DuckDB](https://duckdb.org/).
-
-]
-
-.pull-right-small[
-
-<br>
-<div align="center">
-<img src="pics/mysql-logo.png" height=120>
-<img src="pics/postgresql-logo.png" height=150>
-<img src="pics/sqlite-logo.png" height=110>
-<img src="pics/duckdb-logo.png" height=50>
-</div>
-
-]
 
 
 
@@ -980,6 +920,8 @@ Another hands-on beginner SQL tutorial is at [DataQuest](https://www.dataquest.i
 
 Yet another good starting point to learn about the basics of SQL lives at [Codeacademy](https://www.codecademy.com/learn/learn-sql).
 
+Once you have made yourself more familiar with the language, work on your style. This [SQL style guide](https://www.sqlstyle.guide/) is a good starting point.
+
 If you want to know more about how indexes work in SQLite, check out [this resource](https://www.sqlite.org/queryplanner.html).
 
 Finally, another good read is [10 easy steps to a complete understanding of SQL](https://blog.jooq.org/10-easy-steps-to-a-complete-understanding-of-sql/) by Lukas Eder.
@@ -997,6 +939,65 @@ name: dbr
 <html><div style='float:left'></div><hr color='#EB811B' size=1px style="width:1000px; margin:auto;"/></html>
 
 
+
+---
+
+# Databases and Database Management Systems
+
+.pull-left-wide[
+
+### What are databases?
+
+- Databases are an organized collection of data.
+- They are organized to afford efficient retrieval of (selections) of data.
+- They entail data + metadata about structure and organization.
+- They are generally accessed through a database management system.
+
+
+### Where are databases?
+
+- Databases can exist locally or remotely, in-memory or on-disk.
+- When they are stored locally, they are stored as binary file (not text file). 
+- Commonly, we think of a **client-server model**:
+  - Databases live on a **server**, which manages them.
+  - Users interact with the server through a **client** program.
+  - Multiple users can **access** the same database **simultaneously**.
+
+]
+
+
+---
+# Databases and Database Management Systems
+
+.pull-left-wide[
+### What are DBMS?
+
+- Database Management Systems (DBMS) provide **efficient**, **reliable**, **convenient**, **safe**, **multi-user** storage of and access to **massive** data.
+    - **Massive**: Think Terabytes, not Gigabytes. Handle data that resides outside memory.
+    - **Safe**: Robust to power outages, node failures, etc.
+    - **Multi-user**: Concurrency control. Not one user, but multiple.
+    - **Convenient**: High-level query languages.
+    - **Efficient**: Just fast.
+    - **Reliable**: High uptime.
+- There are [so many DBMS](https://en.wikipedia.org/wiki/List_of_relational_database_management_systems) for relational database structures alone.
+- RDBMS differ in terms of capabilities, implemented features, operating system support, and much more. 
+- You'll probably not be in the position to decide which database to use. If you're still interested in the differences, [this](https://www.digitalocean.com/community/tutorials/sqlite-vs-mysql-vs-postgresql-a-comparison-of-relational-database-management-systems) or [this overview](https://en.wikipedia.org/wiki/Comparison_of_relational_database_management_systems) might be a good starting point.
+- Also, I've heard good things about [DuckDB](https://duckdb.org/).
+
+]
+
+.pull-right-small[
+
+<br>
+<div align="center">
+<img src="pics/mysql-logo.png" height=120>
+<img src="pics/postgresql-logo.png" height=150>
+<img src="pics/sqlite-logo.png" height=110>
+<img src="pics/duckdb-logo.png" height=50>
+</div>
+
+]
+
 ---
 
 # Connecting to databases with R
@@ -1006,14 +1007,14 @@ name: dbr
 ### A database interface
 
 - DBMS implement SQL but all have somewhat different conventions.
-- R can connect to all major existing databases types.
+- R can connect to all major existing DBMS types.
 - The R package [`DBI`](https://cran.r-project.org/web/packages/DBI/vignettes/DBI-proposal.html) (**D**ata**B**ase **I**nterface) is a unified interface to them (car analogy: wheel, pedals).
 - In addition, we need a separate "driver" to connect to the database engine (car analogy: fuel (?)).
 
 
 ### Drivers for open-source/commercial DBs 
 
-- There are various R packages that allow you to connect to particular **open-source** database types including SQLite (via [`RSQLite`](https://cran.r-project.org/web/packages/RSQLite/index.html)),  MySQL ([`RMySQL`](https://cran.r-project.org/web/packages/RMySQL/index.html)), 
+- There are various R packages that allow you to connect to particular **open-source** DBMS types including SQLite (via [`RSQLite`](https://cran.r-project.org/web/packages/RSQLite/index.html)),  MySQL ([`RMySQL`](https://cran.r-project.org/web/packages/RMySQL/index.html)), 
 PostgreSQL ([`RPostgres`](https://cran.r-project.org/web/packages/RPostgres/index.html)),
 Google BigQuery ([`bigrquery`](https://cran.r-project.org/web/packages/bigrquery/index.html)), MariaDB ([`RMariaDB`](https://cran.r-project.org/web/packages/RMariaDB/index.html)), DuckDB ([`duckdb`](https://cran.r-project.org/web/packages/duckdb/index.html)), and more.
 - For **commercial databases** such as Microsoft SQL Server or Oracle, the [`odbc`](https://github.com/r-dbi/odbc) package provides a DBI-compliant interface to Open Database Connectivity (ODBC) drivers.
@@ -1023,9 +1024,9 @@ Google BigQuery ([`bigrquery`](https://cran.r-project.org/web/packages/bigrquery
 .pull-right-small-center[
 <br>
 <div align="center">
-<img src="pics/db-connect-open-source.png" height=200>
+<img src="pics/db-connect-open-source.png" height=160>
 <br>
-<img src="pics/db-connect-commercial.png" height=200>
+<img src="pics/db-connect-commercial.png" height=160>
 
 </div>
 `Credit` [db.rstudio.com](https://db.rstudio.com/)
@@ -1148,7 +1149,7 @@ flights_db <- tbl(con, "flights")
 Note that `flights_db` is a remote source; the table is not stored in our local environment. We can use it as a "pointer" to the actual database. Next, we perform various queries, such as:
 
 ```{r}
-flights_db %>% select(year:day, dep_delay, arr_delay)
+flights_db %>% select(year:day, dep_delay, arr_delay) %>% head(3)
 ```
 
 Yes, we can use `dplyr` syntax to do database queries! 
@@ -1236,7 +1237,9 @@ Finally, there is the [introduction to `dbplyr`](https://cran.r-project.org/web/
 ---
 # And what about NoSQL databases?
 
-We haven't talked about non-relational databases so far, but you might encounter them in the future. NoSQL became popular in the 2000s as a consequence of several developments: Cost of data storage decreased, which made the need of efficient, non-redundant but complex data storage less urgent. At the same time, heterogeneity in data formats increased and coming up with well-defined schemas was difficult. NoSQL offered more flexibility.
+We haven't talked about non-relational databases so far, but you might encounter them in the future. 
+
+NoSQL became popular in the 2000s as a consequence of several developments: Cost of data storage decreased, which made the need of efficient, non-redundant but complex data storage less urgent. At the same time, heterogeneity in data formats increased and coming up with well-defined schemas was difficult. NoSQL offered more flexibility.
 
 There are several types of NoSQL databases, including document DBs where documents contain pairs of fields and values (think: JSON), key-value DBs, or graph DBs.
 

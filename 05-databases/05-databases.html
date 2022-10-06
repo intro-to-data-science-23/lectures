@@ -15,9 +15,9 @@
 class: center, middle, inverse, title-slide
 
 # Introduction to Data Science
-## Session 4: Relational databases and SQL
+## Session 5: Relational databases and SQL
 ### Simon Munzert
-### Hertie School | <a href="https://github.com/intro-to-data-science-21">GRAD-C11/E1339</a>
+### Hertie School | <a href="https://github.com/intro-to-data-science-22">GRAD-C11/E1339</a>
 
 ---
 
@@ -116,7 +116,7 @@ name: whydb
 # When databases become useful
 
 .pull-left[
-### Size and speed
+### Size and structure
 - You have **loads of data that exceed the working memory** on your computer. Databases are only limited by available disk size (or can be distributed across multiple disks/machines).
 - Your **data structure is complex**. Databases allow/encourage you to store, retrieve and subset data with complex data structures.
 - Your data is big and you have to **access/subset/operate frequently**. Querying databases is fast.
@@ -426,66 +426,6 @@ The **normal forms** (from least normalized to most normalized):
 
 
 
----
-
-# Databases and Database Management Systems
-
-.pull-left-wide[
-
-### What are databases?
-
-- Databases are an organized collection of data.
-- They are organized to afford efficient retrieval of (selections) of data.
-- They entail data + metadata about structure and organization.
-- They are generally accessed through a database management system.
-
-
-### Where are databases?
-
-- Databases can exist locally or remotely, in-memory or on-disk.
-- When they are stored locally, they are stored as binary file (not text file). 
-- Commonly, we think of a **client-server model**:
-  - Databases live on a **server**, which manages them
-  - Users interact with the server through a **client** program.
-  - Lets multiple users **access** the same database **simultaneously**.
-
-]
-
-
----
-# Databases and Database Management Systems
-
-.pull-left-wide[
-### What are DBMS?
-
-- Database Management Systems (DBMS) provide **efficient**, **reliable**, **convenient**, **safe**, **multi-user** storage of and access to **massive** data.
-    - **Massive**: Think Terabytes, not Gigabytes. Handle data that resides outside memory.
-    - **Safe**: Robust to power outages, node failures, etc.
-    - **Multi-user**: Concurrency control. Not one user, but multiple.
-    - **Convenient**: High-level query languages.
-    - **Efficient**: Just fast.
-    - **Reliable**: High uptime.
-- There are [so many DBMS](https://en.wikipedia.org/wiki/List_of_relational_database_management_systems) for relational database structures alone.
-- RDBMS differ in terms of capabilities, implemented features, operating system support, and much more. 
-- You'll probably not be in the position to decide which database to use. If you're still interested in the differences, [this](https://www.digitalocean.com/community/tutorials/sqlite-vs-mysql-vs-postgresql-a-comparison-of-relational-database-management-systems) or [this overview](https://en.wikipedia.org/wiki/Comparison_of_relational_database_management_systems) might be a good starting point.
-- Also, I've heard good things about [DuckDB](https://duckdb.org/).
-
-]
-
-.pull-right-small[
-
-&lt;br&gt;
-&lt;div align="center"&gt;
-&lt;img src="pics/mysql-logo.png" height=120&gt;
-&lt;img src="pics/postgresql-logo.png" height=150&gt;
-&lt;img src="pics/sqlite-logo.png" height=110&gt;
-&lt;img src="pics/duckdb-logo.png" height=50&gt;
-&lt;/div&gt;
-
-]
-
-
-
 
 
 ---
@@ -555,18 +495,18 @@ R&gt; head(airports, 10)
 
 ```
 ## # A tibble: 10 × 8
-##    faa   name                       lat    lon   alt    tz dst   tzone          
-##    &lt;chr&gt; &lt;chr&gt;                    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;          
-##  1 04G   Lansdowne Airport         41.1  -80.6  1044    -5 A     America/New_Yo…
-##  2 06A   Moton Field Municipal A…  32.5  -85.7   264    -6 A     America/Chicago
-##  3 06C   Schaumburg Regional       42.0  -88.1   801    -6 A     America/Chicago
-##  4 06N   Randall Airport           41.4  -74.4   523    -5 A     America/New_Yo…
-##  5 09J   Jekyll Island Airport     31.1  -81.4    11    -5 A     America/New_Yo…
-##  6 0A9   Elizabethton Municipal …  36.4  -82.2  1593    -5 A     America/New_Yo…
-##  7 0G6   Williams County Airport   41.5  -84.5   730    -5 A     America/New_Yo…
-##  8 0G7   Finger Lakes Regional A…  42.9  -76.8   492    -5 A     America/New_Yo…
-##  9 0P2   Shoestring Aviation Air…  39.8  -76.6  1000    -5 U     America/New_Yo…
-## 10 0S9   Jefferson County Intl     48.1 -123.    108    -8 A     America/Los_An…
+##    faa   name                             lat    lon   alt    tz dst   tzone    
+##    &lt;chr&gt; &lt;chr&gt;                          &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    
+##  1 04G   Lansdowne Airport               41.1  -80.6  1044    -5 A     America/…
+##  2 06A   Moton Field Municipal Airport   32.5  -85.7   264    -6 A     America/…
+##  3 06C   Schaumburg Regional             42.0  -88.1   801    -6 A     America/…
+##  4 06N   Randall Airport                 41.4  -74.4   523    -5 A     America/…
+##  5 09J   Jekyll Island Airport           31.1  -81.4    11    -5 A     America/…
+##  6 0A9   Elizabethton Municipal Airport  36.4  -82.2  1593    -5 A     America/…
+##  7 0G6   Williams County Airport         41.5  -84.5   730    -5 A     America/…
+##  8 0G7   Finger Lakes Regional Airport   42.9  -76.8   492    -5 A     America/…
+##  9 0P2   Shoestring Aviation Airfield    39.8  -76.6  1000    -5 U     America/…
+## 10 0S9   Jefferson County Intl           48.1 -123.    108    -8 A     America/…
 ```
 
 
@@ -584,18 +524,19 @@ R&gt; head(planes, 10)
 
 ```
 ## # A tibble: 10 × 9
-##    tailnum  year type          manufacturer   model  engines seats speed engine 
-##    &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;          &lt;chr&gt;    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;  
-##  1 N10156   2004 Fixed wing m… EMBRAER        EMB-1…       2    55    NA Turbo-…
-##  2 N102UW   1998 Fixed wing m… AIRBUS INDUST… A320-…       2   182    NA Turbo-…
-##  3 N103US   1999 Fixed wing m… AIRBUS INDUST… A320-…       2   182    NA Turbo-…
-##  4 N104UW   1999 Fixed wing m… AIRBUS INDUST… A320-…       2   182    NA Turbo-…
-##  5 N10575   2002 Fixed wing m… EMBRAER        EMB-1…       2    55    NA Turbo-…
-##  6 N105UW   1999 Fixed wing m… AIRBUS INDUST… A320-…       2   182    NA Turbo-…
-##  7 N107US   1999 Fixed wing m… AIRBUS INDUST… A320-…       2   182    NA Turbo-…
-##  8 N108UW   1999 Fixed wing m… AIRBUS INDUST… A320-…       2   182    NA Turbo-…
-##  9 N109UW   1999 Fixed wing m… AIRBUS INDUST… A320-…       2   182    NA Turbo-…
-## 10 N110UW   1999 Fixed wing m… AIRBUS INDUST… A320-…       2   182    NA Turbo-…
+##    tailnum  year type                   manuf…¹ model engines seats speed engine
+##    &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;                  &lt;chr&gt;   &lt;chr&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; 
+##  1 N10156   2004 Fixed wing multi engi… EMBRAER EMB-…       2    55    NA Turbo…
+##  2 N102UW   1998 Fixed wing multi engi… AIRBUS… A320…       2   182    NA Turbo…
+##  3 N103US   1999 Fixed wing multi engi… AIRBUS… A320…       2   182    NA Turbo…
+##  4 N104UW   1999 Fixed wing multi engi… AIRBUS… A320…       2   182    NA Turbo…
+##  5 N10575   2002 Fixed wing multi engi… EMBRAER EMB-…       2    55    NA Turbo…
+##  6 N105UW   1999 Fixed wing multi engi… AIRBUS… A320…       2   182    NA Turbo…
+##  7 N107US   1999 Fixed wing multi engi… AIRBUS… A320…       2   182    NA Turbo…
+##  8 N108UW   1999 Fixed wing multi engi… AIRBUS… A320…       2   182    NA Turbo…
+##  9 N109UW   1999 Fixed wing multi engi… AIRBUS… A320…       2   182    NA Turbo…
+## 10 N110UW   1999 Fixed wing multi engi… AIRBUS… A320…       2   182    NA Turbo…
+## # … with abbreviated variable name ¹​manufacturer
 ```
 
 ---
@@ -611,20 +552,20 @@ R&gt; head(weather, 10)
 
 ```
 ## # A tibble: 10 × 15
-##    origin  year month   day  hour  temp  dewp humid wind_dir wind_speed
-##    &lt;chr&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;
-##  1 EWR     2013     1     1     1  39.0  26.1  59.4      270      10.4 
-##  2 EWR     2013     1     1     2  39.0  27.0  61.6      250       8.06
-##  3 EWR     2013     1     1     3  39.0  28.0  64.4      240      11.5 
-##  4 EWR     2013     1     1     4  39.9  28.0  62.2      250      12.7 
-##  5 EWR     2013     1     1     5  39.0  28.0  64.4      260      12.7 
-##  6 EWR     2013     1     1     6  37.9  28.0  67.2      240      11.5 
-##  7 EWR     2013     1     1     7  39.0  28.0  64.4      240      15.0 
-##  8 EWR     2013     1     1     8  39.9  28.0  62.2      250      10.4 
-##  9 EWR     2013     1     1     9  39.9  28.0  62.2      260      15.0 
-## 10 EWR     2013     1     1    10  41    28.0  59.6      260      13.8 
-## # … with 5 more variables: wind_gust &lt;dbl&gt;, precip &lt;dbl&gt;, pressure &lt;dbl&gt;,
-## #   visib &lt;dbl&gt;, time_hour &lt;dttm&gt;
+##    origin  year month   day  hour  temp  dewp humid wind_dir wind_speed wind_g…¹
+##    &lt;chr&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;
+##  1 EWR     2013     1     1     1  39.0  26.1  59.4      270      10.4        NA
+##  2 EWR     2013     1     1     2  39.0  27.0  61.6      250       8.06       NA
+##  3 EWR     2013     1     1     3  39.0  28.0  64.4      240      11.5        NA
+##  4 EWR     2013     1     1     4  39.9  28.0  62.2      250      12.7        NA
+##  5 EWR     2013     1     1     5  39.0  28.0  64.4      260      12.7        NA
+##  6 EWR     2013     1     1     6  37.9  28.0  67.2      240      11.5        NA
+##  7 EWR     2013     1     1     7  39.0  28.0  64.4      240      15.0        NA
+##  8 EWR     2013     1     1     8  39.9  28.0  62.2      250      10.4        NA
+##  9 EWR     2013     1     1     9  39.9  28.0  62.2      260      15.0        NA
+## 10 EWR     2013     1     1    10  41    28.0  59.6      260      13.8        NA
+## # … with 4 more variables: precip &lt;dbl&gt;, pressure &lt;dbl&gt;, visib &lt;dbl&gt;,
+## #   time_hour &lt;dttm&gt;, and abbreviated variable name ¹​wind_gust
 ```
 
 ---
@@ -641,21 +582,22 @@ R&gt; head(flights, 10)
 
 ```
 ## # A tibble: 10 × 19
-##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
-##  1  2013     1     1      517            515         2      830            819
-##  2  2013     1     1      533            529         4      850            830
-##  3  2013     1     1      542            540         2      923            850
-##  4  2013     1     1      544            545        -1     1004           1022
-##  5  2013     1     1      554            600        -6      812            837
-##  6  2013     1     1      554            558        -4      740            728
-##  7  2013     1     1      555            600        -5      913            854
-##  8  2013     1     1      557            600        -3      709            723
-##  9  2013     1     1      557            600        -3      838            846
-## 10  2013     1     1      558            600        -2      753            745
-## # … with 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
-## #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
-## #   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;
+##     year month   day dep_time sched_de…¹ dep_d…² arr_t…³ sched…⁴ arr_d…⁵ carrier
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;      &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;   &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;  
+##  1  2013     1     1      517        515       2     830     819      11 UA     
+##  2  2013     1     1      533        529       4     850     830      20 UA     
+##  3  2013     1     1      542        540       2     923     850      33 AA     
+##  4  2013     1     1      544        545      -1    1004    1022     -18 B6     
+##  5  2013     1     1      554        600      -6     812     837     -25 DL     
+##  6  2013     1     1      554        558      -4     740     728      12 UA     
+##  7  2013     1     1      555        600      -5     913     854      19 B6     
+##  8  2013     1     1      557        600      -3     709     723     -14 EV     
+##  9  2013     1     1      557        600      -3     838     846      -8 B6     
+## 10  2013     1     1      558        600      -2     753     745       8 AA     
+## # … with 9 more variables: flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;,
+## #   dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;,
+## #   time_hour &lt;dttm&gt;, and abbreviated variable names ¹​sched_dep_time,
+## #   ²​dep_delay, ³​arr_time, ⁴​sched_arr_time, ⁵​arr_delay
 ```
 
 
@@ -907,12 +849,12 @@ R&gt; left_join(
 
 ```
 ## # A tibble: 3 × 11
-##    year month   day dep_time arr_time carrier flight tailnum year_built type    
-##   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;    &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;        &lt;int&gt; &lt;chr&gt;   
-## 1  2013     1     1      517      830 UA        1545 N14228        1999 Fixed w…
-## 2  2013     1     1      533      850 UA        1714 N24211        1998 Fixed w…
-## 3  2013     1     1      542      923 AA        1141 N619AA        1990 Fixed w…
-## # … with 1 more variable: model &lt;chr&gt;
+##    year month   day dep_time arr_time carrier flight tailnum year_…¹ type  model
+##   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;    &lt;int&gt; &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;     &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+## 1  2013     1     1      517      830 UA        1545 N14228     1999 Fixe… 737-…
+## 2  2013     1     1      533      850 UA        1714 N24211     1998 Fixe… 737-…
+## 3  2013     1     1      542      923 AA        1141 N619AA     1990 Fixe… 757-…
+## # … with abbreviated variable name ¹​year_built
 ```
 
 ---
@@ -1096,6 +1038,8 @@ Another hands-on beginner SQL tutorial is at [DataQuest](https://www.dataquest.i
 
 Yet another good starting point to learn about the basics of SQL lives at [Codeacademy](https://www.codecademy.com/learn/learn-sql).
 
+Once you have made yourself more familiar with the language, work on your style. This [SQL style guide](https://www.sqlstyle.guide/) is a good starting point.
+
 If you want to know more about how indexes work in SQLite, check out [this resource](https://www.sqlite.org/queryplanner.html).
 
 Finally, another good read is [10 easy steps to a complete understanding of SQL](https://blog.jooq.org/10-easy-steps-to-a-complete-understanding-of-sql/) by Lukas Eder.
@@ -1113,6 +1057,65 @@ name: dbr
 &lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px style="width:1000px; margin:auto;"/&gt;&lt;/html&gt;
 
 
+
+---
+
+# Databases and Database Management Systems
+
+.pull-left-wide[
+
+### What are databases?
+
+- Databases are an organized collection of data.
+- They are organized to afford efficient retrieval of (selections) of data.
+- They entail data + metadata about structure and organization.
+- They are generally accessed through a database management system.
+
+
+### Where are databases?
+
+- Databases can exist locally or remotely, in-memory or on-disk.
+- When they are stored locally, they are stored as binary file (not text file). 
+- Commonly, we think of a **client-server model**:
+  - Databases live on a **server**, which manages them.
+  - Users interact with the server through a **client** program.
+  - Multiple users can **access** the same database **simultaneously**.
+
+]
+
+
+---
+# Databases and Database Management Systems
+
+.pull-left-wide[
+### What are DBMS?
+
+- Database Management Systems (DBMS) provide **efficient**, **reliable**, **convenient**, **safe**, **multi-user** storage of and access to **massive** data.
+    - **Massive**: Think Terabytes, not Gigabytes. Handle data that resides outside memory.
+    - **Safe**: Robust to power outages, node failures, etc.
+    - **Multi-user**: Concurrency control. Not one user, but multiple.
+    - **Convenient**: High-level query languages.
+    - **Efficient**: Just fast.
+    - **Reliable**: High uptime.
+- There are [so many DBMS](https://en.wikipedia.org/wiki/List_of_relational_database_management_systems) for relational database structures alone.
+- RDBMS differ in terms of capabilities, implemented features, operating system support, and much more. 
+- You'll probably not be in the position to decide which database to use. If you're still interested in the differences, [this](https://www.digitalocean.com/community/tutorials/sqlite-vs-mysql-vs-postgresql-a-comparison-of-relational-database-management-systems) or [this overview](https://en.wikipedia.org/wiki/Comparison_of_relational_database_management_systems) might be a good starting point.
+- Also, I've heard good things about [DuckDB](https://duckdb.org/).
+
+]
+
+.pull-right-small[
+
+&lt;br&gt;
+&lt;div align="center"&gt;
+&lt;img src="pics/mysql-logo.png" height=120&gt;
+&lt;img src="pics/postgresql-logo.png" height=150&gt;
+&lt;img src="pics/sqlite-logo.png" height=110&gt;
+&lt;img src="pics/duckdb-logo.png" height=50&gt;
+&lt;/div&gt;
+
+]
+
 ---
 
 # Connecting to databases with R
@@ -1122,14 +1125,14 @@ name: dbr
 ### A database interface
 
 - DBMS implement SQL but all have somewhat different conventions.
-- R can connect to all major existing databases types.
+- R can connect to all major existing DBMS types.
 - The R package [`DBI`](https://cran.r-project.org/web/packages/DBI/vignettes/DBI-proposal.html) (**D**ata**B**ase **I**nterface) is a unified interface to them (car analogy: wheel, pedals).
 - In addition, we need a separate "driver" to connect to the database engine (car analogy: fuel (?)).
 
 
 ### Drivers for open-source/commercial DBs 
 
-- There are various R packages that allow you to connect to particular **open-source** database types including SQLite (via [`RSQLite`](https://cran.r-project.org/web/packages/RSQLite/index.html)),  MySQL ([`RMySQL`](https://cran.r-project.org/web/packages/RMySQL/index.html)), 
+- There are various R packages that allow you to connect to particular **open-source** DBMS types including SQLite (via [`RSQLite`](https://cran.r-project.org/web/packages/RSQLite/index.html)),  MySQL ([`RMySQL`](https://cran.r-project.org/web/packages/RMySQL/index.html)), 
 PostgreSQL ([`RPostgres`](https://cran.r-project.org/web/packages/RPostgres/index.html)),
 Google BigQuery ([`bigrquery`](https://cran.r-project.org/web/packages/bigrquery/index.html)), MariaDB ([`RMariaDB`](https://cran.r-project.org/web/packages/RMariaDB/index.html)), DuckDB ([`duckdb`](https://cran.r-project.org/web/packages/duckdb/index.html)), and more.
 - For **commercial databases** such as Microsoft SQL Server or Oracle, the [`odbc`](https://github.com/r-dbi/odbc) package provides a DBI-compliant interface to Open Database Connectivity (ODBC) drivers.
@@ -1139,9 +1142,9 @@ Google BigQuery ([`bigrquery`](https://cran.r-project.org/web/packages/bigrquery
 .pull-right-small-center[
 &lt;br&gt;
 &lt;div align="center"&gt;
-&lt;img src="pics/db-connect-open-source.png" height=200&gt;
+&lt;img src="pics/db-connect-open-source.png" height=160&gt;
 &lt;br&gt;
-&lt;img src="pics/db-connect-commercial.png" height=200&gt;
+&lt;img src="pics/db-connect-commercial.png" height=160&gt;
 
 &lt;/div&gt;
 `Credit` [db.rstudio.com](https://db.rstudio.com/)
@@ -1268,26 +1271,18 @@ Note that `flights_db` is a remote source; the table is not stored in our local 
 
 
 ```r
-R&gt; flights_db %&gt;% select(year:day, dep_delay, arr_delay)
+R&gt; flights_db %&gt;% select(year:day, dep_delay, arr_delay) %&gt;% head(3)
 ```
 
 ```
 ## # Source:   lazy query [?? x 5]
-## # Database: sqlite 3.36.0
-## #   [/Users/simonmunzert/github/intro-to-data-science-21/lectures/04-databases/nycflightsdb]
-##     year month   day dep_delay arr_delay
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-##  1  2013     1     1         2        11
-##  2  2013     1     1         4        20
-##  3  2013     1     1         2        33
-##  4  2013     1     1        -1       -18
-##  5  2013     1     1        -6       -25
-##  6  2013     1     1        -4        12
-##  7  2013     1     1        -5        19
-##  8  2013     1     1        -3       -14
-##  9  2013     1     1        -3        -8
-## 10  2013     1     1        -2         8
-## # … with more rows
+## # Database: sqlite 3.36.0 [/Users/s.munzert/Munzert Dropbox/Simon
+## #   Munzert/github/intro-to-data-science-22/lectures/05-databases/nycflightsdb]
+##    year month   day dep_delay arr_delay
+##   &lt;int&gt; &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1  2013     1     1         2        11
+## 2  2013     1     1         4        20
+## 3  2013     1     1         2        33
 ```
 
 Yes, we can use `dplyr` syntax to do database queries! 
@@ -1434,7 +1429,9 @@ Finally, there is the [introduction to `dbplyr`](https://cran.r-project.org/web/
 ---
 # And what about NoSQL databases?
 
-We haven't talked about non-relational databases so far, but you might encounter them in the future. NoSQL became popular in the 2000s as a consequence of several developments: Cost of data storage decreased, which made the need of efficient, non-redundant but complex data storage less urgent. At the same time, heterogeneity in data formats increased and coming up with well-defined schemas was difficult. NoSQL offered more flexibility.
+We haven't talked about non-relational databases so far, but you might encounter them in the future. 
+
+NoSQL became popular in the 2000s as a consequence of several developments: Cost of data storage decreased, which made the need of efficient, non-redundant but complex data storage less urgent. At the same time, heterogeneity in data formats increased and coming up with well-defined schemas was difficult. NoSQL offered more flexibility.
 
 There are several types of NoSQL databases, including document DBs where documents contain pairs of fields and values (think: JSON), key-value DBs, or graph DBs.
 
