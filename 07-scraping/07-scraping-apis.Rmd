@@ -1,0 +1,660 @@
+---
+title: "Introduction to Data Science"
+subtitle: "Session 7: Web scraping and APIs"
+author: "Simon Munzert"
+institute: "Hertie School | [GRAD-C11/E1339](https://github.com/intro-to-data-science-21)" #"`r format(Sys.time(), '%d %B %Y')`"
+output:
+  xaringan::moon_reader:
+    css: [default, 'simons-touch.css', metropolis, metropolis-fonts] 
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+      hash: true
+---
+
+
+```{css, echo=FALSE} 
+@media print { # print out incremental slides; see https://stackoverflow.com/questions/56373198/get-xaringan-incremental-animations-to-print-to-pdf/56374619#56374619
+  .has-continuation {
+    display: block !important;
+  }
+}
+```
+
+```{r setup, include=FALSE}
+# figures formatting setup
+options(htmltools.dir.version = FALSE)
+library(knitr)
+opts_chunk$set(
+  prompt = T,
+  fig.align="center", #fig.width=6, fig.height=4.5, 
+  # out.width="748px", #out.length="520.75px",
+  dpi=300, #fig.path='Figs/',
+  cache=F, #echo=F, warning=F, message=F
+  engine.opts = list(bash = "-l")
+  )
+
+## Next hook based on this SO answer: https://stackoverflow.com/a/39025054
+knit_hooks$set(
+  prompt = function(before, options, envir) {
+    options(
+      prompt = if (options$engine %in% c('sh','bash')) '$ ' else 'R> ',
+      continue = if (options$engine %in% c('sh','bash')) '$ ' else '+ '
+      )
+})
+
+library(tidyverse)
+```
+
+
+# Table of contents
+
+<br>
+
+1. [Scraping static webpages with R](#scrapingstatic)
+
+2. [Tapping APIs](#apis)
+
+3. [JSON](#json)
+
+4. [Summary](#summary)
+
+
+
+---
+# Technologies of the world wide web
+
+.pull-left[
+
+- To fully unlock the potential of web data for data science, we draw on certain web technologies.
+- Importantly, often a basic understanding of these technologies is sufficient as the focus is on web data collection, not [web development](https://en.wikipedia.org/wiki/Web_development).
+- Specifically, we have to understand
+  - How our machine/browser/R communicates with web servers (→ **HTTP/S**)
+  - How websites are built (→ **HTML**, **CSS**, basics of **JavaScript**)
+  - How content in webpages can be effectively located (→ **XPath**, **CSS selectors**)
+  - How dynamic web applications are executed and tapped (→ **AJAX**, **Selenium**)
+  - How data by web services is distributed and processed (→ **APIs**, **JSON**, **XML**)
+  
+]
+
+.pull-right-center[
+<div align="center">
+<br>
+<img src="pics/webtechnologies.png" width=500>
+</div>
+`Credit` [ADCR](http://r-datacollection.com/)
+]
+
+
+
+
+---
+class: inverse, center, middle
+name: scrapingstatic
+
+# Scraping static webpages with R
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px style="width:1000px; margin:auto;"/></html>
+
+
+
+---
+# Web scraping
+
+.pull-left[
+
+### What is web scraping?
+
+1. Pulling (unstructured) data from websites (HTMLs)
+2. Bringing it into shape (into an analysis-ready format)
+
+### The philosophy of scraping with R
+
+- No point-and-click procedure
+- Script the entire process from start to finish
+- **Automate**
+  - The downloading of files
+  - The scraping of information from web sites
+  - Tapping APIs
+  - Parsing of web content
+  - Data tidying, text data processing
+- Easily scale up scraping procedures
+- Scheduling of scraping tasks
+]
+
+.pull-right-center[
+<br>
+<div align="center">
+<img src="pics/web-scraping-vs-web-crawling.png" width=500>
+</div>
+`Credit` [prowebscraping.com](http://prowebscraping.com/web-scraping-vs-web-crawling/)
+]
+
+---
+# The scraping workflow
+
+.pull-left[
+### Key tools for scraping static webpages
+
+1. You are able to inspect HTML pages in your browser using the web developer tools.
+2. You are able to parse HTML into R with `rvest`.
+3. You are able to speak XPath (or CSS selectors).
+4. You are able to apply XPath expressions with `rvest`.
+5. You are able to tidy web data with R/`dplyr`/`regex`.
+
+
+### The big picture
+
+- Every scraping project is different, but the coding pipeline is fundamentally similar.
+- The (technically) hardest steps are location (XPath, CSS selectors) and extraction (clean-up), sometimes the scaling (from one to multiple sources).
+]
+
+.pull-right[
+<br><br><br>
+<div align="center">
+<img src="pics/scraping-workflow.png" width=550>
+</div>
+]
+
+---
+# Web scraping with rvest
+
+.pull-left-wide[
+
+`rvest` is a suite of scraping tools. It is part of the tidyverse and has made scraping with R much more convenient.
+
+There are three key `rvest` verbs that you need to learn.<sup>1</sup>
+
+1. `read_html()`: Read (parsing) an HTML resource.
+
+2. `html_elements()`: Find elements that match a CSS selector or XPath expression.
+
+3. `html_text2()`: Extract the text/value inside the node set.
+
+
+]
+
+.footnote[
+<sup>1</sup> There is more in `rvest` than what we can cover today. Have a glimpse at the [overview at tidyverse.org](https://rvest.tidyverse.org/) and at this excellent (unofficial) [cheat sheet](https://github.com/yusuzech/r-web-scraping-cheat-sheet).
+]
+
+
+.pull-right-small-center[
+<div align="center">
+<br>
+<img src="pics/rvest.png" height=250>
+</div>
+]
+
+
+---
+# Web scraping with rvest: example
+
+.pull-left-vsmall[
+- We are going to scrape a information from a Wikipedia article on women philosophers available at [https://en.wikipedia.org/wiki/](https://en.wikipedia.org/wiki/List_of_women_philosophers) [List_of_women_philosophers](https://en.wikipedia.org/wiki/List_of_women_philosophers).
+- The article provides two types of lists - one by period and one sorted alphabetically. We want the alphabetical list.
+- The information we are actually interested in - names - is stored in unordered list elements.
+]
+
+.pull-right-vwide[
+<div align="center">
+<img src="pics/wiki-philosophers-1.png" height=250>
+<img src="pics/wiki-philosophers-2.png" height=250>
+<br>
+<img src="pics/wiki-philosophers-3.png" height=250>
+<img src="pics/wiki-philosophers-4.png" height=210>
+</div>
+]
+
+
+---
+# Scraping HTML tables: example (cont.)
+
+**Step 1:** Parse the page
+```{r, eval = FALSE}
+url_p <- read_html("https://en.wikipedia.org/wiki/List_of_women_philosophers")
+```
+
+```{r, eval = TRUE, echo = FALSE}
+library(rvest)
+url <- "https://en.wikipedia.org/w/index.php?title=List_of_women_philosophers&oldid=1041210397"
+url_p <- read_html(url)
+```
+
+--
+
+**Step 2:** Develop an XPath expression (or multiple) that select the information of interest and apply it
+
+```{r, eval = TRUE}
+elements_set <- html_elements(url_p, xpath = "//h2/span[text()='Alphabetically']//following::li/a[1]")
+
+```
+
+--
+
+The XPath expression reads:
+
+- `//h2`: Look for  `h2` elements anywhere in the document.
+- `/span[text()='Alphabetically']`: Within that element look for `span` elements with the content `"Alphabetically"`.
+- `//following::li`: In the DOM tree following that element (at any level), look for `li` elements.
+- `/a[1]` within these elements look for the first `a` element you can find.
+
+---
+# Scraping HTML tables: example (cont.)
+
+**Step 3:** Extract information and clean it up
+
+```{r, eval = TRUE}
+phil_names <- elements_set %>% html_text2()
+phil_names[c(1:2, 101:102)]
+```
+
+--
+
+**Step 4:** Clean up (here: select the subset of links we care about)
+
+```{r, eval = TRUE}
+names_iffer <-
+  seq_along(phil_names) >=  seq_along(phil_names)[str_detect(phil_names, "Felicia Nimue Ackerman")] &
+  seq_along(phil_names) <=   seq_along(phil_names)[str_detect(phil_names, "Alenka Zupančič")]
+philosopher_names_clean <- phil_names[names_iffer]
+length(philosopher_names_clean)
+philosopher_names_clean[1:5]
+```
+
+
+
+
+---
+# Quick-n-dirty static webscraping with SelectorGadget
+
+.pull-left[
+
+### The hassle with XPath
+
+- The most cumbersome part of web scraping (data tidying aside) is the construction of XPath expressions that match the components of a page you want to extract.
+- It will take a couple of scraping projects until you’ll truly have mastered XPath.
+
+### A much-appreciated helper
+
+- **SelectorGadget** is a JavaScript browser plugin that constructs XPath statements (or CSS selectors) via a point-and-click approach.
+- It is available here: http://selectorgadget.com/ (there is also a Chrome extension).
+- The tool is magic and you will love it.
+
+]
+
+--
+
+.pull-right[
+
+### What does SelectorGadget do?
+
+- You activate the tool on any webpage you want to scrape.
+- Based on your selection of components, the tool learns about your desired components and generates an XPath expression (or CSS selector) for you.
+
+### Under the hood
+
+- Based on your selection(s), the tool looks for similar elements on the page.
+- The underlying algorithm, which draws on Google’s diff-match-patch libraries, focuses on CSS characteristics, such as tag names and `<div>` and `<span>` attributes.
+
+]
+
+---
+# SelectorGadget: example
+
+<video width="980" height="551" controls>
+  <source src="pics/selectorgadget-nytimes.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+
+---
+# SelectorGadget: example (cont.)
+
+```{r, eval = FALSE}
+library(rvest)
+url_p <- read_html("https://www.nytimes.com")
+# xpath: paste the expression from Selectorgadget!
+# note: we use single quotation marks here (' instead of ") to wrap around the expression!
+xpath <- '//*[contains(concat( " ", @class, " " ), concat( " ", "erslblw0", " " ))]//*[contains(concat( " ", @class, " " ), concat( " ", "e1lsht870", " " ))]'
+headlines <- html_elements(url_p, xpath = xpath) 
+headlines_raw <- html_text(headlines)
+length(headlines_raw)
+head(headlines_raw)
+```
+
+```{r, eval = TRUE, echo = FALSE}
+library(rvest)
+url_p <- read_html("materials/nytimes-com-2021-09-29.html")
+xpath <- '//*[contains(concat( " ", @class, " " ), concat( " ", "erslblw0", " " ))]//*[contains(concat( " ", @class, " " ), concat( " ", "e1lsht870", " " ))]'
+headlines <- html_elements(url_p, xpath = xpath) # we use single quotation marks here to wrap around the expression!
+headlines_raw <- html_text(headlines)
+length(headlines_raw)
+head(headlines_raw)
+```
+
+
+---
+# SelectorGadget: when to use and not to use it
+
+Having learned about a semi-automated approach to generating XPath expressions, you might ask: 
+
+**Why bother with learning XPath at all?**
+
+Well...
+
+- SelectorGadget is not perfect. Sometimes, the algorithm will fail.
+- Starting from a different element sometimes (but not always!) helps.
+- Often the generated expressions are unnecessarily complex and therefore difficult to debug.
+- In my experience, SelectorGadget works 50-60% of the times when scraping from static webpages.
+- You are also prepared for the remaining 40-50%!
+
+
+
+---
+# Scraping HTML tables
+
+<div align="center">
+<img src="pics/html-table-1.png" height=250>
+<img src="pics/html-table-2.png" height=250>
+<br>
+<img src="pics/html-table-3.png" height=300>
+</div>
+
+
+---
+# Scraping HTML tables
+
+- HTML tables are everywhere.
+- They are easy to spot in the wild - just look for `<table>` tags!
+- Exactly because scraping tables is an easy and repetitive task, there is a dedicated `rvest` function for it: `html_table()`.
+
+.pull-left-vsmall[
+<br>
+<br>
+**Function definition**
+```{r, eval = FALSE}
+html_table(x, 
+    header = NA,
+    trim = TRUE,
+    dec = ".",
+    na.strings = "NA",
+    convert = TRUE
+ )
+```
+]
+
+.pull-right-vwide[
+<br>
+
+| Argument |  Description |
+|---|---|
+| `x` | Document (from `read_html()`) or node set (from `html_elements()`). |
+| `header` | Use first row as header? If `NA`, will use first row if it consists of `<th>` tags. |
+| `trim` | Remove leading and trailing whitespace within each cell? |
+| `dec` | The character used as decimal place marker. |
+| `na.strings` | Character vector of values that will be converted to `NA` if `convert` is `TRUE`. |
+| `convert` | If `TRUE`, will run `type.convert()` to interpret texts as int, dbl, or `NA`. |
+]
+
+---
+# Scraping HTML tables: example
+
+.pull-left-small[
+- We are going to scrape a small table from the Wikipedia page [https://en.wikipedia.org/wiki/](https://en.wikipedia.org/wiki/List_of_human_spaceflights) [List_of_human_spaceflights](https://en.wikipedia.org/wiki/List_of_human_spaceflights).
+- (Note that we're actually using an old version of the page (dating back to May 1, 2018), which is accessible [here](https://en.wikipedia.org/w/index.php?title=List_of_human_spaceflights&oldid=778165808). Wikipedia pages change, but this old revision and associated link won't.))
+- The table is not entirely clean: There are some empty cells, but also images and links.
+- The HTML code looks straightforward though.
+]
+
+.pull-right-wide[
+<div align="center">
+<img src="pics/wiki-spaceflights-2.png" height=250>
+<img src="pics/wiki-spaceflights-3.png" height=250>
+<br>
+<img src="pics/wiki-spaceflights-4.png" width=300>
+</div>
+]
+
+---
+# Scraping HTML tables: example (cont.)
+
+```{r, eval = FALSE}
+library(rvest)
+url <- "https://en.wikipedia.org/wiki/List_of_human_spaceflights"
+url_p <- read_html(url)
+tables <- html_table(url_p, header = TRUE)
+spaceflights <- tables[[1]]
+spaceflights
+```
+
+
+```{r, eval = TRUE, echo = FALSE}
+library(rvest)
+url <- "https://en.wikipedia.org/w/index.php?title=List_of_human_spaceflights&oldid=778165808"
+url_p <- read_html(url)
+tables <- html_table(url_p, header = TRUE)
+spaceflights <- tables[[1]]
+spaceflights
+```
+
+
+---
+class: inverse, center, middle
+name: goodpractice
+
+# Web scraping: good practice
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px style="width:1000px; margin:auto;"/></html>
+
+
+
+---
+# Scraping: the rules of the game
+
+<br>
+
+1. You take all the responsibility for your web scraping work.
+
+2. Think about the nature of the data. Does it entail sensitive information? Do not collect personal data without explicit permission.
+
+3. Take all copyrights of a country’s jurisdiction into account. If you publish data, do not commit copyright fraud.
+
+4. If possible, stay identifiable. Stay polite. Stay friendly. Obey the scraping etiquette.
+
+5. If in doubt, ask the author/creator/provider of data for permission—if your interest is entirely scientific, chances aren’t bad that you get data.
+
+---
+# Consult robots.txt
+
+.pull-left[
+### What's robots.txt?
+
+-  "[Robots exclusion standard](https://en.wikipedia.org/wiki/Robots_exclusion_standard)", informal protocol to prohibit web robots from crawling content
+- Located in the root directory of a website (e.g.,  [google.com/robots.txt](https://www.google.com/robots.txt))
+- Documents which bot is allowed to crawl which resources (and which not)
+- Not a technical barrier, but a sign that asks for compliance
+
+### What's robots.txt?
+
+- Not an official W3C standard
+- Rules listed bot by bot
+- General rule listed under `User-agent: *` (most interesting entry for R-based crawlers)
+- Directories folders listed separately
+]
+
+.pull-right[
+
+**Example**
+
+```{txt, prompt = FALSE, eval = FALSE}
+User-agent: Googlebot 
+Disallow: /images/ 
+Disallow: /private/
+```
+
+**Universal ban**
+
+```{txt, prompt = FALSE, eval = FALSE}
+User-agent: * 
+Disallow: /
+```
+
+**Allow declaration**
+
+```{txt, prompt = FALSE, eval = FALSE}
+User-agent: * 
+Disallow: /images/ 
+Allow: /images/public/
+```
+
+**Crawl delay (in seconds)**
+
+```{txt, prompt = FALSE, eval = FALSE}
+User-agent: *
+Crawl-delay: 2
+```
+
+
+]
+
+
+---
+# Downloading HTML files
+
+.pull-left[
+
+### Stay modest when accessing lots of data
+
+- Content on the web is publicly available.
+- But accessing the data causes server traffic.
+- Stay polite by querying resources as sparsely as possible.
+
+### Two easy-to-implement practices
+
+1. Do not bombard the server with requests - and if you have to, do so at modest pace.
+2. Store web data on your local drive first, then parse.
+
+]
+
+
+
+.pull-right[
+
+### Looping over a list of URLs
+
+```{r, eval = FALSE}
+for (i in 1:length(list_of_urls)) { 
+  if (!file.exists(paste0(folder, file_names[i]))) {
+    download.file(list_of_urls[i],
+                  destfile = paste0(folder, file_names[i])
+                  )
+    Sys.sleep(runif(1, 1, 2))
+    }
+}
+```
+
+- `!file.exists()` checks whether a file does not exist in the specified location.
+- `download.file()` downloads the file to a folder. The destination file (location + name) has to be specified.
+- `Sys.sleep()` suspends the execution of R code for a given time interval (in seconds).
+]
+
+---
+# Staying identifiable
+
+.pull-left[
+
+### Don't be a phantom
+
+- Downloading massive amounts of data may arouse attention from server administrators.
+- Assuming that you've got nothing to hide, you should stay identifiable beyond your IP address.
+
+### Two easy-to-implement practices
+
+1. Get in touch with website administrators / data owners.
+2. Use HTTP header fields `From` and `User-Agent` to provide information about yourself (by passing these to `add_headers()` from the `httr` library).
+
+]
+
+
+.pull-right[
+
+### Staying identifiable in practice
+
+```{r, eval = FALSE}
+url <- "http://a-totally-random-website.com"
+rvest_session <- session(url, 
+ add_headers(From = "my@email.com", 
+             `UserAgent` = 
+               R.Version()$version.string
+             )
+) 
+headlines <- rvest_session %>% 
+             html_elements(xpath = "p//a") %>% 
+             html_text()
+```
+
+
+- `rvest`'s `session()` creates a session object that responds to HTTP and HTML methods.
+- Here, we provide our email address and the current R version as `User-Agent` information.
+- This will pop up in the server logs: The webpage administrator has the chance to easily get in touch with you.
+
+]
+
+
+
+---
+# Scraping etiquette (cont.)
+
+<div align="center">
+<img src="pics/scraping-etiquette.png" height=540>
+</div>
+
+
+
+---
+class: inverse, center, middle
+name: summary
+
+# Summary
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px style="width:1000px; margin:auto;"/></html>
+
+
+
+---
+# Outlook
+
+Until now, the toy examples were limited to single HTML pages. However, often we want to **scrape data from multiple pages**. You might think of newspaper articles, Wikipedia pages, shopping items and the like. In such scenarios, automating the scraping process becomes really powerful. Also, principles of polite scraping are more relevant then.
+
+In other cases, you might be confronted with 
+- forms, 
+- authentication, 
+- dynamic (JavaScript-enriched) content, or want to 
+- automatically navigate through pages interactively.
+
+Moreover, we've ignored a major alternative way to collect data from the web so far which goes beyond scraping: accessing [web APIs](https://en.wikipedia.org/wiki/Web_API). Be sure to check out the respective sessions in the workshop.
+
+There's only so much we can cover in one session. Check out more material online [here](https://github.com/hertie-data-science-lab/ds-workshop-webscraping) and [there](https://github.com/yusuzech/r-web-scraping-cheat-sheet) to learn about solutions to some of these problems.
+
+
+
+
+---
+
+# Coming up
+
+<br><br> 
+
+### Assignment
+
+Assignment 3 is about to go online on GitHub Classroom. Check it out and start scraping the web (politely).
+
+### Next lecture
+
+Model fitting and simulation. Now that we know how to retrieve data, let's learn how to run and learn from them.
+
+

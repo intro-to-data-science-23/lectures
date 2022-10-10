@@ -1,6 +1,6 @@
 ---
 title: "Introduction to Data Science"
-subtitle: "Session 5: Web data and technologies"
+subtitle: "Session 6: Web data and technologies"
 author: "Simon Munzert"
 institute: "Hertie School | [GRAD-C11/E1339](https://github.com/intro-to-data-science-21)" #"`r format(Sys.time(), '%d %B %Y')`"
 output:
@@ -62,11 +62,9 @@ library(tidyverse)
 
 4. [CSS basics](#css)
 
-5. [Scraping static webpages with R](#scrapingstatic)
+5. [Regular expressions](#regex)
 
-6. [Web scraping: good practice](#goodpractice)
-
-7. [Summary](#summary)
+6. [Summary](#summary)
 
 
 
@@ -81,8 +79,6 @@ name: webdata
 
 ---
 # What is web data?
-
-THIS SESSION: ALSO REGULAR EXPRESSIONS, STRING MANIPULATION (NOT PART OF TOOLS WORKSHOP ANYMORE)
 
 <br>
 <div align="center">
@@ -133,44 +129,9 @@ THIS SESSION: ALSO REGULAR EXPRESSIONS, STRING MANIPULATION (NOT PART OF TOOLS W
 - An analysis workflow that involves web data can often be easily updated.
 - The vast majority of web data was not created with a data analysis purpose in mind. This fact is often a feature, not a bug.
 
-<p style="color:red">
-Today, we focus on one particular way of collecting data from the web: <b>web scraping</b>. This also limits the type of web data we'll be talking about (basically: data from static webpages). But it'll be fun nevertheless.
-</p>
-
 ]
 
 
----
-# Web scraping
-
-.pull-left[
-
-### What is web scraping?
-
-1. Pulling (unstructured) data from websites (HTMLs)
-2. Bringing it into shape (into an analysis-ready format)
-
-### The philosophy of scraping with R
-
-- No point-and-click procedure
-- Script the entire process from start to finish
-- **Automate**
-  - The downloading of files
-  - The scraping of information from web sites
-  - Tapping APIs
-  - Parsing of web content
-  - Data tidying, text data processing
-- Easily scale up scraping procedures
-- Scheduling of scraping tasks
-]
-
-.pull-right-center[
-<br>
-<div align="center">
-<img src="pics/web-scraping-vs-web-crawling.png" width=500>
-</div>
-`Credit` [prowebscraping.com](http://prowebscraping.com/web-scraping-vs-web-crawling/)
-]
 
 ---
 # Technologies of the world wide web
@@ -1060,519 +1021,374 @@ name: css
 
 ---
 class: inverse, center, middle
-name: scrapingstatic
+name: regex
 
-# Scraping static webpages with R
+# Regular expressions
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px style="width:1000px; margin:auto;"/></html>
 
 
 ---
-# The scraping workflow
+# What are regular expressions?
 
 .pull-left[
-### Key tools for scraping static webpages
+### Definition
 
-1. You are able to inspect HTML pages in your browser using the web developer tools.
-2. You are able to parse HTML into R with `rvest`.
-3. You are able to speak XPath (or CSS selectors).
-4. You are able to apply XPath expressions with `rvest`.
-5. You are able to tidy web data with R/`dplyr`/`regex`.
+Regular expressions a.k.a. *regex* or *RegExp* is a tool - a little language of it's own really - that lets you describe patterns in text/strings.
 
+Funnily, a regular expression itself is a sequence of characters, some with special, some with literal meaning.
 
-### The big picture
+Regular expressions are widely applicable and implemented in many programming languages, including R, as well as search engines, search and replace dialogs, etc.
 
-- Every scraping project is different, but the coding pipeline is fundamentally similar.
-- The (technically) hardest steps are location (XPath, CSS selectors) and extraction (clean-up), sometimes the scaling (from one to multiple sources).
-]
-
-.pull-right[
-<br><br><br>
 <div align="center">
-<img src="pics/scraping-workflow.png" width=550>
+<img src="pics/character-string.png" height=100>
 </div>
-]
-
----
-# Web scraping with rvest
-
-.pull-left-wide[
-
-`rvest` is a suite of scraping tools. It is part of the tidyverse and has made scraping with R much more convenient.
-
-There are three key `rvest` verbs that you need to learn.<sup>1</sup>
-
-1. `read_html()`: Read (parsing) an HTML resource.
-
-2. `html_elements()`: Find elements that match a CSS selector or XPath expression.
-
-3. `html_text2()`: Extract the text/value inside the node set.
-
-
-]
-
-.footnote[
-<sup>1</sup> There is more in `rvest` than what we can cover today. Have a glimpse at the [overview at tidyverse.org](https://rvest.tidyverse.org/) and at this excellent (unofficial) [cheat sheet](https://github.com/yusuzech/r-web-scraping-cheat-sheet).
-]
-
-
-.pull-right-small-center[
-<div align="center">
-<br>
-<img src="pics/rvest.png" height=250>
-</div>
-]
-
-
----
-# Web scraping with rvest: example
-
-.pull-left-vsmall[
-- We are going to scrape a information from a Wikipedia article on women philosophers available at [https://en.wikipedia.org/wiki/](https://en.wikipedia.org/wiki/List_of_women_philosophers) [List_of_women_philosophers](https://en.wikipedia.org/wiki/List_of_women_philosophers).
-- The article provides two types of lists - one by period and one sorted alphabetically. We want the alphabetical list.
-- The information we are actually interested in - names - is stored in unordered list elements.
-]
-
-.pull-right-vwide[
-<div align="center">
-<img src="pics/wiki-philosophers-1.png" height=250>
-<img src="pics/wiki-philosophers-2.png" height=250>
-<br>
-<img src="pics/wiki-philosophers-3.png" height=250>
-<img src="pics/wiki-philosophers-4.png" height=210>
-</div>
-]
-
-
----
-# Scraping HTML tables: example (cont.)
-
-**Step 1:** Parse the page
-```{r, eval = FALSE}
-url_p <- read_html("https://en.wikipedia.org/wiki/List_of_women_philosophers")
-```
-
-```{r, eval = TRUE, echo = FALSE}
-library(rvest)
-url <- "https://en.wikipedia.org/w/index.php?title=List_of_women_philosophers&oldid=1041210397"
-url_p <- read_html(url)
-```
-
---
-
-**Step 2:** Develop an XPath expression (or multiple) that select the information of interest and apply it
-
-```{r, eval = TRUE}
-elements_set <- html_elements(url_p, xpath = "//h2/span[text()='Alphabetically']//following::li/a[1]")
-
-```
-
---
-
-The XPath expression reads:
-
-- `//h2`: Look for  `h2` elements anywhere in the document.
-- `/span[text()='Alphabetically']`: Within that element look for `span` elements with the content `"Alphabetically"`.
-- `//following::li`: In the DOM tree following that element (at any level), look for `li` elements.
-- `/a[1]` within these elements look for the first `a` element you can find.
-
----
-# Scraping HTML tables: example (cont.)
-
-**Step 3:** Extract information and clean it up
-
-```{r, eval = TRUE}
-phil_names <- elements_set %>% html_text2()
-phil_names[c(1:2, 101:102)]
-```
-
---
-
-**Step 4:** Clean up (here: select the subset of links we care about)
-
-```{r, eval = TRUE}
-names_iffer <-
-  seq_along(phil_names) >=  seq_along(phil_names)[str_detect(phil_names, "Felicia Nimue Ackerman")] &
-  seq_along(phil_names) <=   seq_along(phil_names)[str_detect(phil_names, "Alenka Zupančič")]
-philosopher_names_clean <- phil_names[names_iffer]
-length(philosopher_names_clean)
-philosopher_names_clean[1:5]
-```
-
-
-
-
----
-# Quick-n-dirty static webscraping with SelectorGadget
-
-.pull-left[
-
-### The hassle with XPath
-
-- The most cumbersome part of web scraping (data tidying aside) is the construction of XPath expressions that match the components of a page you want to extract.
-- It will take a couple of scraping projects until you’ll truly have mastered XPath.
-
-### A much-appreciated helper
-
-- **SelectorGadget** is a JavaScript browser plugin that constructs XPath statements (or CSS selectors) via a point-and-click approach.
-- It is available here: http://selectorgadget.com/ (there is also a Chrome extension).
-- The tool is magic and you will love it.
-
 ]
 
 --
 
 .pull-right[
+### Why is this useful for web scraping?
 
-### What does SelectorGadget do?
+Information on the web can often be described by patterns (think email addresses, numbers, cells in HTML tables, ...).
 
-- You activate the tool on any webpage you want to scrape.
-- Based on your selection of components, the tool learns about your desired components and generates an XPath expression (or CSS selector) for you.
+If the data of interest follow specific patterns, we can match and extract them - regardless of page layout and HTML overhead.
 
-### Under the hood
-
-- Based on your selection(s), the tool looks for similar elements on the page.
-- The underlying algorithm, which draws on Google’s diff-match-patch libraries, focuses on CSS characteristics, such as tag names and `<div>` and `<span>` attributes.
-
+Whenever the information of interest is (stored in) text, regular expressions are useful for extraction and tidying purposes.
 ]
 
----
-# SelectorGadget: example
-
-<video width="980" height="551" controls>
-  <source src="pics/selectorgadget-nytimes.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video>
 
 
 ---
-# SelectorGadget: example (cont.)
+# Regular expressions: example
 
-```{r, eval = FALSE}
-library(rvest)
-url_p <- read_html("https://www.nytimes.com")
-# xpath: paste the expression from Selectorgadget!
-# note: we use single quotation marks here (' instead of ") to wrap around the expression!
-xpath <- '//*[contains(concat( " ", @class, " " ), concat( " ", "erslblw0", " " ))]//*[contains(concat( " ", @class, " " ), concat( " ", "e1lsht870", " " ))]'
-headlines <- html_elements(url_p, xpath = xpath) 
-headlines_raw <- html_text(headlines)
-length(headlines_raw)
-head(headlines_raw)
+Below you see a string that contains unstructured phone book entries. The goal is to clean it up and extract the entries. The problem is that the text is really messy, and to find a pattern that helps us describe names on the one hand and phone numbers on the other is difficult. But: regular expressions FTW!
+
+```{r}
+phone_vec <- 
+"555-1239Moe Szyslak(636) 555-0113Burns, C. Montgomery
+555-6542Rev. Timothy Lovejoy555 8904Ned Flanders636-555-3226
+Simpson,Homer5553642Dr. Julius Hibbert"
 ```
 
-```{r, eval = TRUE, echo = FALSE}
-library(rvest)
-url_p <- read_html("materials/nytimes-com-2021-09-29.html")
-xpath <- '//*[contains(concat( " ", @class, " " ), concat( " ", "erslblw0", " " ))]//*[contains(concat( " ", @class, " " ), concat( " ", "e1lsht870", " " ))]'
-headlines <- html_elements(url_p, xpath = xpath) # we use single quotation marks here to wrap around the expression!
-headlines_raw <- html_text(headlines)
-length(headlines_raw)
-head(headlines_raw)
+--
+
+We're loading the `stringr` package that provides us with tidyverse functionality to operate with string data and apply regular expressions. Then, we construct a regular expression each for the names and the phone numbers (this is the tricky part!). Finally, we apply the regular expressions on the raw vector to extract the information of interest.
+
+---
+# Regular expressions: example
+
+```{r}
+phone_vec <- 
+"555-1239Moe Szyslak(636) 555-0113Burns, C. Montgomery
+555-6542Rev. Timothy Lovejoy555 8904Ned Flanders636-555-3226
+Simpson,Homer5553642Dr. Julius Hibbert"
 ```
 
+--
+
+```{r}
+library(stringr)
+names_vec <- unlist(str_extract_all(phone_vec, "[[:alpha:]., ]{2,}"))
+names_vec
+```
+
+--
+
+```{r}
+numbers_vec <- unlist(str_extract_all(phone_vec, "\\(?([:digit:]{3})?\\)?(-| )?[:digit:]{3}(-| )?[:digit:]{4}"))
+numbers_vec
+```
+
+--
+
+Wait, wait?! 🤯
 
 ---
-# SelectorGadget: when to use and not to use it
-
-Having learned about a semi-automated approach to generating XPath expressions, you might ask: 
-
-**Why bother with learning XPath at all?**
-
-Well...
-
-- SelectorGadget is not perfect. Sometimes, the algorithm will fail.
-- Starting from a different element sometimes (but not always!) helps.
-- Often the generated expressions are unnecessarily complex and therefore difficult to debug.
-- In my experience, SelectorGadget works 50-60% of the times when scraping from static webpages.
-- You are also prepared for the remaining 40-50%!
-
-
-
----
-# Scraping HTML tables
+# 🎶 Regex superheroooo 🎶
 
 <div align="center">
-<img src="pics/html-table-1.png" height=250>
-<img src="pics/html-table-2.png" height=250>
-<br>
-<img src="pics/html-table-3.png" height=300>
+<img src="pics/xkcd-regex.png" height=540>
 </div>
 
 
 ---
-# Scraping HTML tables
+# Regular expressions in R
 
-- HTML tables are everywhere.
-- They are easy to spot in the wild - just look for `<table>` tags!
-- Exactly because scraping tables is an easy and repetitive task, there is a dedicated `rvest` function for it: `html_table()`.
+Here's an example string we're going to work with:
 
-.pull-left-vsmall[
-<br>
-<br>
-**Function definition**
-```{r, eval = FALSE}
-html_table(x, 
-    header = NA,
-    trim = TRUE,
-    dec = ".",
-    na.strings = "NA",
-    convert = TRUE
- )
-```
-]
-
-.pull-right-vwide[
-<br>
-
-| Argument |  Description |
-|---|---|
-| `x` | Document (from `read_html()`) or node set (from `html_elements()`). |
-| `header` | Use first row as header? If `NA`, will use first row if it consists of `<th>` tags. |
-| `trim` | Remove leading and trailing whitespace within each cell? |
-| `dec` | The character used as decimal place marker. |
-| `na.strings` | Character vector of values that will be converted to `NA` if `convert` is `TRUE`. |
-| `convert` | If `TRUE`, will run `type.convert()` to interpret texts as int, dbl, or `NA`. |
-]
-
----
-# Scraping HTML tables: example
-
-.pull-left-small[
-- We are going to scrape a small table from the Wikipedia page [https://en.wikipedia.org/wiki/](https://en.wikipedia.org/wiki/List_of_human_spaceflights) [List_of_human_spaceflights](https://en.wikipedia.org/wiki/List_of_human_spaceflights).
-- (Note that we're actually using an old version of the page (dating back to May 1, 2018), which is accessible [here](https://en.wikipedia.org/w/index.php?title=List_of_human_spaceflights&oldid=778165808). Wikipedia pages change, but this old revision and associated link won't.))
-- The table is not entirely clean: There are some empty cells, but also images and links.
-- The HTML code looks straightforward though.
-]
-
-.pull-right-wide[
-<div align="center">
-<img src="pics/wiki-spaceflights-2.png" height=250>
-<img src="pics/wiki-spaceflights-3.png" height=250>
-<br>
-<img src="pics/wiki-spaceflights-4.png" width=300>
-</div>
-]
-
----
-# Scraping HTML tables: example (cont.)
-
-```{r, eval = FALSE}
-library(rvest)
-url <- "https://en.wikipedia.org/wiki/List_of_human_spaceflights"
-url_p <- read_html(url)
-tables <- html_table(url_p, header = TRUE)
-spaceflights <- tables[[1]]
-spaceflights
+```{r}
+example.obj <- "1. A small sentence. - 2. Another tiny sentence."
 ```
 
+--
 
-```{r, eval = TRUE, echo = FALSE}
-library(rvest)
-url <- "https://en.wikipedia.org/w/index.php?title=List_of_human_spaceflights&oldid=778165808"
-url_p <- read_html(url)
-tables <- html_table(url_p, header = TRUE)
-spaceflights <- tables[[1]]
-spaceflights
+We are going to use the `str_extract()` and the `str_extract_all()` functions from the `stringr` package to apply regular expressions to strings. The generic syntax is:
+
+- `str_extract(string, pattern)`
+- `str_extract_all(string, pattern)`
+
+Here's the difference: `str_extract()` returns the first match, `str_extract_all()` returns all matches.
+
+---
+# Basic regex syntax
+
+```{r}
+example.obj <- "1. A small sentence. - 2. Another tiny sentence."
 ```
-
-
----
-class: inverse, center, middle
-name: goodpractice
-
-# Web scraping: good practice
-
-<html><div style='float:left'></div><hr color='#EB811B' size=1px style="width:1000px; margin:auto;"/></html>
-
-
-
----
-# Scraping: the rules of the game
-
-<br>
-
-1. You take all the responsibility for your web scraping work.
-
-2. Think about the nature of the data. Does it entail sensitive information? Do not collect personal data without explicit permission.
-
-3. Take all copyrights of a country’s jurisdiction into account. If you publish data, do not commit copyright fraud.
-
-4. If possible, stay identifiable. Stay polite. Stay friendly. Obey the scraping etiquette.
-
-5. If in doubt, ask the author/creator/provider of data for permission—if your interest is entirely scientific, chances aren’t bad that you get data.
-
----
-# Consult robots.txt
 
 .pull-left[
-### What's robots.txt?
+### Strings match themselves
 
--  "[Robots exclusion standard](https://en.wikipedia.org/wiki/Robots_exclusion_standard)", informal protocol to prohibit web robots from crawling content
-- Located in the root directory of a website (e.g.,  [google.com/robots.txt](https://www.google.com/robots.txt))
-- Documents which bot is allowed to crawl which resources (and which not)
-- Not a technical barrier, but a sign that asks for compliance
-
-### What's robots.txt?
-
-- Not an official W3C standard
-- Rules listed bot by bot
-- General rule listed under `User-agent: *` (most interesting entry for R-based crawlers)
-- Directories folders listed separately
+```{r}
+str_extract(example.obj, "small")
+str_extract(example.obj, "banana")
+```
 ]
 
+--
+
 .pull-right[
+### Multiple matches are returned as a list
 
-**Example**
-
-```{txt, prompt = FALSE, eval = FALSE}
-User-agent: Googlebot 
-Disallow: /images/ 
-Disallow: /private/
+```{r}
+multi_vec <- c("text", "manipulation", "basics")
+str_extract_all(multi_vec, "a")
 ```
-
-**Universal ban**
-
-```{txt, prompt = FALSE, eval = FALSE}
-User-agent: * 
-Disallow: /
-```
-
-**Allow declaration**
-
-```{txt, prompt = FALSE, eval = FALSE}
-User-agent: * 
-Disallow: /images/ 
-Allow: /images/public/
-```
-
-**Crawl delay (in seconds)**
-
-```{txt, prompt = FALSE, eval = FALSE}
-User-agent: *
-Crawl-delay: 2
-```
-
-
 ]
 
 
 ---
-# Downloading HTML files
+# Basic regex syntax *cont.*
+
+```{r}
+example.obj <- "1. A small sentence. - 2. Another tiny sentence."
+```
 
 .pull-left[
+### Character matching is case sensitive
 
-### Stay modest when accessing lots of data
-
-- Content on the web is publicly available.
-- But accessing the data causes server traffic.
-- Stay polite by querying resources as sparsely as possible.
-
-### Two easy-to-implement practices
-
-1. Do not bombard the server with requests - and if you have to, do so at modest pace.
-2. Store web data on your local drive first, then parse.
-
+```{r}
+str_extract(example.obj, "small")
+str_extract(example.obj, "SMALL")
+str_extract(example.obj, 
+            regex("SMALL", ignore_case = TRUE))
+```
 ]
 
-
+--
 
 .pull-right[
+### We can match arbitrary combinations of characters
 
-### Looping over a list of URLs
-
-```{r, eval = FALSE}
-for (i in 1:length(list_of_urls)) { 
-  if (!file.exists(paste0(folder, file_names[i]))) {
-    download.file(list_of_urls[i],
-                  destfile = paste0(folder, file_names[i])
-                  )
-    Sys.sleep(runif(1, 1, 2))
-    }
-}
+```{r}
+str_extract(example.obj, "mall sent")
 ```
-
-- `!file.exists()` checks whether a file does not exist in the specified location.
-- `download.file()` downloads the file to a folder. The destination file (location + name) has to be specified.
-- `Sys.sleep()` suspends the execution of R code for a given time interval (in seconds).
 ]
 
+
 ---
-# Staying identifiable
+# Basic regex syntax *cont.*
+
+```{r}
+example.obj <- "1. A small sentence. - 2. Another tiny sentence."
+```
 
 .pull-left[
+### Matching the beginning of a string
 
-### Don't be a phantom
+```{r}
+str_extract(example.obj, "^1")
+str_extract(example.obj, "^2")
+```
+]
 
-- Downloading massive amounts of data may arouse attention from server administrators.
-- Assuming that you've got nothing to hide, you should stay identifiable beyond your IP address.
+--
 
-### Two easy-to-implement practices
+.pull-right[
+### Matching the end of a string
 
-1. Get in touch with website administrators / data owners.
-2. Use HTTP header fields `From` and `User-Agent` to provide information about yourself (by passing these to `add_headers()` from the `httr` library).
-
+```{r}
+str_extract(example.obj, "sentence$")
+str_extract(example.obj, "sentence.$")
+```
 ]
 
 
+
+---
+# Basic regex syntax *cont.*
+
+```{r}
+example.obj <- "1. A small sentence. - 2. Another tiny sentence."
+```
+
+.pull-left[
+### Express an "or" with the pipe operator
+
+```{r}
+unlist(str_extract_all(example.obj, "tiny|sentence"))
+```
+]
+
+--
+
 .pull-right[
+### The dot: the ultimate wildcard
 
-### Staying identifiable in practice
+```{r}
+str_extract(example.obj, "sm.ll")
+```
+]
 
-```{r, eval = FALSE}
-url <- "http://a-totally-random-website.com"
-rvest_session <- session(url, 
- add_headers(From = "my@email.com", 
-             `UserAgent` = 
-               R.Version()$version.string
-             )
-) 
-headlines <- rvest_session %>% 
-             html_elements(xpath = "p//a") %>% 
-             html_text()
+
+
+---
+# Meta-characters
+
+### Matching of meta-characters
+
+- Some symbols have a special meaning in the regex syntax: `.`, `|`, `(`, `)`, `[`, `]`, `{`, `}`, `^`, `$`, `*`, `+`, `?`, and `-`.
+- If we want to match them literally, we have to use an escape sequence: `\symbol`
+- As `\` is a meta character itself, we have to escape it with `\`, so we always write `\\`. 🤯
+- Alternatively, use `fixed("symbols")` to let the parser interpret a chain of symbols literally.
+
+```{r}
+unlist(str_extract_all(example.obj, "\\."))
+unlist(str_extract_all(example.obj, fixed(".")))
 ```
 
 
-- `rvest`'s `session()` creates a session object that responds to HTTP and HTML methods.
-- Here, we provide our email address and the current R version as `User-Agent` information.
-- This will pop up in the server logs: The webpage administrator has the chance to easily get in touch with you.
+---
+# Character classes
 
-]
+### Square brackets `[]` define character classes
 
+- Character classes help define special wild cards. 
+- The idea is that any of the characters within the brackets can be matched.
+
+```{r}
+str_extract(example.obj, "sm[abc]ll")
+```
+
+- The hyphen defines a range of characters.
+
+```{r}
+str_extract(example.obj, "sm[a-p]ll")
+```
+
+---
+# Character classes *cont.*
+
+Some character classes are pre-defined. They are very convenient to efficiently describe specific string patterns.
+
+| Specification | Meaning |
+  |---|---|
+  | `[:digit:]`  | Digits: 0 1 2 3 4 5 6 7 8 9 |
+  | `[:lower:]`  | Lower-case characters: a-z |
+  | `[:upper:]`  | Upper-case characters: A-Z |
+  | `[:alpha:]`  | Alphabetic characters: a-z and A-Z |
+  | `[:alnum:]`  | Digits and alphabetic characters |
+  | `[:punct:]`  | Punctuation characters: `.`, `,`, `;`, etc. |
+  | `[:graph:]`  | Graphical characters: `[:alnum:]` and `[:punct:]` |
+  | `[:blank:]`  | Blank characters: Space and tab |
+  | `[:space:]`  | Space characters: Space, tab, newline, and others |
+  | `[:print:]`  | Printable characters: `[:alnum:]`, `[:punct:]` and `[:space:]`|
 
 
 ---
-# Scraping etiquette (cont.)
+# Character classes in action
 
-<div align="center">
-<img src="pics/scraping-etiquette.png" height=540>
-</div>
+Pre-defined character classes are useful because they are efficient and let us
+- combine different kinds of characters
+- facilitate reading of an expression
+- include special characters, e.g., ß, ö, æ, ...
+- can be extended
 
-
-
----
-class: inverse, center, middle
-name: summary
-
-# Summary
-
-<html><div style='float:left'></div><hr color='#EB811B' size=1px style="width:1000px; margin:auto;"/></html>
-
+```{r}
+unlist(str_extract_all(example.obj, "[[:punct:]ABC]"))
+unlist(str_extract_all(example.obj, "[^[:alnum:]]"))
+```
 
 
 ---
-# Outlook
+# Meta symbols in character classes
 
-Until now, the toy examples were limited to single HTML pages. However, often we want to **scrape data from multiple pages**. You might think of newspaper articles, Wikipedia pages, shopping items and the like. In such scenarios, automating the scraping process becomes really powerful. Also, principles of polite scraping are more relevant then.
+Within a character class, most meta-characters lose their special meaning. There are exceptions though: 
 
-In other cases, you might be confronted with 
-- forms, 
-- authentication, 
-- dynamic (JavaScript-enriched) content, or want to 
-- automatically navigate through pages interactively.
+- `^` becomes "not":  `[^abc]` matches any character other than "a", "b", or "c".
+- `-` becomes a range specifier: `[a-d]` matches any character from a to d. However, `-` at the beginning or the end of a character class matches the hyphen. 
 
-Moreover, we've ignored a major alternative way to collect data from the web so far which goes beyond scraping: accessing [web APIs](https://en.wikipedia.org/wiki/Web_API). Be sure to check out the respective sessions in the workshop.
+```{r}
+unlist(str_extract_all(example.obj, "[1-2]"))
+unlist(str_extract_all(example.obj, "[12-]"))
+```
 
-There's only so much we can cover in one session. Check out more material online [here](https://github.com/hertie-data-science-lab/ds-workshop-webscraping) and [there](https://github.com/yusuzech/r-web-scraping-cheat-sheet) to learn about solutions to some of these problems.
+
+---
+# Quantifiers
+
+Quantifiers are meta-characters that allow you to specify how often a certain string pattern should be allowed to appear.
+
+| Quantifier | Meaning |
+  |---|---|
+  | `?`  | The preceding item is optional and will be matched at most once |
+  | `*`  | The preceding item will be matched zero or more times |
+  | `+`  | The preceding item will be matched one or more times |
+  | `{n}`  | The preceding item is matched exactly n times |
+  | `{n,}`  | The preceding item is matched n or more times |
+  | `{n,m}`  |  The preceding item is matched between n and m times |
+
+```{r}
+str_extract(example.obj, "s[[:alpha:]]{3}l")
+str_extract(example.obj, "A.+sentence")
+```
+
+
+---
+# Greedy quantification
+
+The use of `.+` results in "greedy" matching, i.e. the parser tries to match as many characters as possible. This is not always desired. However, the meta-character `? ` helps avoid greedy quantification. More generally, it re-interprets the quantifiers `*`, `+`, `?` or `{m,n}` to match as few times as possible.
+
+```{r}
+str_extract(example.obj, "A.+sentence")
+str_extract(example.obj, "A.+?sentence")
+```
+
+
+---
+# Backreferencing
+
+Sometimes it's useful to induce some "memory" into regex, as in: "Find something that matches a certain pattern, and then again a repeated match of previously matched pattern. 
+
+The first pattern is defined with round brackets, as in `(pattern)`. We then refer to the it using `\1` (or with `\2` for the second pattern, etc.).
+
+**Example:** Match the first letter, then anything until you ﬁnd the first letter again (not greedy).
+
+```{r}
+str_extract(example.obj, "([[:alpha:]]).+?\\1")
+```
+
+
+---
+# Backreferencing *cont.* 
+
+**Goal:** Match a word that does not include  `a' until the word appears the second time.
+
+**Solution:**
+
+```{r}
+str_extract(example.obj, "([ [:punct:]][b-z]+[ [:punct:]]).+?\\1")
+```
+
+**How it works:**
+
+- Match all letters without a, therefore: `[b-z]`
+- Match complete words with beginning/end: `[ [:punct:]]`
+- Define first word pattern* `(...)`
+- Match anything between occurrences of both words: `.+?`
+- Refer to original word `\\1`
+
 
 
 
@@ -1585,10 +1401,9 @@ There's only so much we can cover in one session. Check out more material online
 
 ### Assignment
 
-Assignment 3 is about to go online on GitHub Classroom. Check it out and start scraping the web (politely).
+No assignment due, but web technologies will be featured in the next assignment.
 
 ### Next lecture
 
-Model fitting and simulation. Now that we know how to retrieve data, let's learn how to run and learn from them.
-
+We'll get serious about scraping data from the web and tapping APIs.
 
