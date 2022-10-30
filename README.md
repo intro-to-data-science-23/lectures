@@ -17,7 +17,7 @@
 
 6. Web data and technologies \[[**.html**](https://raw.githack.com/intro-to-data-science-22/lectures/main/06-webdata/06-webdata.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-22/lectures/main/06-webdata/06-webdata.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-22/lectures/main/06-webdata/06-webdata.Rmd)\]
 
-7. Web scraping and APIs \[[**.html**](https://raw.githack.com/intro-to-data-science-22/lectures/main/07-scraping/07-scraping.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-22/lectures/main/07-scraping/07-scraping.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-22/lectures/main/07-scraping/07-scraping.Rmd)\]
+7. Web scraping and APIs \[[**.html**](https://raw.githack.com/intro-to-data-science-22/lectures/main/07-scraping-apis/07-scraping-apis.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-22/lectures/main/07-scraping-apis/07-scraping-apis.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-22/lectures/main/07-scraping-apis/07-scraping-apis.Rmd)\]
 
 
 8. Modeling \[[**.html**](https://raw.githack.com/intro-to-data-science-22/lectures/main/08-modeling/08-modeling.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-22/lectures/main/08-modeling/08-modeling.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-22/lectures/main/08-modeling/08-modeling.Rmd)\]
