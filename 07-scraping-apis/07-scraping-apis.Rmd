@@ -59,11 +59,13 @@ library(tidyverse)
 
 1. [Scraping static webpages with R](#scrapingstatic)
 
-2. [Web APIs: the basics](#apibasics)
+2. [Web scraping: good practice](#goodpractice)
 
-3. [JSON](#json)
+3. [Web APIs: the basics](#apibasics)
 
-4. [Summary](#summary)
+4. [JSON](#json)
+
+5. [Summary](#summary)
 
 
 
