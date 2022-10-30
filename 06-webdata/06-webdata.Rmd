@@ -397,7 +397,7 @@ Example:
 <form name="submitPW" action="Passed.html" method="get">
   password:
   <input name="pw" type="text" value="">
-  <input type="submit" value="SubmitButtonText"
+  <input type="submit" value="SubmitButtonText">
 </form>
 ```
 
@@ -1096,7 +1096,8 @@ names_vec
 --
 
 ```{r}
-numbers_vec <- unlist(str_extract_all(phone_vec, "\\(?([:digit:]{3})?\\)?(-| )?[:digit:]{3}(-| )?[:digit:]{4}"))
+numbers_vec <- unlist(str_extract_all(phone_vec, 
+                                      "\\(?([:digit:]{3})?\\)?(-| )?[:digit:]{3}(-| )?[:digit:]{4}"))
 numbers_vec
 ```
 
@@ -1373,7 +1374,7 @@ str_extract(example.obj, "([[:alpha:]]).+?\\1")
 ---
 # Backreferencing *cont.* 
 
-**Goal:** Match a word that does not include  `a' until the word appears the second time.
+**Goal:** Match a word that does not include  "a" until the word appears the second time.
 
 **Solution:**
 

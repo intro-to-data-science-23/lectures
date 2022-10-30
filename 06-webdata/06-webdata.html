@@ -399,7 +399,7 @@ Example:
 &lt;form name="submitPW" action="Passed.html" method="get"&gt;
   password:
   &lt;input name="pw" type="text" value=""&gt;
-  &lt;input type="submit" value="SubmitButtonText"
+  &lt;input type="submit" value="SubmitButtonText"&gt;
 &lt;/form&gt;
 ```
 
@@ -1227,7 +1227,8 @@ R&gt; names_vec
 
 
 ```r
-R&gt; numbers_vec &lt;- unlist(str_extract_all(phone_vec, "\\(?([:digit:]{3})?\\)?(-| )?[:digit:]{3}(-| )?[:digit:]{4}"))
+R&gt; numbers_vec &lt;- unlist(str_extract_all(phone_vec, 
++                                       "\\(?([:digit:]{3})?\\)?(-| )?[:digit:]{3}(-| )?[:digit:]{4}"))
 R&gt; numbers_vec
 ```
 
@@ -1671,7 +1672,7 @@ R&gt; str_extract(example.obj, "([[:alpha:]]).+?\\1")
 ---
 # Backreferencing *cont.* 
 
-**Goal:** Match a word that does not include  `a' until the word appears the second time.
+**Goal:** Match a word that does not include  "a" until the word appears the second time.
 
 **Solution:**
 
