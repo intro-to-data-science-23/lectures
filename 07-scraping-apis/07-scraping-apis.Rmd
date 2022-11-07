@@ -217,7 +217,7 @@ There are three key `rvest` verbs that you need to learn.<sup>1</sup>
 
 
 ---
-# Scraping HTML tables: example (cont.)
+# Scraping with rvest: example (cont.)
 
 **Step 1:** Parse the page
 ```{r, eval = FALSE, message  = FALSE}
@@ -249,7 +249,7 @@ The XPath expression reads:
 - `/a[1]` within these elements look for the first `a` element you can find.
 
 ---
-# Scraping HTML tables: example (cont.)
+# Scraping with rvest: example (cont.)
 
 **Step 3:** Extract information and clean it up
 

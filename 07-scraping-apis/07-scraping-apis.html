@@ -206,7 +206,7 @@ There are three key `rvest` verbs that you need to learn.&lt;sup&gt;1&lt;/sup&gt
 
 
 ---
-# Scraping HTML tables: example (cont.)
+# Scraping with rvest: example (cont.)
 
 **Step 1:** Parse the page
 
@@ -235,7 +235,7 @@ The XPath expression reads:
 - `/a[1]` within these elements look for the first `a` element you can find.
 
 ---
-# Scraping HTML tables: example (cont.)
+# Scraping with rvest: example (cont.)
 
 **Step 3:** Extract information and clean it up
 
@@ -823,10 +823,10 @@ R&gt; response
 
 ```
 ## Response [http://ip-api.com/json]
-##   Date: 2022-10-30 20:45
+##   Date: 2022-10-31 10:18
 ##   Status: 200
 ##   Content-Type: application/json; charset=utf-8
-##   Size: 312 B
+##   Size: 400 B
 ```
 ]
 
@@ -861,28 +861,28 @@ R&gt; response_parsed
 ## [1] "Berlin"
 ## 
 ## $zip
-## [1] "10117"
+## [1] "10965"
 ## 
 ## $lat
-## [1] 52.5203
+## [1] 52.4875
 ## 
 ## $lon
-## [1] 13.3849
+## [1] 13.3992
 ## 
 ## $timezone
 ## [1] "Europe/Berlin"
 ## 
 ## $isp
-## [1] "Vodafone Kabel Deutschland"
+## [1] "Verein zur Foerderung eines Deutschen Forschungsnetzes e.V."
 ## 
 ## $org
-## [1] "Vodafone Kabel Deutschland GmbH"
+## [1] "Hertie School of Governance gGmbH, Berlin"
 ## 
 ## $as
-## [1] "AS3209 Vodafone GmbH"
+## [1] "AS680 Verein zur Foerderung eines Deutschen Forschungsnetzes e.V."
 ## 
 ## $query
-## [1] "95.90.241.209"
+## [1] "195.37.184.82"
 ```
 ]
 
@@ -921,28 +921,28 @@ R&gt; response_parsed
 ## [1] "Berlin"
 ## 
 ## $zip
-## [1] "10117"
+## [1] "10965"
 ## 
 ## $lat
-## [1] 52.5203
+## [1] 52.4875
 ## 
 ## $lon
-## [1] 13.3849
+## [1] 13.3992
 ## 
 ## $timezone
 ## [1] "Europe/Berlin"
 ## 
 ## $isp
-## [1] "Vodafone Kabel Deutschland"
+## [1] "Verein zur Foerderung eines Deutschen Forschungsnetzes e.V."
 ## 
 ## $org
-## [1] "Vodafone Kabel Deutschland GmbH"
+## [1] "Hertie School of Governance gGmbH, Berlin"
 ## 
 ## $as
-## [1] "AS3209 Vodafone GmbH"
+## [1] "AS680 Verein zur Foerderung eines Deutschen Forschungsnetzes e.V."
 ## 
 ## $query
-## [1] "95.90.241.209"
+## [1] "195.37.184.82"
 ```
 ]
 
@@ -963,17 +963,17 @@ R&gt; as.data.frame(response_parsed)
 ##   region  regionName   city
 ## 1     BE Land Berlin Berlin
 ##     zip     lat     lon
-## 1 10117 52.5203 13.3849
+## 1 10965 52.4875 13.3992
 ##        timezone
 ## 1 Europe/Berlin
-##                          isp
-## 1 Vodafone Kabel Deutschland
-##                               org
-## 1 Vodafone Kabel Deutschland GmbH
-##                     as
-## 1 AS3209 Vodafone GmbH
+##                                                           isp
+## 1 Verein zur Foerderung eines Deutschen Forschungsnetzes e.V.
+##                                         org
+## 1 Hertie School of Governance gGmbH, Berlin
+##                                                                  as
+## 1 AS680 Verein zur Foerderung eines Deutschen Forschungsnetzes e.V.
 ##           query
-## 1 95.90.241.209
+## 1 195.37.184.82
 ```
 ]
 
@@ -1111,25 +1111,35 @@ R&gt; ip_df
 
 ```
 ##     status       country countryCode region  regionName              city   zip
-## 1: success       Germany          DE     BE Land Berlin            Berlin 10117
+## 1: success       Germany          DE     BE Land Berlin            Berlin 10965
 ## 2:    fail          &lt;NA&gt;        &lt;NA&gt;   &lt;NA&gt;        &lt;NA&gt;              &lt;NA&gt;  &lt;NA&gt;
 ## 3: success United States          US     WI   Wisconsin           Madison 53706
 ## 4: success       Germany          DE     HE       Hesse Frankfurt am Main 60314
-##        lat      lon        timezone                             isp
-## 1: 52.5203  13.3849   Europe/Berlin      Vodafone Kabel Deutschland
-## 2:      NA       NA            &lt;NA&gt;                            &lt;NA&gt;
-## 3: 43.0713 -89.4063 America/Chicago University of Wisconsin Madison
-## 4: 50.1103   8.7147   Europe/Berlin                     Link11 GmbH
-##                                org                                   as
-## 1: Vodafone Kabel Deutschland GmbH                 AS3209 Vodafone GmbH
-## 2:                            &lt;NA&gt;                                 &lt;NA&gt;
-## 3: University of Wisconsin Madison AS59 University of Wisconsin Madison
-## 4:                IP via link11.de                  AS34309 Link11 GmbH
+##        lat      lon        timezone
+## 1: 52.4875  13.3992   Europe/Berlin
+## 2:      NA       NA            &lt;NA&gt;
+## 3: 43.0713 -89.4063 America/Chicago
+## 4: 50.1103   8.7147   Europe/Berlin
+##                                                            isp
+## 1: Verein zur Foerderung eines Deutschen Forschungsnetzes e.V.
+## 2:                                                        &lt;NA&gt;
+## 3:                             University of Wisconsin Madison
+## 4:                                                 Link11 GmbH
+##                                          org
+## 1: Hertie School of Governance gGmbH, Berlin
+## 2:                                      &lt;NA&gt;
+## 3:           University of Wisconsin Madison
+## 4:                          IP via link11.de
+##                                                                   as
+## 1: AS680 Verein zur Foerderung eines Deutschen Forschungsnetzes e.V.
+## 2:                                                              &lt;NA&gt;
+## 3:                              AS59 University of Wisconsin Madison
+## 4:                                               AS34309 Link11 GmbH
 ##             query
-## 1:  95.90.241.209
+## 1:  195.37.184.82
 ## 2:       10.0.1.1
 ## 3:    72.33.67.89
-## 4: 128.65.210.180
+## 4: 128.65.210.181
 ```
 
 
@@ -1195,9 +1205,9 @@ R&gt; nytimes_most_popular$results$title[1:3]
 ```
 
 ```
-## [1] "Elon Musk Is Said to Have Ordered Job Cuts Across Twitter"
-## [2] "Jerry Lee Lewis, a Rock ’n’ Roll Original, Dies at 87"    
-## [3] "Tom Brady and Gisele Bündchen Divorce After 13 Years"
+## [1] "Elon Musk, in a Tweet, Shares Link From Site Known to Publish False News"
+## [2] "Who Is the Man Accused of Attacking Nancy Pelosi’s Husband?"             
+## [3] "Elon Musk Is Said to Have Ordered Job Cuts Across Twitter"
 ```
 
 ---

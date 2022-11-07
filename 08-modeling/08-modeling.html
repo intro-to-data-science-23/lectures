@@ -16,10 +16,18 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Introduction to Data Science
-## Session 6: Model fitting <s>and simulation</s>
+]
+.subtitle[
+## Session 8: Model fitting and evaluation
+]
+.author[
 ### Simon Munzert
-### Hertie School | <a href="https://github.com/intro-to-data-science-21">GRAD-C11/E1339</a>
+]
+.institute[
+### Hertie School | <a href="https://github.com/intro-to-data-science-22">GRAD-C11/E1339</a>
+]
 
 ---
 
@@ -38,7 +46,7 @@ class: center, middle, inverse, title-slide
 
 # Table of contents
 
-&lt;br&gt;
+&lt;br&gt;&lt;br&gt;
 
 1. [Crafting formulas](#formulas)
 
@@ -48,62 +56,7 @@ class: center, middle, inverse, title-slide
 
 4. [Reporting modeling results](#reporting)
 
-5. [Simulating fake data](#simulation)
-
-6. [Summary](#summary)
-
-
-
----
-# Workshop information
-
-### More rules
-- We have a preliminary schedule online. Check the [Google Spreadsheet](https://docs.google.com/spreadsheets/d/12djhhUG8USmEUm-wPby5VAjsEj_S4ZO8kWsayUOlHPg/edit?usp=sharing) (link on Moodle) and save the date/time slot. Use the comment feature if the slot does not work for you.
-- Please upload your presentation video on Moodle (new assignment at the bottom; see description for more details). Deadline is November 1, 11.59pm CET (NO extension possible).
-- The labs on Oct 27 will provide you with more details about screen recording, preparation of materials etc.
-- Please note that the deadline for assignment 4 (model fitting) has been extended to Nov 10.
-
---
-
-### How the workshop will be run
-- The videos will be hosted on Hertie's Vimeo account and embedded on a dedicated workshop webpage.
-- The workshop will run on MS Teams in a dedicated Team. You'll be invited soon.
-  - We will have three parallel sessions. 
-  - Session presenters will also moderate their session. 
-  - The session starts with video, then comes the live tutorial.
-  - You can attend as many other sessions as you want, but I expect you to attend AT LEAST two other sessions. 
-
-
----
-# Workshop information (cont.)
-
-### Goals for the presentation
-
-- The topics vary in breadth and potential depth. I don't expect you to go very deep.
-- You should not assume any prior knowledge among your fellow students (other than the topics and tools that have been covered in class). 
-- Try to offer a quick yet engaging overview: What is this tool/technique/package good for? How can we use it? What are the key features? Where should students go to learn more?
-
---
-
-### Goals for the live tutorial
-- The tutorial should be structured around the practice material that you provide for the session.
-- You don't have to cover everything in the material though. It could make sense to focus on one aspect and let students engage with it / work on it.
-- All students will have access to (and hopefully have downloaded) all materials in advance. You can encourage them to follow along on their machines if that makes sense. Be sure to include code that installs the necessary packages though.
-
-
----
-# Workshop information (cont.)
-
-### How to split topics between groups and team members
-- Groups that have been assigned the same topic prepare separate sessions You can exchange ideas but the sessions should work as standalone units.
-- It is up to you to split the work in your team. For the live session it would be ideal if both of you attend. It is absolutely mandatory that at least one of you attends and moderates the session.
-
---
-
-### Grading
-
-- Both the recorded talk and the prepared exercise materials will be graded.
-- For the prepared exercise materials we will pull the repositories that you created on the workshop GitHub page. You'll be provided with a README.md template that you will use to summarize the content of your session and to document who contributed to which parts of the unit.
+5. [Summary](#summary)
 
 
 
@@ -126,10 +79,8 @@ background-color: #000000
 - Modeling is at the heart of the data science workflow.
 - We use models to explore, test, infer, predict based on data.
 - The art and science of statistical modeling is vast.
-- Today, we will focus on key steps of the workflow which are common in most modeling endeavors. We won't touch on theoretical/statistical backgrounds though and ignore workflow issues in particular areas, such as simulation-based Bayesian inference. 
+- Today, we will focus on key steps of the workflow which are common in most modeling endeavors. We won't touch on theoretical/statistical backgrounds though and ignore workflow issues in particular areas, such as simulation-based Bayesian inference or cross-validation in ML. 
 ]
-
---
 
 .pull-right-small[
 ### Steps of the workflow
@@ -140,8 +91,6 @@ background-color: #000000
 4. **Evaluate** the model output
 5. **Present** the results
 ]
-
---
 
 &lt;div align="center"&gt;
 &lt;br&gt;
@@ -393,6 +342,11 @@ R&gt; combinations &lt;-
 +   map(ncol) %&gt;% # extract number of combinations
 +   unlist() %&gt;% # pull out of list structure
 +   sum() # compute sum
+R&gt; combinations
+```
+
+```
+   [1] 63
 ```
 
 
@@ -462,7 +416,7 @@ R&gt; models_list[[1]]
    
    Coefficients:
    (Intercept)    dep_delay  
-        -5.830        1.014
+        -6.119        1.019
 ```
 
 
@@ -488,7 +442,7 @@ background-color: #000000
 ---
 # Model families
 
-Today we'll mostly focus on linear models as an example. However, there is a multitude of families of statistical models that allow extend linear models. Examples are
+Today we'll mostly focus on linear models as an example. However, there is a multitude of families of statistical models that allow extending linear models. Examples are
 
 - **Generalized linear models** [`stats::glm()`], which extend linear models to include non-continuous responses (e.g., binary or categorical data, counts) 
 - **Generalized additive models** [`mgcv::gam()`], which extend generalized linear models to incorporate arbitrary smooth functions
@@ -541,7 +495,7 @@ R&gt; ml_out &lt;- lmer(arr_delay ~ distance + origin + (1|carrier) + (1|tailnum
 
 - In the early days of the big data hype, people were overly enthusiastic about its implications for modeling (see quote on the right).
 - This is falling for the inception that we can simply "let the data speak".
-- However, the data science workflow is a sequence of subjective decisions from start to finish, with lots of researcher degrees of freedom.
+- However, the data science workflow is a sequence of subjective decisions from start to finish, [with lots of researcher degrees of freedom](https://www.pnas.org/doi/suppl/10.1073/pnas.2203150119).
 - Think of all the weakly justified decisions regarding:
   - data collection / selection
   - measurement
@@ -1384,10 +1338,11 @@ R&gt; broom::glance(model_out)
 
 ```
    # A tibble: 1 × 12
-     r.squared adj.r.squared sigma statistic p.value    df   logLik     AIC     BIC
-         &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-   1   0.00550       0.00549  44.5      604.       0     3  -1.71e6  3.41e6  3.41e6
-   # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;
+     r.squared adj.r.sq…¹ sigma stati…² p.value    df  logLik    AIC    BIC devia…³
+         &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+   1   0.00550    0.00549  44.5    604.       0     3 -1.71e6 3.41e6 3.41e6  6.49e8
+   # … with 2 more variables: df.residual &lt;int&gt;, nobs &lt;int&gt;, and abbreviated
+   #   variable names ¹​adj.r.squared, ²​statistic, ³​deviance
 ```
 
 
@@ -1406,12 +1361,13 @@ R&gt; broom::augment(model_out, se_fit = TRUE) %&gt;% head(3)
 
 ```
    # A tibble: 3 × 11
-     .rownames arr_delay distance origin .fitted .se.fit .resid       .hat .sigma
-     &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;
-   1 1                11     1400 EWR       7.75   0.135   3.25 0.00000922   44.5
-   2 2                20     1416 LGA       3.23   0.156  16.8  0.0000123    44.5
-   3 3                33     1089 JFK       6.30   0.136  26.7  0.00000938   44.5
-   # … with 2 more variables: .cooksd &lt;dbl&gt;, .std.resid &lt;dbl&gt;
+     .rownames arr_d…¹ dista…² origin .fitted .se.fit .resid    .hat .sigma .cooksd
+     &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+   1 1              11    1400 EWR       7.75   0.135   3.25 9.22e-6   44.5 1.23e-8
+   2 2              20    1416 LGA       3.23   0.156  16.8  1.23e-5   44.5 4.37e-7
+   3 3              33    1089 JFK       6.30   0.136  26.7  9.38e-6   44.5 8.43e-7
+   # … with 1 more variable: .std.resid &lt;dbl&gt;, and abbreviated variable names
+   #   ¹​arr_delay, ²​distance
 ```
 
 --
@@ -1442,8 +1398,8 @@ R&gt; models_broom[[1]] # inspect one list entry
    # A tibble: 2 × 5
      term        estimate std.error statistic   p.value
      &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-   1 (Intercept)    -5.83   0.190       -30.7 3.95e-197
-   2 dep_delay       1.01   0.00438     231.  0
+   1 (Intercept)    -6.12   0.190       -32.1 1.95e-215
+   2 dep_delay       1.02   0.00452     225.  0
 ```
 
 Next, let's merge them all into one data frame:
@@ -1469,7 +1425,7 @@ R&gt; models_broom_df %&gt;%
 +   theme_minimal()
 ```
 
-&lt;img src="06-modeling_files/figure-html/unnamed-chunk-47-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="08-modeling_files/figure-html/unnamed-chunk-47-1.png" style="display: block; margin: auto;" /&gt;
 
 
 
@@ -1659,6 +1615,12 @@ R&gt; modelsummary(list(model1_out, model2_out, model3_out))
    &lt;td style="text-align:center;"&gt; 1679228.282 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 1257.762 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 850601.918 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; RMSE &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.03 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 44.55 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17.93 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -1855,7 +1817,7 @@ R&gt; modelsummary(
 R&gt; modelplot(model_out)
 ```
 
-&lt;img src="06-modeling_files/figure-html/unnamed-chunk-52-1.png" width="450px" style="display: block; margin: auto;" /&gt;
+&lt;img src="08-modeling_files/figure-html/unnamed-chunk-52-1.png" width="450px" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1887,7 +1849,7 @@ R&gt; modelplot(model_out,
 +   theme_minimal()
 ```
 
-&lt;img src="06-modeling_files/figure-html/unnamed-chunk-53-1.png" width="550px" style="display: block; margin: auto;" /&gt;
+&lt;img src="08-modeling_files/figure-html/unnamed-chunk-53-1.png" width="550px" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -2013,11 +1975,11 @@ Some final bits of advice that didn't fit on the main slides:
 
 ### Assignment
 
-Assignment 4 is about to go online on GitHub Classroom. Check it out and start modeling!
+No assignment this time. More time to prepare the workshop! 
 
 ### Next lecture
 
-Visualization. But first: Mid-term exam week - no class, enjoy the break!
+Visualization. 📊
 
 
     </textarea>
@@ -2069,6 +2031,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
