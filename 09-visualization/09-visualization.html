@@ -14,10 +14,18 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Introduction to Data Science
-## Session 7: Visualization
+]
+.subtitle[
+## Session 9: Visualization
+]
+.author[
 ### Simon Munzert
+]
+.institute[
 ### Hertie School | <a href="https://github.com/intro-to-data-science-21">GRAD-C11/E1339</a>
+]
 
 ---
 
@@ -207,7 +215,7 @@ name: whyviz
 - Nightingale's Rose, a polar area diagram, illustrates seasonal sources of soldier mortality in the field hospital Nightingale managed during the Crimean War and highlights that epidemic disease are responsible for more deaths than battlefield wounds. 
 - Nightingale's work revolutionized points hygiene and other practices in hospitals, ultimately saving millions of lives.
 - [Gelman and Unwin (2012)](http://www.stat.columbia.edu/~gelman/research/published/vis14.pdf) present an alternative presentation of the same data.
-- More historical visualizations [here](https://storymaps.arcgis.com/stories/9c2f390fa3f54ed4a11a7d4a66e7c8cc)
+- More historical visualizations [here](https://storymaps.arcgis.com/stories/9c2f390fa3f54ed4a11a7d4a66e7c8cc).
 ]
 
 
@@ -277,10 +285,9 @@ name: whyviz
 - Carefully study the table. How do `\(x\)` and `\(y\)` as well as their relationship compare across datasets?
 - It shows that all the data sets have nearly identical simple descriptive statistics in terms of mean, standard deviation, correlation, and linear fit!
 - Plotting the data reveals wildly different distributions, countering the impression that "numerical calculations are exact, but graphs are rough" ([Anscombe 1973](https://www.tandfonline.com/doi/abs/10.1080/00031305.1973.10478966)).
-- The dataset was constructed by [Francis Anscombe](https://en.wikipedia.org/wiki/Frank_Anscombe) and is known as "[Anscombe's quartet](https://en.wikipedia.org/wiki/Anscombe%27s_quartet)".
 - Graphs 3, Tables 0. Case closed.&lt;sup&gt;1&lt;/sup&gt;
 
-.footnote[&lt;sup&gt;1&lt;/sup&gt; That being said, there is a case to be made for tables under certain circumstances. But even tables can (and should) be seen as another form for visualization with clear design principles. To design appealing tables with R, check out the [`gt` package](https://gt.rstudio.com/).
+.footnote[&lt;sup&gt;1&lt;/sup&gt; That being said, there is a case to be made for tables under certain circumstances. But even tables can (and should) be seen as another form for visualization with clear design principles. To design appealing tables with R, check out the [`gt` package](https://gt.rstudio.com/) together with [`gtExtras`](https://jthomasmock.github.io/gtExtras/).
 ]
 ]
 
@@ -1747,7 +1754,7 @@ class: smalltext
 ]
 
 .pull-right[
-![](07-visualization_files/figure-html/mpg-layers-1-1.png)
+![](09-visualization_files/figure-html/mpg-layers-1-1.png)
 ]
 
 .footnote[&lt;sup&gt;1&lt;/sup&gt;This example is borrowed from [Andrew Heiss](https://datavizs21.classes.andrewheiss.com/content/).]
@@ -1769,7 +1776,7 @@ R&gt; ggplot(data = mpg,
 ]
 
 .pull-right[
-![](07-visualization_files/figure-html/mpg-layers-2-1.png)
+![](09-visualization_files/figure-html/mpg-layers-2-1.png)
 ]
 
 
@@ -1790,7 +1797,7 @@ R&gt; ggplot(data = mpg,
 ]
 
 .pull-right[
-![](07-visualization_files/figure-html/mpg-layers-3-1.png)
+![](09-visualization_files/figure-html/mpg-layers-3-1.png)
 ]
 
 ---
@@ -1810,7 +1817,7 @@ R&gt; ggplot(data = mpg,
 ]
 
 .pull-right[
-![](07-visualization_files/figure-html/mpg-layers-4-1.png)
+![](09-visualization_files/figure-html/mpg-layers-4-1.png)
 ]
 
 
@@ -1832,7 +1839,7 @@ R&gt; ggplot(data = mpg,
 ]
 
 .pull-right[
-![](07-visualization_files/figure-html/mpg-layers-5-1.png)
+![](09-visualization_files/figure-html/mpg-layers-5-1.png)
 ]
 
 
@@ -1855,7 +1862,7 @@ R&gt; ggplot(data = mpg,
 ]
 
 .pull-right[
-![](07-visualization_files/figure-html/mpg-layers-6-1.png)
+![](09-visualization_files/figure-html/mpg-layers-6-1.png)
 ]
 
 
@@ -1882,7 +1889,7 @@ R&gt; ggplot(data = mpg,
 ]
 
 .pull-right[
-![](07-visualization_files/figure-html/mpg-layers-7-1.png)
+![](09-visualization_files/figure-html/mpg-layers-7-1.png)
 ]
 
 
@@ -1910,7 +1917,7 @@ R&gt; ggplot(data = mpg,
 ]
 
 .pull-right[
-![](07-visualization_files/figure-html/mpg-layers-8-1.png)
+![](09-visualization_files/figure-html/mpg-layers-8-1.png)
 ]
 
 
@@ -1941,7 +1948,7 @@ R&gt; ggplot(data = mpg,
 ]
 
 .pull-right[
-![](07-visualization_files/figure-html/mpg-layers-9-1.png)
+![](09-visualization_files/figure-html/mpg-layers-9-1.png)
 ]
 
 
@@ -1971,7 +1978,7 @@ R&gt; ggplot(data = mpg,
 ]
 
 .pull-right[
-![](07-visualization_files/figure-html/mpg-layers-finished-1.png)
+![](09-visualization_files/figure-html/mpg-layers-finished-1.png)
 ]
 
 
@@ -2124,7 +2131,7 @@ name: bestgraph
 
 ### Assignment
 
-Assignment 5 is about to go online on GitHub Classroom. Check it out and start plotting!
+Assignment 4 is about to go online. Check it out and start plotting!
 
 ### Next lecture
 
@@ -2188,6 +2195,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

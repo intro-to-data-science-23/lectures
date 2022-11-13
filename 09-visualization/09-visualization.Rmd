@@ -1,6 +1,6 @@
 ---
 title: "Introduction to Data Science"
-subtitle: "Session 7: Visualization"
+subtitle: "Session 9: Visualization"
 author: "Simon Munzert"
 institute: "Hertie School | [GRAD-C11/E1339](https://github.com/intro-to-data-science-21)" #"`r format(Sys.time(), '%d %B %Y')`"
 output:
@@ -226,7 +226,7 @@ name: whyviz
 - Nightingale's Rose, a polar area diagram, illustrates seasonal sources of soldier mortality in the field hospital Nightingale managed during the Crimean War and highlights that epidemic disease are responsible for more deaths than battlefield wounds. 
 - Nightingale's work revolutionized points hygiene and other practices in hospitals, ultimately saving millions of lives.
 - [Gelman and Unwin (2012)](http://www.stat.columbia.edu/~gelman/research/published/vis14.pdf) present an alternative presentation of the same data.
-- More historical visualizations [here](https://storymaps.arcgis.com/stories/9c2f390fa3f54ed4a11a7d4a66e7c8cc)
+- More historical visualizations [here](https://storymaps.arcgis.com/stories/9c2f390fa3f54ed4a11a7d4a66e7c8cc).
 ]
 
 
@@ -296,10 +296,9 @@ name: whyviz
 - Carefully study the table. How do $x$ and $y$ as well as their relationship compare across datasets?
 - It shows that all the data sets have nearly identical simple descriptive statistics in terms of mean, standard deviation, correlation, and linear fit!
 - Plotting the data reveals wildly different distributions, countering the impression that "numerical calculations are exact, but graphs are rough" ([Anscombe 1973](https://www.tandfonline.com/doi/abs/10.1080/00031305.1973.10478966)).
-- The dataset was constructed by [Francis Anscombe](https://en.wikipedia.org/wiki/Frank_Anscombe) and is known as "[Anscombe's quartet](https://en.wikipedia.org/wiki/Anscombe%27s_quartet)".
 - Graphs 3, Tables 0. Case closed.<sup>1</sup>
 
-.footnote[<sup>1</sup> That being said, there is a case to be made for tables under certain circumstances. But even tables can (and should) be seen as another form for visualization with clear design principles. To design appealing tables with R, check out the [`gt` package](https://gt.rstudio.com/).
+.footnote[<sup>1</sup> That being said, there is a case to be made for tables under certain circumstances. But even tables can (and should) be seen as another form for visualization with clear design principles. To design appealing tables with R, check out the [`gt` package](https://gt.rstudio.com/) together with [`gtExtras`](https://jthomasmock.github.io/gtExtras/).
 ]
 ]
 
@@ -2133,7 +2132,7 @@ name: bestgraph
 
 ### Assignment
 
-Assignment 5 is about to go online on GitHub Classroom. Check it out and start plotting!
+Assignment 4 is about to go online. Check it out and start plotting!
 
 ### Next lecture
 
