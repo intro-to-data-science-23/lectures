@@ -14,10 +14,18 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Introduction to Data Science
+]
+.subtitle[
 ## Session 11: Monitoring and Communication
+]
+.author[
 ### Simon Munzert
+]
+.institute[
 ### Hertie School | <a href="https://github.com/intro-to-data-science-21">GRAD-C11/E1339</a>
+]
 
 ---
 
@@ -627,7 +635,7 @@ name: rmarkdown
 
 - For communicating to **the public and decision makers**, who want to focus on the conclusions, not the code behind the analysis.
 
-- For collaborating with **other data scientists**, who are interested in both your conclusions, and how you reached them (i.e. the code).
+- For collaborating with **other data scientists**, who are interested in both your conclusions and how you reached them (i.e. the code).
 
 ### Authoring as part of the workflow
 
@@ -878,11 +886,11 @@ background-color: #000000
 
 .pull-left-wide[
 ### Yeah, what are they really?
-- A (business or data) [dashboard](https://en.wikipedia.org/wiki/Dashboard_(business)) is a GUI that provides high-level overviews of performance indicators or other quantities of interest. 
+- A (business or data) [dashboard](https://en.wikipedia.org/wiki/Dashboard_(business) is a GUI that provides high-level overviews of performance indicators or other quantities of interest. 
 - It's a **monitoring** (and not so much analysis) **tool**.
 - Think of dashboards as a **mash-up of data visualization and report**.
 - Dashboards are increasingly popular in businesses and organizations to **synthesize data points** from operative units (for strategic and analytical purposes).
-- Data journalism has started to embrace dashboards in the context of [elections](https://edition.cnn.com/election/2020/results/president), the [COVID-19 pandemic](https://covid19.who.int/), and [sports](https://projects.fivethirtyeight.com/2018-world-cup-predictions/).
+- Data journalism has started to embrace dashboards in the context of [elections](https://edition.cnn.com/election/2020/results/president), the [COVID-19 pandemic](https://covid19.who.int/), and [sports](https://projects.fivethirtyeight.com/2022-world-cup-predictions/).
 - **Common features** are:
   - Accessibility via web browser
   - Featuring of interactives
@@ -1539,7 +1547,7 @@ name: science
 &lt;br&gt;
 &lt;img src="pics/vivalt-2021-wp-3.png" width="400"/&gt;
 &lt;/div&gt;
-`Source` [Vivalt et al. 2021, *working paper*](http://evavivalt.com/wp-content/uploads/Weighing-the-Evidence.pdf)
+`Source` [Vivalt et al. 2022, *working paper*](http://evavivalt.com/wp-content/uploads/Weighing-the-Evidence.pdf)
 ]
 
 
@@ -1711,8 +1719,9 @@ name: openscience
 
 - Pre-register designs `osf.io`, `aspredicted.org` 
 - Do version control `GitHub`
-- Public all research outputs (and inputs if possible) `GitHub`, `plain-text formats`
-- Disclose and document software pipeline `make`
+- Publish all research outputs (and inputs if possible) `GitHub`, `plain-text formats`
+- Disclose and document software pipeline `targets`, `make`
+- Make analysis reproducible `renv`, `Docker`
 - Make preprints accessible `arXiv`, `osf.io`
 - Public in open access journals
 ]
@@ -1720,9 +1729,10 @@ name: openscience
 .pull-right-center[
 &lt;br&gt;
 &lt;div align="center"&gt;
-&lt;img src="pics/open-science-badges.png" height=400&gt;
+&lt;img src="pics/open-science-badges.png" height=300&gt;
 &lt;/div&gt;
 ]
+
 
 
 ---
@@ -1733,8 +1743,9 @@ name: openscience
 
 - Pre-register designs `osf.io`, `aspredicted.org` 
 - Do version control `GitHub`
-- Public all research outputs (and inputs if possible) `GitHub`, `plain-text formats`
-- Disclose and document software pipeline `make`
+- Publish all research outputs (and inputs if possible) `GitHub`, `plain-text formats`
+- Disclose and document software pipeline `targets`, `make`
+- Make analysis reproducible `renv`, `Docker`
 - Make preprints accessible `arXiv`, `osf.io`
 - Public in open access journals
 
@@ -1746,35 +1757,7 @@ After the last 10 sessions, you have already become open science practitioners. 
 .pull-right-center[
 &lt;br&gt;
 &lt;div align="center"&gt;
-&lt;img src="pics/open-science-badges.png" height=400&gt;
-&lt;/div&gt;
-]
-
-
----
-# Towards open data science (cont.)
-
-.pull-left[
-### Good practice
-
-- Pre-register designs `osf.io`, `aspredicted.org` 
-- Do version control `GitHub`
-- Public all research outputs (and inputs if possible) `GitHub`, `plain-text formats`
-- Disclose and document software pipeline `make`
-- Make preprints accessible `arXiv`, `osf.io`
-- Public in open access journals
-
-**Notice something?** 
-
-After the last 10 sessions, you have already become open science practitioners. You are welcome.
-
-If you want to learn more about the open science movement, check out [this](https://www.nature.com/articles/s41562-016-0021) and  [this](https://psyarxiv.com/ak6jr/) and [this](https://en.wikipedia.org/wiki/Open_science).
-]
-
-.pull-right-center[
-&lt;br&gt;
-&lt;div align="center"&gt;
-&lt;img src="pics/open-science-badges.png" height=400&gt;
+&lt;img src="pics/open-science-badges.png" height=300&gt;
 &lt;/div&gt;
 ]
 
@@ -1786,7 +1769,7 @@ If you want to learn more about the open science movement, check out [this](http
 
 ### Final data project
 
-Please submit your final data project proposals until Sunday, November 28 (11.59pm CET) at https://forms.gle/2CJUYnJDDpCzBfJi8
+Save the date for the final data project matchmaking event: December 5, 6-9pm, in the Forum.
 
 
 ### Next lecture
@@ -1848,6 +1831,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
