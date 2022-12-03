@@ -2,7 +2,7 @@
 title: "Introduction to Data Science"
 subtitle: "Session 12:  Data science ethics"
 author: "Simon Munzert"
-institute: "Hertie School | [GRAD-C11/E1339](https://github.com/intro-to-data-science-21)" #"`r format(Sys.time(), '%d %B %Y')`"
+institute: "Hertie School | [GRAD-C11/E1339](https://github.com/intro-to-data-science-22)" #"`r format(Sys.time(), '%d %B %Y')`"
 output:
   xaringan::moon_reader:
     css: [default, 'simons-touch.css', metropolis, metropolis-fonts] 
@@ -698,6 +698,47 @@ If obtaining full informed consent is not possible, for example, when informed c
 9. Will you require access to data on research participants held by a third party (physician, school, etc.)? 
 
 10.	Does this research have potential for misuse (i. e. abuse by criminal or terrorist groups)
+
+
+---
+# Example: Hertie's Research Ethics Committee
+
+.pull-left[
+### Research ethics at the Hertie School
+
+- Research Ethics Committee and Research Ethics Review Policy in place since Summer 2022
+- Open to all members of the Hertie School, including students!
+- Ethics procedure mandatory for all research projects involving human subjects, **including your Master's thesis**!
+- Three stages: self-assessment, review by the Research Ethics Officer, full review by the Research Ethics Committee
+- Check out the [Moodle page](https://moodle.hertie-school.org/course/view.php?id=1050&section=31) on research ethics!
+]
+
+.pull-right[
+<div align="center">
+<br>
+<img src="pics/hertie-ethics-policy.png" width=480>
+</div>
+]
+
+---
+# Example: Hertie's Research Ethics Committee
+
+.pull-left[
+### Research ethics at the Hertie School
+
+- Research Ethics Committee and Research Ethics Review Policy in place since Summer 2022
+- Open to all members of the Hertie School, including students!
+- Ethics procedure mandatory for all research projects involving human subjects, **including your Master's thesis**!
+- Three stages: self-assessment, review by the Research Ethics Officer, full review by the Research Ethics Committee
+- Check out the [Moodle page](https://moodle.hertie-school.org/course/view.php?id=1050&section=31) on research ethics!
+]
+
+.pull-right[
+<div align="center">
+<br>
+<img src="pics/hertie-ethics-checklist.png" width=480>
+</div>
+]
 
 
 
