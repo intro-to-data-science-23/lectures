@@ -65,7 +65,7 @@ library(fontawesome)
 
 ### Course
 
-`r fa('globe')` https://github.com/intro-to-data-science-22
+`r fa('globe')` https://github.com/intro-to-data-science-23
 
 Much of this course lives on GitHub. You will find lecture materials, code, assignments, and other people's presentations there. We also have Moodle, which is is for everything else.
 
@@ -145,7 +145,7 @@ What's your name? What's your favorite number? And would you share a fun fact ab
 
 ## Who & how
 
-- This course is accompanied by labs administered by **Lisa Oswald** and **Tom Arend**.
+- This course is accompanied by labs administered by **Hiba Ahmad** and **Steve Kerr**.
 - The labs are mandatory (MDS) / optional (the rest). Please attend them in any case.
 - As with the regular classes, please stick to the lab you are assigned to.
 
@@ -163,10 +163,10 @@ What's your name? What's your favorite number? And would you share a fun fact ab
 .pull-right-small-center[
 <div align="center">
 <br>
-<img src="pics/lisa-circle.png" height=200>
+<img src="pics/hiba-circle.png" height=200>
 <br>
 <br>
-<img src="pics/tom-circle.png" height=200>
+<img src="pics/steve-circle.png" height=200>
 </div>
 ]
 
@@ -1143,7 +1143,7 @@ Open up the [shell](http://happygitwithr.com/shell.html#shell).
 
 ### The first lab session
 
-Get to know Lisa, Tom, R, and RStudio, four of your best friends for the next months!
+Get to know Hiba, Steve, R, and RStudio, four of your best friends for the next months!
 
 ### Next lecture
 
