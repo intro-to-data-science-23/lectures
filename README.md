@@ -23,16 +23,15 @@
 
 7. Web scraping and APIs \[[**.html**](https://raw.githack.com/intro-to-data-science-23/lectures/main/07-scraping-apis/07-scraping-apis.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-23/lectures/main/07-scraping-apis/07-scraping-apis.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-23/lectures/main/07-scraping-apis/07-scraping-apis.Rmd)\]
 
-8. Modeling \[[**.html**](https://raw.githack.com/intro-to-data-science-23/lectures/main/08-modeling/08-modeling.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-23/lectures/main/08-modeling/08-modeling.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-23/lectures/main/08-modeling/08-modeling.Rmd)\]
+8. I2DS Tools for Data Science Workshop  \[[**website**](https://intro-to-data-science-23-workshop.github.io/) | [**materials**](https://github.com/intro-to-data-science-23-workshop)\]
 
-9. Visualization \[[**.html**](https://raw.githack.com/intro-to-data-science-23/lectures/main/09-visualization/09-visualization.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-23/lectures/main/09-visualization/09-visualization.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-23/lectures/main/09-visualization/09-visualization.Rmd)\]
+9. Modeling \[[**.html**](https://raw.githack.com/intro-to-data-science-23/lectures/main/09-modeling/09-modeling.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-23/lectures/main/09-modeling/09-modeling.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-23/lectures/main/09-modeling/09-modeling.Rmd)\]
 
-10. I2DS Tools for Data Science Workshop  \[[**website**](https://intro-to-data-science-23-workshop.github.io/) | [**materials**](https://github.com/intro-to-data-science-23-workshop)\]
+10. Visualization \[[**.html**](https://raw.githack.com/intro-to-data-science-23/lectures/main/10-visualization/10-visualization.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-23/lectures/main/10-visualization/10-visualization.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-23/lectures/main/10-visualization/10-visualization.Rmd)\]
 
-11. Monitoring and communication \[[**.html**](https://raw.githack.com/intro-to-data-science-23/lectures/main/11-communication/11-communication.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-23/lectures/main/11-communication/11-communication.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-23/lectures/main/11-communication/11-communication.Rmd)\]
+11. Automation, scheduling, and packages \[[**.html**](https://raw.githack.com/intro-to-data-science-23/lectures/main/11-automation-packages/11-automation-packages.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-23/lectures/main/11-automation-packages/11-automation-packages.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-23/lectures/main/11-automation-packages/11-automation-packages.Rmd)\]
 
-12. Automation, scheduling, and packages \[[**.html**](https://raw.githack.com/intro-to-data-science-23/lectures/main/11-automation-packages/11-automation-packages.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-23/lectures/main/12-automation-packages/12-automation-packages.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-23/lectures/main/12-automation-packages/12-automation-packages.Rmd)\]
-
+12. Monitoring and communication \[[**.html**](https://raw.githack.com/intro-to-data-science-23/lectures/main/12-communication/12-communication.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-23/lectures/main/12-communication/12-communication.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-23/lectures/main/12-communication/12-communication.Rmd)\]
 
 13. [BONUS] Working at the command line \[[**.html**](https://raw.githack.com/intro-to-data-science-23/lectures/main/13-command-line/13-command-line.html) | [**.pdf**](https://raw.githack.com/intro-to-data-science-23/lectures/main/13-command-line/13-command-line.pdf) | [**.Rmd**](https://raw.githack.com/intro-to-data-science-23/lectures/main/13-command-line/13-command-line.Rmd)\]
 

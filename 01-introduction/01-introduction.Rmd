@@ -77,13 +77,13 @@ Much of this course lives on GitHub. You will find lecture materials, code, assi
 
 `r fa('envelope')` [munzert@hertie-school.org](mailto:munzert@hertie-school.org)
 
-`r fa('graduation-cap')` Professor of data science and public policy
+`r fa('graduation-cap')` Professor of Data Science and Public Policy | Director of the Data Science Lab
 
 --
 
 ### You
 
-What's your name? What's your favorite number? And would you share a fun fact about yourself?
+What's your name? And would you share a fun fact about yourself?
 
 ---
 
@@ -166,7 +166,7 @@ What's your name? What's your favorite number? And would you share a fun fact ab
 <img src="pics/hiba-circle.png" height=200>
 <br>
 <br>
-<img src="pics/steve-circle.png" height=200>
+<img src="pics/kerr-circle.png" height=200>
 </div>
 ]
 
@@ -217,7 +217,7 @@ name: whatisdatascience
 
 ---
 
-# An old classic
+# A classic definition of data science
 
 <div align="center">
 <img src="pics/venn-orig-1.png" height=550>
@@ -225,7 +225,7 @@ name: whatisdatascience
 
 ---
 
-# An old classic
+# A classic definition of data science
 
 <div align="center">
 <img src="pics/venn-orig-2.png" height=550>
@@ -233,7 +233,7 @@ name: whatisdatascience
 
 ---
 
-# An old classic
+# A classic definition of data science
 
 <div align="center">
 <img src="pics/venn-orig-3.png" height=550>
@@ -241,7 +241,7 @@ name: whatisdatascience
 
 ---
 
-# An old classic
+# A classic definition of data science
 
 <div align="center">
 <img src="pics/venn-orig-4.png" height=550>
@@ -250,7 +250,7 @@ name: whatisdatascience
 
 ---
 
-# An old classic
+# A classic definition of data science
 
 <div align="center">
 <img src="pics/venn-orig-5.png" height=550>
@@ -258,7 +258,7 @@ name: whatisdatascience
 
 ---
 
-# An old classic
+# A classic definition of data science
 
 <div align="center">
 <img src="pics/venn-orig-5-credit.png" height=550>
@@ -518,7 +518,7 @@ name: preview
 
 <div align="center">
 <br>
-<img src="pics/ids-syllabus-2022.png" height=500>
+<img src="pics/ids-syllabus-2023.png" height=500>
 </div>
 
 
@@ -552,17 +552,6 @@ class: inverse, center, middle
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px style="width:1000px; margin:auto;"/></html>
 
-
----
-class: center
-background-color: #fff
-
-# Most popular websites 2019
-
-<div align="center">
-<br>
-<img src="pics/top-100-websites-1.jpeg" height=500>
-</div>
 
 ---
 # Scraping the web for social research
@@ -872,12 +861,13 @@ programming languages and APIs.
 ---
 # Why R and RStudio? (cont.)
 
-```{R, indeeddotcom, echo = F, fig.height = 6, fig.width = 9, dev = "svg", warning = F}
+```{R, indeeddotcom, echo = F, fig.height = 7, fig.width = 11, dev = "svg", warning = F}
 # The popularity data
 pop_df = 
   data.frame(
   lang = c("Python", "SQL", "R", "SAS", "Matlab", "Julia", "SPSS", "Stata"),
-  n_jobs = c(12203, 10291, 6812, 1005, 838, 474, 296, 67), # 2022/09/03
+  n_jobs = c(6850, 6136, 4384, 551, 537, 249, 110, 60), # 2023/09/01
+  #n_jobs = c(12203, 10291, 6812, 1005, 838, 474, 296, 67), # 2022/09/03
   #n_jobs = c(8150, 7264, 3484, 950, 687, 270, 74), # 2021/08/27
   #n_jobs = c(99756, 132860, 41242, 31943, NA, 4843, 2302),
   free = c(T, T, T, F, F, T, F, F)
@@ -894,7 +884,7 @@ pop_df %>%
   ylab("Number of jobs") +
   labs(
     title = "Comparing statistical languages",
-    subtitle = "Number of job postings for '<language> data' on de.indeed.com, 2022/09/03"
+    subtitle = "Number of job postings for '<language> data' on de.indeed.com, 2023/09/01"
     ) +
   scale_fill_manual(
     "Free?",
@@ -948,7 +938,7 @@ pop_df %>%
 
 -  If you want to discuss content from class, please first do so in the lab sessions. 
 - If you still need more feedback on course topics, use the Moodle forum.
-- If you want to discuss any other matters with me, drop my assistance a message (`r fa('envelope')` [kwoyila@hertie-school.org](mailto:kwoyila@hertie-school.org)) and she will arrange a meeting.
+- If you want to discuss any other matters with me, drop Alex Karras, my assistant, a message (`r fa('envelope')` [karras@hertie-school.org](mailto:karras@hertie-school.org)) and she will arrange a meeting.
 - For general technical advice, the [Research Consulting Team at the Data Science Lab](https://hertie-data-science-lab.github.io/research-consulting/) is there for you.
 
 
@@ -958,21 +948,20 @@ pop_df %>%
 
 | Component                           | Weight |
 |:-|-:|
-| 4 × homework assignments (10% each) | 40% |
-| 1 × workshop presentation	         	| 30% |
-| 1 × data science project exam       | 30% |
+| 4(5) × homework assignments (10% each) | 40% |
+| 4(5) × online quizzes (5% each) | 20% |
+| 1 × workshop presentation/attendance 	| 10% |
+| 1 × hackathon project       | 30% |
 
 --
 
 ### Homework assignments 
-- The assignments are distributed via our own [GitHub Classroom](https://classroom.github.com/classrooms/112495184-introduction-to-data-science-fall-2022).
+- The assignments are distributed via our own [GitHub Classroom](https://classroom.github.com/classrooms/113288586-introduction-to-data-science-fall-2023).
 - Each assignment is a mix of practical problems that are to be solved with R.
 - You are encouraged to collaborate, but everyone will hand in a separate solution.
-- There will be 5 assignments (one every ~2 weeks; see [overview on GitHub](https://github.com/intro-to-data-science-22/assignments)) and the 4 best will contribute to the final grade.
+- There will be 5 assignments (one every ~2 weeks; see [overview on GitHub](https://github.com/intro-to-data-science-23/assignments)) and the 4 best will contribute to the final grade.
 - You'll have one week to work on each assignment (deadline: Tuesdays at noon).
 - You submit your solutions via GitHub.
-- Grades will be based on (1) the accuracy of your solutions and (2) the adherence of a clean and efficient coding style that you will learn in the first sessions.
-
 
 
 ---
@@ -980,20 +969,55 @@ pop_df %>%
 
 | Component                           | Weight |
 |:-|-:|
-| 4 × homework assignments (10% each) | 40% |
-| 1 × workshop presentation	         	| 30% |
-| 1 × data science project exam       | 30% |
+| 4(5) × homework assignments (10% each) | 40% |
+| 4(5) × online quizzes (5% each) | 20% |
+| 1 × workshop presentation/attendance 	| 10% |
+| 1 × hackathon project       | 30% |
 
-### Workshop presentation
-- In one of the last sessions of the course, we will flip the roles and you will become the instructor of a workshop on **Tools for Data Science**. Whether this will happen onsite (hybrid) or online will still be determined.
-- Timing: November 21 (regular class times)
-- You, in (randomly allocated) groups of 2 students, will present a data science workflow tool (randomly [allocated](https://github.com/intro-to-data-science-22/workshop-presentations)).
-- Your contribution will include
+### Homework assignments 
+- Grades will be based on (1) the accuracy of your solutions and (2) the adherence of a clean and efficient coding style.
+- Feedback will be verbal:
+  - Excellent (95+)
+  - Very good (90-94)
+  - Good (85-89)
+  - OK (80-84)
+  - Acceptable (75-79)
+  - Definitely needs improvement (below 75)
+
+
+---
+# Assignments and grading
+
+| Component                           | Weight |
+|:-|-:|
+| 4(5) × homework assignments (10% each) | 40% |
+| 4(5) × online quizzes (5% each) | 20% |
+| 1 × workshop presentation/attendance 	| 10% |
+| 1 × hackathon project       | 30% |
+
+### Online quizzes
+- The short online quizzes will test your knowledge about the topics covered in class.
+- There will be 5 quizzes and the 4 best will contribute to the final grade.
+
+---
+# Assignments and grading
+
+| Component                           | Weight |
+|:-|-:|
+| 4(5) × homework assignments (10% each) | 40% |
+| 4(5) × online quizzes (5% each) | 20% |
+| 1 × workshop presentation/attendance 	| 10% |
+| 1 × hackathon project       | 30% |
+
+### Workshop presentation (MDS students)
+- On October  30, 14-20h, we will flip roles and you will become instructor of a data science workshop session.
+- You, in groups of 2 students, will present a data science workflow tool (randomly [allocated](https://github.com/intro-to-data-science-23/workshop-presentations)).
+- Your contribution will include:
   1. A lightning talk (recorded) where you briefly introduce and motivate the tool
   2. A hands-on session where you showcase the tool and provide practice material
-- Both the talk and the prepared exercise materials, which must also be hosted openly on GitHub, will be graded.
-- Check out the materials from last year's workshop [online](https://intro-to-data-science-21-workshop.github.io/)!
-
+- Both the recorded talk and the materials will be graded.
+- Check out the materials from previous workshops online [`>2021<`](https://intro-to-data-science-21-workshop.github.io/) [`>2022<`](https://intro-to-data-science-22-workshop.github.io/)!
+- **MPP/MIA students**: You will not give a talk, but have to actively participate in the workshop.
 
 
 
@@ -1002,17 +1026,48 @@ pop_df %>%
 
 | Component                           | Weight |
 |:-|-:|
-| 4 × homework assignments (10% each) | 40% |
-| 1 × workshop presentation	         	| 30% |
-| 1 × data science project exam       | 30% |
+| 4(5) × homework assignments (10% each) | 40% |
+| 4(5) × online quizzes (5% each) | 20% |
+| 1 × workshop presentation/attendance 	| 10% |
+| 1 × hackathon project       | 30% |
 
-### Data science project exam
-- You get to solve a set of coding problems and develop a creative solution to a resarch problem. 
-- Timing: Week of December 12 or 19 (exact date TBD)
-- After the instructions have been made available, you will have 48 hours to submit your solutions.
-- You are supposed to collaborate in groups of three students.
-- The task is similar to the homework assignments but put more emphasis on creative problem-solving using the tools and techniques you have learned in class.
-- On the first day of the exam, we plan to host a hackathon at Hertie where we introduce the data and provide an environment that should facilitate you getting started with the project.
+### Hackathon project
+- On December 4, 17-20h, there will be a hackathon hosted at Hertie.
+- At the hackathon itself, we introduce the data and provide an environment that should facilitate you getting started with the project and form groups of 3-4 students.
+- Two weeks later, on December 18, the project instructions will be made available. You will then have 48 hours to submit your solutions.
+- The task is similar to the homework assignments but puts more emphasis on creative problem-solving using the tools and techniques you have learned in class.
+
+
+---
+# AI use in and for the course
+
+
+
+.pull-left-wide[
+
+### Can AI tools (LLM interfaces, AI pair programming) be used for assignments?
+
+- Yes, but use them with care. You will not become an efficient programmer if you heavily rely on those tools without learning the basics.
+- The Hertie School has installed [teaching guidelines on the use of AI Tools](https://www.hertie-school.org/en/news/allcontent/detail/content/hertie-school-defines-guidelines-for-use-of-artificial-intelligence-software-at-university) in Spring 2023. We will stick to those guidelines.
+- Some key elements from the guidelines:
+  - "Familiarity with AI tools is helpful for the learning experience and the professional development of students afterwards, ..."
+  - "... but needs to be done with clear guidelines on ethical use, biases, and limits of the tools that are currently available."
+  - "[T]he use of AI tools for the preparation of assignments (...) needs to be clearly referenced in the text."
+  
+]
+
+.pull-right-small-center[
+<div align="center">
+<br>
+<img src="pics/chatgpt-logo.png" height=200>
+<br>
+<br>
+<img src="pics/github-copilot-logo.jpeg" height=200>
+</div>
+]
+
+
+
 
 
 
@@ -1035,7 +1090,7 @@ pop_df %>%
 
 <div align="center">
 <br>
-<img src="pics/podcast-casual-inference.png" height=200>
+<img src="pics/podcast-hdsr.png" height=200>
 <img src="pics/podcast-data-skeptic.png" height=200>
 <img src="pics/podcast-data-stories.png" height=200>
 <img src="pics/podcast-digital-analytics-power-hour.jpeg" height=200>
