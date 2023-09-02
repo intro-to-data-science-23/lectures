@@ -163,7 +163,7 @@ What's your name? And would you share a fun fact about yourself?
 .pull-right-small-center[
 <div align="center">
 <br>
-<img src="pics/hiba-circle.png" height=200>
+<img src="pics/ahmad-circle.png" height=200>
 <br>
 <br>
 <img src="pics/kerr-circle.png" height=200>
