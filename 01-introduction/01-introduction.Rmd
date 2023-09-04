@@ -938,7 +938,7 @@ pop_df %>%
 
 -  If you want to discuss content from class, please first do so in the lab sessions. 
 - If you still need more feedback on course topics, use the Moodle forum.
-- If you want to discuss any other matters with me, drop Alex Karras, my assistant, a message (`r fa('envelope')` [karras@hertie-school.org](mailto:karras@hertie-school.org)) and she will arrange a meeting.
+- If you want to discuss any other matters with me, drop Alex Karras, my assistant, a message (`r fa('envelope')` [karras@hertie-school.org](mailto:karras@hertie-school.org)) and he will arrange a meeting.
 - For general technical advice, the [Research Consulting Team at the Data Science Lab](https://hertie-data-science-lab.github.io/research-consulting/) is there for you.
 
 
