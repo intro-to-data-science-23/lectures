@@ -913,7 +913,7 @@ pop_df %>%
 
 <br><br><br>
 <div align="center">
-<img src="pics/r4ds.png" height=300>
+<img src="pics/r4ds.jpeg" height=300>
 <img src="pics/advr2end.jpeg" height=300>
 <img src="pics/rpackages.jpeg" height=300>
 <img src="pics/bitbybit.png" height=300>
