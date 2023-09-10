@@ -1354,11 +1354,11 @@ If you haven't done so already, now is a good time to clone/fork the course mate
 
 ### The first assignment
 
-Now that you've learned the necessary basics, Mock Assignment 0 is up on GitHub Classroom. Check it out to learn how to work on and submit assignments!
+Now that you've learned the necessary basics, Assignment 1 is up on GitHub Classroom. Reminder: Also check out Assignment 0 to practice how to work on and submit assignments!
 
 
 ### Next lecture
 
-R and the tidyverse, and: good coding style!
+Data science ethics!
 
 
