@@ -333,7 +333,7 @@ name: principles
 .pull-left[
 ### Deontology
 
-- [Follow ethical duties](https://en.wikipedia.org/wiki/Consequentialism) that are derived from a set of rules independent of their consequences.
+- [Follow ethical duties](https://en.wikipedia.org/wiki/Deontology) that are derived from a set of rules independent of their consequences.
 - Roots in the work of [Immanuel Kant](https://en.wikipedia.org/wiki/Immanuel_Kant). 
 - The principle of *Respect for Persons* (autonomy) is deeply rooted in deontological thinking.
 - Focused on **means**, not **ends**.
@@ -710,7 +710,7 @@ If obtaining full informed consent is not possible, for example, when informed c
 - Open to all members of the Hertie School, including students!
 - Ethics procedure mandatory for all research projects involving human subjects, **including your Master's thesis**!
 - Three stages: self-assessment, review by the Research Ethics Officer, full review by the Research Ethics Committee
-- Check out the [Moodle page](https://moodle.hertie-school.org/course/view.php?id=1050&section=31) on research ethics!
+- Check out the [Moodle page](https://moodle.hertie-school.org/course/view.php?id=1050&section=28) on research ethics!
 ]
 
 .pull-right[
@@ -730,7 +730,7 @@ If obtaining full informed consent is not possible, for example, when informed c
 - Open to all members of the Hertie School, including students!
 - Ethics procedure mandatory for all research projects involving human subjects, **including your Master's thesis**!
 - Three stages: self-assessment, review by the Research Ethics Officer, full review by the Research Ethics Committee
-- Check out the [Moodle page](https://moodle.hertie-school.org/course/view.php?id=1050&section=31) on research ethics!
+- Check out the [Moodle page](https://moodle.hertie-school.org/course/view.php?id=1050&section=28) on research ethics!
 ]
 
 .pull-right[
