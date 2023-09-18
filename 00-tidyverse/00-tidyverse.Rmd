@@ -775,9 +775,28 @@ starwars %>%
 
 # 5) dplyr::summarize() *cont.*
 
-Note that including `na.rm = TRUE` is usually a good idea with the functions fed into `summarize()`. Otherwise, any missing value will propagate to the summarized value too.
+You can also calculate grouped summary statistics using an alternate approach of passing the groups directly to the `summarize()` call using a `.by` argument. 
+
+
 
 ```{r summ2}
+starwars %>% 
+  summarize(mean_height = mean(height, na.rm = TRUE), .by = c(species, gender)) %>%
+  head(5)
+```
+
+--
+
+Read more about both these approaches and the difference in outputs [here](https://r4ds.hadley.nz).
+
+
+---
+
+# 5) dplyr::summarize() *cont.*
+
+Note that including `na.rm = TRUE` is usually a good idea with the functions fed into `summarize()`. Otherwise, any missing value will propagate to the summarized value too.
+
+```{r summ3}
 ## Probably not what we want
 starwars %>% 
   summarize(mean_height = mean(height))
@@ -940,7 +959,7 @@ name: tidyr
 
 2. `pivot_wider()`: Pivot long data into wide format (i.e. "cast").<sup>2</sup> 
 
-3. `separate()`: Separate (i.e. split) one column into multiple columns.
+3. `separate()`: Separate (i.e. split) one column into multiple columns. <sup>3</sup> 
 
 4. `unite()`: Unite (i.e. combine) multiple columns into one.
 
@@ -948,6 +967,8 @@ name: tidyr
 <sup>1</sup> Updated version of `tidyr::gather()`.
 
 <sup>2</sup> Updated version of `tidyr::spread()`.
+
+<sup>3</sup> Updated versions: `separate_wider_delim()` and `separate_wider_position()`.
 ]  
 
 ]
@@ -1101,11 +1122,43 @@ You can also specify the separation character with `separate(..., sep=".")`. The
 
 ---
 
+
+# 3) tidyr::separate() *cont.*
+
+The same can also be achieve using new syntax wherein the uses of `separate()` are more obvious, the API is more polished, and the handling of problems is better.. When we have a clear separation character, we can use `separate_wider_delim` that splits using a delimiter:
+
+```{r sep2a}
+economists %>%
+  separate_wider_delim(
+    cols = name,
+    delim = ".",
+    names = c("first_name", "last_name")
+  )
+```
+
+---
+
+# 3) tidyr::separate() *cont.*
+
+When we want to separate at fixed widths, where the positions of characters are consistent, we can `separate_wider_position`: 
+
+```{r sep3a}
+economists$attribute <- c("m-34", "m-23", "f-38")
+economists
+economists %>%
+  separate_wider_position(attribute, c(sex = 1, 1, age = 2) 
+    )
+```
+
+--
+
+---
+
 # 3) tidyr::separate() *cont.*
 
 A related function is `separate_rows()`, for splitting up cells that contain multiple fields or observations (a frustratingly common occurence with survey data).
 
-```{r sep2a}
+```{r sep4a}
 jobs = data.frame(
   name = c("Jack", "Jill"),
   occupation = c("Homemaker", "Philosopher, Philanthropist, Troublemaker") 
@@ -1117,7 +1170,7 @@ jobs
 
 `separate_rows()` in action: 
 
-```{r sep2b}
+```{r sep4b}
 jobs %>% separate_rows(occupation)
 ```
 
