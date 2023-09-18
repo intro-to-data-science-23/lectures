@@ -1,6 +1,6 @@
 ---
 title: "Introduction to Data Science"
-subtitle: "Session 12:  Data science ethics"
+subtitle: "Session 3:  Data science ethics"
 author: "Simon Munzert"
 institute: "Hertie School | [GRAD-C11/E1339](https://github.com/intro-to-data-science-22)" #"`r format(Sys.time(), '%d %B %Y')`"
 output:
@@ -213,37 +213,64 @@ background-color: #000000
 ]
 
 
----
-class: inverse
-
-.pull-left[
-
-
-
-### Breakout time! Discuss which ethical issues you may face at various stages of the data science workflow. <br> Focus on:
-
-  **Group A:** The data collection stage <br>
-  **Group B:** The modeling stage <br>
-  **Group C:** The communication/dissemination stage <br>
-
-### You have **7 minutes** to discuss. Bring concrete examples!
-]
-
-.pull-right[
-<div align="center">
-<br>
-<img src="pics/breakout-time.jpeg" height=400>
-</div>
-]
-
-
-
 
 ---
 class: center
 background-image: url("pics/clickworker.png")
 
 # How do I pay clickworkers fairly?
+
+
+---
+# How do I pay clickworkers fairly?
+
+<br> 
+
+.pull-left[
+<div align="center">
+<br>
+<img src="pics/clickworker-01.jpeg" height=300>
+</div>
+]
+
+.pull-right[
+<div align="center">
+<br>
+<img src="pics/clickworker-02.jpeg" height=300>
+</div>
+]
+
+<br> 
+
+`Source` [Muldoon, J., & Apostolidis, P. (2023). ‘Neither work nor leisure’: Motivations of microworkers in the United Kingdom on three digital platforms. <i>New Media & Society</i>, 14614448231183942.](https://journals.sagepub.com/doi/full/10.1177/14614448231183942)
+
+
+
+
+---
+# How do I pay clickworkers fairly?
+
+<br> 
+
+.pull-left[
+<div align="center">
+<br>
+<img src="pics/clickworker-03.jpeg" height=300>
+</div>
+]
+
+.pull-right[
+<div align="center">
+<br>
+<img src="pics/clickworker-04.jpeg" height=300>
+</div>
+]
+
+<br>
+
+`Source` [Muldoon, J., & Apostolidis, P. (2023). ‘Neither work nor leisure’: Motivations of microworkers in the United Kingdom on three digital platforms. <i>New Media & Society</i>, 14614448231183942.](https://journals.sagepub.com/doi/full/10.1177/14614448231183942)
+
+
 
 
 ---
@@ -261,21 +288,56 @@ background-color: #000000
 
 # How do I protect the privacy of my research subjects?
 
----
-class: center
-background-image: url("pics/hate-online.jpeg")
-background-size: contain
-background-color: #000000
-
-# How do I protect the safety of my research subjects?
 
 ---
-class: center
-background-image: url("pics/xkcd.png")
-background-size: contain
-background-color: #000000
+# How do I protect the privacy of my research subjects?
 
-# How do I ensure statistical, measurement validity, etc.?
+<div align="center">
+<img src="pics/url-data-01.png" width=900>
+</div>
+
+`Source` Munzert, Simon, Barberá, Pablo, Guess, Andrew M., & Yang, JungHwan (2022). Media Exposure and Opinion Formation in an Age of Information Overload (MEOF). GESIS, Cologne. https://doi.org/10.4232/1.13981.
+
+---
+# How do I protect the privacy of my research subjects?
+
+<div align="center">
+<img src="pics/url-data-02.png" width=900>
+</div>
+
+`Source` Munzert, Simon, Barberá, Pablo, Guess, Andrew M., & Yang, JungHwan (2022). Media Exposure and Opinion Formation in an Age of Information Overload (MEOF). GESIS, Cologne. https://doi.org/10.4232/1.13981.
+
+
+---
+# How do I protect the privacy of my research subjects?
+
+<div align="center">
+<img src="pics/url-data-03.png" width=900>
+</div>
+
+`Source` Munzert, Simon, Barberá, Pablo, Guess, Andrew M., & Yang, JungHwan (2022). Media Exposure and Opinion Formation in an Age of Information Overload (MEOF). GESIS, Cologne. https://doi.org/10.4232/1.13981.
+
+
+---
+# How do I protect the privacy of my research subjects?
+
+<div align="center">
+<img src="pics/url-data-04.png" width=900>
+</div>
+
+`Source` Munzert, Simon, Barberá, Pablo, Guess, Andrew M., & Yang, JungHwan (2022). Media Exposure and Opinion Formation in an Age of Information Overload (MEOF). GESIS, Cologne. https://doi.org/10.4232/1.13981.
+
+---
+# How do I protect the privacy of my research subjects?
+
+<div align="center">
+<img src="pics/url-data-05.png" width=900>
+</div>
+
+`Source` Munzert, Simon, Barberá, Pablo, Guess, Andrew M., & Yang, JungHwan (2022). Media Exposure and Opinion Formation in an Age of Information Overload (MEOF). GESIS, Cologne. https://doi.org/10.4232/1.13981.
+
+
+
 
 
 ---
