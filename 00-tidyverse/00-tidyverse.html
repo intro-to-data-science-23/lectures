@@ -146,9 +146,9 @@ R&gt; library(tidyverse)
 ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-## ✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-## ✔ purrr     1.0.1     
+## ✔ purrr     1.0.2     
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
@@ -1012,6 +1012,37 @@ R&gt; starwars %&gt;%
 
 # 5) dplyr::summarize() *cont.*
 
+You can also calculate grouped summary statistics using an alternate approach of passing the groups directly to the `summarize()` call using a `.by` argument. 
+
+
+
+
+```r
+R&gt; starwars %&gt;% 
++   summarize(mean_height = mean(height, na.rm = TRUE), .by = c(species, gender)) %&gt;%
++   head(5)
+```
+
+```
+## # A tibble: 5 × 3
+##   species gender    mean_height
+##   &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;
+## 1 Human   masculine        182.
+## 2 Droid   masculine        140 
+## 3 Human   feminine         160.
+## 4 Wookiee masculine        231 
+## 5 Rodian  masculine        173
+```
+
+--
+
+Read more about both these approaches and the difference in outputs [here](https://r4ds.hadley.nz).
+
+
+---
+
+# 5) dplyr::summarize() *cont.*
+
 Note that including `na.rm = TRUE` is usually a good idea with the functions fed into `summarize()`. Otherwise, any missing value will propagate to the summarized value too.
 
 
@@ -1319,7 +1350,7 @@ name: tidyr
 
 2. `pivot_wider()`: Pivot long data into wide format (i.e. "cast").&lt;sup&gt;2&lt;/sup&gt; 
 
-3. `separate()`: Separate (i.e. split) one column into multiple columns.
+3. `separate()`: Separate (i.e. split) one column into multiple columns. &lt;sup&gt;3&lt;/sup&gt; 
 
 4. `unite()`: Unite (i.e. combine) multiple columns into one.
 
@@ -1327,6 +1358,8 @@ name: tidyr
 &lt;sup&gt;1&lt;/sup&gt; Updated version of `tidyr::gather()`.
 
 &lt;sup&gt;2&lt;/sup&gt; Updated version of `tidyr::spread()`.
+
+&lt;sup&gt;3&lt;/sup&gt; Updated versions: `separate_wider_delim()` and `separate_wider_position()`.
 ]  
 
 ]
@@ -1425,9 +1458,9 @@ R&gt; stocks
 ```
 
 ```
-##         time          X          Y        Z
-## 1 2009-01-01 -0.5775992 -1.9829172 -2.05937
-## 2 2009-01-02  1.7828279 -0.7888257 12.28044
+##         time            X           Y         Z
+## 1 2009-01-01 -1.347838697  0.08683453 -6.864989
+## 2 2009-01-02 -0.001876497 -0.94964809  3.054676
 ```
 
 --
@@ -1440,14 +1473,14 @@ R&gt; tidy_stocks
 
 ```
 ## # A tibble: 6 × 3
-##   time       stock  price
-##   &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;
-## 1 2009-01-01 X     -0.578
-## 2 2009-01-01 Y     -1.98 
-## 3 2009-01-01 Z     -2.06 
-## 4 2009-01-02 X      1.78 
-## 5 2009-01-02 Y     -0.789
-## 6 2009-01-02 Z     12.3
+##   time       stock    price
+##   &lt;date&gt;     &lt;chr&gt;    &lt;dbl&gt;
+## 1 2009-01-01 X     -1.35   
+## 2 2009-01-01 Y      0.0868 
+## 3 2009-01-01 Z     -6.86   
+## 4 2009-01-02 X     -0.00188
+## 5 2009-01-02 Y     -0.950  
+## 6 2009-01-02 Z      3.05
 ```
 
 
@@ -1518,6 +1551,68 @@ You can also specify the separation character with `separate(..., sep=".")`. The
 
 ---
 
+
+# 3) tidyr::separate() *cont.*
+
+The same can also be achieve using new syntax wherein the uses of `separate()` are more obvious, the API is more polished, and the handling of problems is better.. When we have a clear separation character, we can use `separate_wider_delim` that splits using a delimiter:
+
+
+```r
+R&gt; economists %&gt;%
++   separate_wider_delim(
++     cols = name,
++     delim = ".",
++     names = c("first_name", "last_name")
++   )
+```
+
+```
+## # A tibble: 3 × 2
+##   first_name last_name
+##   &lt;chr&gt;      &lt;chr&gt;    
+## 1 Adam       Smith    
+## 2 Paul       Samuelson
+## 3 Milton     Friedman
+```
+
+---
+
+# 3) tidyr::separate() *cont.*
+
+When we want to separate at fixed widths, where the positions of characters are consistent, we can `separate_wider_position`: 
+
+
+```r
+R&gt; economists$attribute &lt;- c("m-34", "m-23", "f-38")
+R&gt; economists
+```
+
+```
+##              name attribute
+## 1      Adam.Smith      m-34
+## 2  Paul.Samuelson      m-23
+## 3 Milton.Friedman      f-38
+```
+
+```r
+R&gt; economists %&gt;%
++   separate_wider_position(attribute, c(sex = 1, 1, age = 2) 
++     )
+```
+
+```
+## # A tibble: 3 × 3
+##   name            sex   age  
+##   &lt;chr&gt;           &lt;chr&gt; &lt;chr&gt;
+## 1 Adam.Smith      m     34   
+## 2 Paul.Samuelson  m     23   
+## 3 Milton.Friedman f     38
+```
+
+--
+
+---
+
 # 3) tidyr::separate() *cont.*
 
 A related function is `separate_rows()`, for splitting up cells that contain multiple fields or observations (a frustratingly common occurence with survey data).
@@ -1577,9 +1672,9 @@ R&gt; gdp
 
 ```
 ##     yr mnth dy       gdp
-## 1 2016    1  1  97.90756
-## 2 2016    1  2 102.23731
-## 3 2016    1  3 101.90032
+## 1 2016    1  1 101.54525
+## 2 2016    1  2  98.73900
+## 3 2016    1  3  99.26206
 ```
 
 ```r
@@ -1589,9 +1684,9 @@ R&gt; gdp %&gt;% unite(date, c("yr", "mnth", "dy"), sep = "-")
 
 ```
 ##       date       gdp
-## 1 2016-1-1  97.90756
-## 2 2016-1-2 102.23731
-## 3 2016-1-3 101.90032
+## 1 2016-1-1 101.54525
+## 2 2016-1-2  98.73900
+## 3 2016-1-3  99.26206
 ```
 
 ---
@@ -1614,9 +1709,9 @@ R&gt; gdp_u
 ## # A tibble: 3 × 2
 ##   date       gdp
 ##   &lt;chr&gt;    &lt;dbl&gt;
-## 1 2016-1-1  97.9
-## 2 2016-1-2 102. 
-## 3 2016-1-3 102.
+## 1 2016-1-1 102. 
+## 2 2016-1-2  98.7
+## 3 2016-1-3  99.3
 ```
 ]
 
@@ -1635,9 +1730,9 @@ R&gt; gdp_u %&gt;% mutate(date = ymd(date))
 ## # A tibble: 3 × 2
 ##   date         gdp
 ##   &lt;date&gt;     &lt;dbl&gt;
-## 1 2016-01-01  97.9
-## 2 2016-01-02 102. 
-## 3 2016-01-03 102.
+## 1 2016-01-01 102. 
+## 2 2016-01-02  98.7
+## 3 2016-01-03  99.3
 ```
 ]
 

@@ -123,7 +123,7 @@ Hadley Wickham
 - [Welcome to the Tidyverse](https://tidyverse.tidyverse.org/articles/paper.html), a quick overview from many tidyverse contributors
 - [Tidy data](https://vita.had.co.nz/papers/tidy-data.pdf), a foundational paper on data wrangling and structuring, by Hadley Wickham, 2014, *Journal of Statistical Software*; check [here](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html) for a hands-on vignette based on the `tidyr` package
 - [The tidyverse design guide](https://design.tidyverse.org/), a (soon-to-be book) manifesto to promote design consistency across the tidyverse
-- [R for Data Science](https://r4ds.had.co.nz/), our main textbook for this course
+- [R for Data Science](https://r4ds.hadley.nz/), our main textbook for this course
 ]
 
 .pull-right-center[
@@ -775,9 +775,28 @@ starwars %>%
 
 # 5) dplyr::summarize() *cont.*
 
-Note that including `na.rm = TRUE` is usually a good idea with the functions fed into `summarize()`. Otherwise, any missing value will propagate to the summarized value too.
+You can also calculate grouped summary statistics using an alternate approach of passing the groups directly to the `summarize()` call using a `.by` argument. 
+
+
 
 ```{r summ2}
+starwars %>% 
+  summarize(mean_height = mean(height, na.rm = TRUE), .by = c(species, gender)) %>%
+  head(5)
+```
+
+--
+
+Read more about both these approaches and the difference in outputs [here](https://r4ds.hadley.nz).
+
+
+---
+
+# 5) dplyr::summarize() *cont.*
+
+Note that including `na.rm = TRUE` is usually a good idea with the functions fed into `summarize()`. Otherwise, any missing value will propagate to the summarized value too.
+
+```{r summ3}
 ## Probably not what we want
 starwars %>% 
   summarize(mean_height = mean(height))
@@ -940,7 +959,7 @@ name: tidyr
 
 2. `pivot_wider()`: Pivot long data into wide format (i.e. "cast").<sup>2</sup> 
 
-3. `separate()`: Separate (i.e. split) one column into multiple columns.
+3. `separate()`: Separate (i.e. split) one column into multiple columns. <sup>3</sup> 
 
 4. `unite()`: Unite (i.e. combine) multiple columns into one.
 
@@ -948,6 +967,8 @@ name: tidyr
 <sup>1</sup> Updated version of `tidyr::gather()`.
 
 <sup>2</sup> Updated version of `tidyr::spread()`.
+
+<sup>3</sup> Updated versions: `separate_wider_delim()` and `separate_wider_position()`.
 ]  
 
 ]
@@ -1101,11 +1122,43 @@ You can also specify the separation character with `separate(..., sep=".")`. The
 
 ---
 
+
+# 3) tidyr::separate() *cont.*
+
+The same can also be achieve using new syntax wherein the uses of `separate()` are more obvious, the API is more polished, and the handling of problems is better.. When we have a clear separation character, we can use `separate_wider_delim` that splits using a delimiter:
+
+```{r sep2a}
+economists %>%
+  separate_wider_delim(
+    cols = name,
+    delim = ".",
+    names = c("first_name", "last_name")
+  )
+```
+
+---
+
+# 3) tidyr::separate() *cont.*
+
+When we want to separate at fixed widths, where the positions of characters are consistent, we can `separate_wider_position`: 
+
+```{r sep3a}
+economists$attribute <- c("m-34", "m-23", "f-38")
+economists
+economists %>%
+  separate_wider_position(attribute, c(sex = 1, 1, age = 2) 
+    )
+```
+
+--
+
+---
+
 # 3) tidyr::separate() *cont.*
 
 A related function is `separate_rows()`, for splitting up cells that contain multiple fields or observations (a frustratingly common occurence with survey data).
 
-```{r sep2a}
+```{r sep4a}
 jobs = data.frame(
   name = c("Jack", "Jill"),
   occupation = c("Homemaker", "Philosopher, Philanthropist, Troublemaker") 
@@ -1117,7 +1170,7 @@ jobs
 
 `separate_rows()` in action: 
 
-```{r sep2b}
+```{r sep4b}
 jobs %>% separate_rows(occupation)
 ```
 
@@ -1204,7 +1257,7 @@ name: style
 
 # Coding style: the basics
 
-### Why adhering to a particular style of coding?
+### Why adhere to a particular style of coding?
 
 - It reduces the number of arbitrary decisions you have to consciously make during coding. We make an arbitrary decision (convention) once, not always ad hoc.
 - It provides consistency.
@@ -1360,7 +1413,7 @@ row_adder()
 permutation()
 ```
 - Also, try avoiding function names that already exist, in particular those that come with a loaded package.
-- This often implies a trade-off between shortness and uniqueness. In any case, you would try to avoid situations that force you disambiguate functions with the same name (as in `dplyr::select`; see ["R packages"](https://r-pkgs.org/dependencies.html#namespace)).
+- This often implies a trade-off between shortness and uniqueness. In any case, you would try to avoid situations that force you disambiguate functions with the same name (as in `dplyr::select`; see ["R packages"](https://r-pkgs.org/dependencies-mindset-background.html#sec-dependencies-namespace)).
 - Check out this [Wikipedia page](https://en.wikipedia.org/wiki/Naming_convention_(programming)) or this [Stackoverflow post](https://stackoverflow.com/questions/17326185/what-are-the-different-kinds-of-cases) for more background on naming conventions in programming!
 - For more good advice on how to name stuff, see [this legendary presentation](http://www2.stat.duke.edu/~rcs46/lectures_2015/01-markdown-git/slides/naming-slides/naming-slides.pdf) by Jenny Bryan.
 
@@ -1369,7 +1422,7 @@ permutation()
 
 .pull-left[
 
-### Why commenting at all?
+### Why comment at all?
 
 - It’s often tempting to set up a project assuming that you will be the only person working on it, e.g. as homework. But that's almost never true. 
 - You have project partners, co-authors, principals.
