@@ -981,9 +981,6 @@ name: dbr
     - **Reliable**: High uptime.
 - There are [so many DBMS](https://en.wikipedia.org/wiki/List_of_relational_database_management_systems) for relational database structures alone.
 - RDBMS differ in terms of capabilities, implemented features, operating system support, and much more. 
-- You'll probably not be in the position to decide which database to use. If you're still interested in the differences, [this](https://www.digitalocean.com/community/tutorials/sqlite-vs-mysql-vs-postgresql-a-comparison-of-relational-database-management-systems) or [this overview](https://en.wikipedia.org/wiki/Comparison_of_relational_database_management_systems) might be a good starting point.
-- Also, I've heard good things about [DuckDB](https://duckdb.org/).
-
 ]
 
 .pull-right-small[
@@ -997,6 +994,21 @@ name: dbr
 </div>
 
 ]
+
+---
+# Databases and Database Management Systems (cont.)
+
+### Three basic forms of DBMS
+
+- **Client-server DBMS**: Runs on a powerful central server, which you connect from your computer (the client). Great for sharing data with multiple people in an organization. Popular client-server DBMS’s include PostgreSQL, MariaDB, SQL Server, and Oracle.
+- **Cloud DBMS**: Similar to client server DBMS's, but they run in the cloud. This means that they can easily handle extremely large datasets and can automatically provide more compute resources as needed. , Popular examples: Snowflake, Amazon’s RedShift, and Google’s BigQuery.
+- **In-process DBMS**: Run entirely on your computer. They’re great for working with large datasets where you’re the primary user. Examples: SQLite or [DuckDB](https://duckdb.org/). 
+    
+### What's the right DBMS for you?
+
+- You'll probably not be in the position to decide which database to use. If you're still interested in the differences, [this](https://www.digitalocean.com/community/tutorials/sqlite-vs-mysql-vs-postgresql-a-comparison-of-relational-database-management-systems) or [this overview](https://en.wikipedia.org/wiki/Comparison_of_relational_database_management_systems) might be a good starting point.
+
+
 
 ---
 

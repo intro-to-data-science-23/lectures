@@ -103,7 +103,7 @@ We will now learn the basics of creating your own functions and functional progr
 
 R is a functional programming (FP) language. As Hadley Wickham puts it in [Advanced R](http://adv-r.had.co.nz/Functional-programming.html):
 
-> This means that it provides many tools for the creation and manipulation of functions. In particular, R has what’s known as first class functions. You can do anything with functions that you can do with vectors: you can assign them to variables, store them in lists, pass them as arguments to other functions, create them inside functions, and even return them as the result of a function.
+> This means that it provides many tools for the creation and manipulation of functions. In particular, R has what’s known as first-class functions. You can do anything with functions that you can do with vectors: you can assign them to variables, store them in lists, pass them as arguments to other functions, create them inside functions, and even return them as the result of a function.
 
 R encourages you to use and build your own functions to solve problems. Often, this implies decomposing a large problem into small pieces, and solving each of them with independent functions.
 
@@ -747,6 +747,29 @@ Arguments:
 
 
 
+---
+# Writing functions with ChatGPT
+
+.pull-left-wide[
+Not every function you plan to write is unique, nor is every problem you want to solve functionally. 
+
+ChatGPT and other AI-based coding tools can help you a lot in finding functional solutions you can describe but not verbalize (yet). 
+
+I encourage you to use AI for this purpose, but be aware of the necessity to (a) debug and (b) assign credit where due.
+
+**Let's try it out with one of the following prompts:**
+
+- *Write an R function that capitalizes the first letter of each word in a character vector.*
+- *Write an R function that allows me to play one round of black jack.*
+]
+
+.pull-right-small[
+<div align="center">
+<br><br>
+<img src="pics/chatgpt.png" width="400"/>
+</div>
+]
+
 
 
 
@@ -801,7 +824,6 @@ name: iteration
 
 - The idea is always to **apply** a function to **x**, where x can be a list, vector, data.frame, or something more complex. 
 - The output is then returned as output of a pre-defined type (e.g., a list).
-- The set of `map()`-style functions is quite comprehensive; see this [cheat sheet](https://github.com/rstudio/cheatsheets/blob/master/purrr.pdf) for an overview.
 ]
 
 .pull-right-small-center[
@@ -836,7 +858,15 @@ map(starwars, class)
 
 # Iteration with purrr: map() *cont.*
 
-By default, `map()` returns a list. But we can also use other `map*()`functions to give us an atomic vector of an indicated type (e.g., `map_int()` to return an integer vector) or a data.frame created by row- or column-binding (`map_dfr()`, `map_dfc()`).
+By default, `map()` returns a list. But we can also use other `map*()` functions to give us an atomic vector of an indicated type (e.g., `map_int()` to return an integer vector, or `map_vec()` to return a vector that is the simplest common type).
+
+Going back to the previous example, we can also use `map_chr()`, which returns a character vector:
+
+```{r}
+map_chr(starwars, class)
+```
+
+--
 
 The `purrr` function set is quite comprehensive. Be sure to check out the [cheat sheet](https://github.com/rstudio/cheatsheets/blob/master/purrr.pdf) and the [tutorials](https://jennybc.github.io/purrr-tutorial/index.html). You'll survive without `purrr` but you probably don't want to live without it. Together with `dplyr` it's easily the most powerful package for data wrangling in the tidyverse. If you master it, it will save you a lot of time and headaches.
 
@@ -1006,6 +1036,7 @@ Whenever you see an error message, start by [googling](https://lmgtfy.app/?q=Err
 - Have you tried turning it off and on again?
 - Do you use `rm(list = ls())`? Don't. Packages remain loaded, options and environment variables set, ... all possible sources of error!
 - A fresh start clears the workspace, resets options, environment variables, and the path.
+- While we're at it, check out James Wade's advice ["How I set up RStudio for Efficient Coding" (YouTube)](https://www.youtube.com/watch?v=p-r-AWR3-Es).
 ]
 
 .pull-right[
@@ -1233,7 +1264,7 @@ Some useful things to do are:
 ### Motivation
 - Sometimes the error is outside your code in a package you're using, you might still want to be able to debug.
 - Two options:
-  1. Download the package code locally and debug it is if it were your own.
+  1. Get a local version of the package code and debug as if it were your own.
   2. Use functions which which allow you to start a browser in existing functions, including `recover()` and `debug()`.
 ]
 
@@ -1347,7 +1378,7 @@ undebug(stats::lm) #<<
 
 - [12-minute video](https://vimeo.com/99375765) on debugging in R
 - Jenny Bryan's [talk on debugging](https://github.com/jennybc/debugging) at  rstudio::conf 2020
-- Jenny Bryan and Jim Hester's "What They Forgot to Teach You About R", Chapter 11: [Debugging R code](https://rstats.wtf/debugging-r-code.html)
+- Jenny Bryan and Jim Hester's "What They Forgot to Teach You About R", Chapter 11: [Debugging R code](https://rstats.wtf/debugging-r)
 - Jonathan McPherson's [Debugging with RStudio](https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-RStudio)
 ]
 
@@ -1366,7 +1397,7 @@ undebug(stats::lm) #<<
 
 ### Assignment
 
-Assignment 2 is online soon! You'll have one week to work on it - final upload deadline is Oct 4.
+Assignment 2 is online! You have a bit more than a week to work on it - final upload deadline is Oct 4.
 
 ### Next lecture
 
