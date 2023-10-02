@@ -914,7 +914,7 @@ several lines
 ---
 # More resources to get started with SQL
 
-Probably the best way to learn SQL hands-on is the interactive tutorial at [SQLBolt](https://sqlbolt.com/).
+Probably the best way to learn SQL hands-on are interactive tutorials. Check out the one at [SQLBolt](https://sqlbolt.com/), [SQL Teaching](https://www.sqlteaching.com/), or [Lost SQL](https://lost-at-sql.therobinlord.com/).
 
 Another hands-on beginner SQL tutorial is at [DataQuest](https://www.dataquest.io/blog/sql-basics).
 
@@ -925,6 +925,8 @@ Once you have made yourself more familiar with the language, work on your style.
 If you want to know more about how indexes work in SQLite, check out [this resource](https://www.sqlite.org/queryplanner.html).
 
 Finally, another good read is [10 easy steps to a complete understanding of SQL](https://blog.jooq.org/10-easy-steps-to-a-complete-understanding-of-sql/) by Lukas Eder.
+
+Honorary mentions go to [SQL for the rest of us](https://technically.dev/posts/sql-for-the-rest-of-us) and [SQL Zoo](https://sqlzoo.net/wiki/SQL_Tutorial).
 
 
 
@@ -973,14 +975,14 @@ name: dbr
 ### What are DBMS?
 
 - Database Management Systems (DBMS) provide **efficient**, **reliable**, **convenient**, **safe**, **multi-user** storage of and access to **massive** data.
-    - **Massive**: Think Terabytes, not Gigabytes. Handle data that resides outside memory.
-    - **Safe**: Robust to power outages, node failures, etc.
-    - **Multi-user**: Concurrency control. Not one user, but multiple.
-    - **Convenient**: High-level query languages.
     - **Efficient**: Just fast.
     - **Reliable**: High uptime.
+    - **Convenient**: High-level query languages.
+    - **Safe**: Robust to power outages, node failures, etc.
+    - **Multi-user**: Concurrency control. Not one user, but multiple.
+    - **Massive**: Think Terabytes, not Gigabytes. Handle data that resides outside memory.
 - There are [so many DBMS](https://en.wikipedia.org/wiki/List_of_relational_database_management_systems) for relational database structures alone.
-- RDBMS differ in terms of capabilities, implemented features, operating system support, and much more. 
+- RDBMS differ in terms of capabilities, implemented features, operating system support, and much more. See [The Database Database](https://technically.dev/database-database) for a nice overview!
 ]
 
 .pull-right-small[
@@ -1002,7 +1004,7 @@ name: dbr
 
 - **Client-server DBMS**: Runs on a powerful central server, which you connect from your computer (the client). Great for sharing data with multiple people in an organization. Popular client-server DBMS’s include PostgreSQL, MariaDB, SQL Server, and Oracle.
 - **Cloud DBMS**: Similar to client server DBMS's, but they run in the cloud. This means that they can easily handle extremely large datasets and can automatically provide more compute resources as needed. , Popular examples: Snowflake, Amazon’s RedShift, and Google’s BigQuery.
-- **In-process DBMS**: Run entirely on your computer. They’re great for working with large datasets where you’re the primary user. Examples: SQLite or [DuckDB](https://duckdb.org/). 
+- **Embedded (in-process) DBMS**: Run entirely on your computer or within an application. They’re great for working with large datasets where you're the primary user. Examples: SQLite or [DuckDB](https://duckdb.org/). 
     
 ### What's the right DBMS for you?
 
@@ -1021,7 +1023,7 @@ name: dbr
 - DBMS implement SQL but all have somewhat different conventions.
 - R can connect to all major existing DBMS types.
 - The R package [`DBI`](https://cran.r-project.org/web/packages/DBI/vignettes/DBI-proposal.html) (**D**ata**B**ase **I**nterface) is a unified interface to them (car analogy: wheel, pedals).
-- In addition, we need a separate "driver" to connect to the database engine (car analogy: fuel (?)).
+- In addition, we need a separate "driver" to connect to the database engine (car analogy: key).
 
 
 ### Drivers for open-source/commercial DBs 
@@ -1239,11 +1241,15 @@ DBI::dbDisconnect(con)
 
 ### Relational databases FTW
 
+Get started with [The Beginner's Guide to Databases](https://technically.substack.com/p/the-beginners-guide-to-databases).
+
 A comprehensive overview of database interaction using R is available at [db.rstudio.com](https://db.rstudio.com/getting-started/overview). It also features a set of best practices that go beyond what we covered today.
 
 Not to mention [Databases 101](https://raw.githack.com/uo-ec607/lectures/master/16-databases/16-databases.html) by Grant McDermott, which also features example code to connect to DuckDB and Google BigQuery.
 
-Finally, there is the [introduction to `dbplyr`](https://cran.r-project.org/web/packages/dbplyr/vignettes/dbplyr.html) which comes as a package vignette.
+Also, there is the [introduction to `dbplyr`](https://cran.r-project.org/web/packages/dbplyr/vignettes/dbplyr.html) which comes as a package vignette.
+
+Finally, [Awesome MySQL](https://github.com/shlomi-noach/awesome-mysql), a goldmine when you work with MySQL.
 
 
 ---

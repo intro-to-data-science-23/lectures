@@ -1,0 +1,174 @@
+---
+title: "Hands-on databases with R"
+author: "Simon Munzert"
+date: "2023-10-02"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# A hands-on database session with R
+
+Before we start, we load the `DBI` package to connect to a DBMS and the `RSQLite` package to communicate with an SQLite database. Tidyverse and `dplyr`/`dbplyr` will be used, too. Also, we will rely on `nycflights13` for some toy data sets.
+
+```{r, warning=F, message=F}
+library(DBI)
+library(RSQLite)
+library(tidyverse)
+library(nycflights13)
+```
+
+
+# Connecting to the database
+
+Now, let's set up a connection with an SQLite database. In fact, we will not interact with an existing one but build up our own, which will live in the memory:
+
+```{r, echo = FALSE, cache = FALSE}
+con <- dbConnect(RSQLite::SQLite(), dbname = "nycflightsdb")
+knitr::opts_chunk$set(connection = "nycflightsdb")
+```
+
+```{r, eval = FALSE}
+con <- dbConnect(RSQLite::SQLite(), dbname = ":memory:")
+```
+
+`con` represents our database connection via which we'll interact with the database.
+
+--
+
+The arguments to `DBI::dbConnect()` vary from database to database, but the first argument is always the database backend. For instance, it’s `RSQLite::SQLite()` for RSQLite, `RMariaDB::MariaDB()` for RMariaDB, `RPostgres::Postgres()`, and `bigrquery::bigquery()` for BigQuery.
+
+--
+
+Also, in real life, chances are that the database lives on a server and you have to authenticate to connect to it. This could look as follows:
+
+```{r, eval = FALSE}
+con <- DBI::dbConnect(RSQLite::SQLite(), 
+                       host = "mydatabase.host.com",
+                       user = "simon",
+                       password = "mypassword"
+)
+```
+
+
+
+# Filling the database
+
+Next, we upload a local data frame into the remote data source; here: our database. Note that this is specific to our (toy) example. You'll probably not have to build up your own database.
+
+```{r, cache = FALSE}
+dplyr::copy_to(
+  dest = con, 
+  df = nycflights13::flights, 
+  name = "flights")
+```
+
+
+
+# Filling the database
+
+Next, we upload a local data frame into the remote data source; here: our database. Note that this is specific to our (toy) example. You'll probably not have to build up your own database.
+
+```{r, eval = FALSE}
+dplyr::copy_to(
+  dest = con, 
+  df = nycflights13::flights, 
+  name = "flights",
+  temporary = FALSE, 
+  indexes = list(
+    c("year", "month", "day"), 
+    "carrier", 
+    "tailnum",
+    "dest"
+  )
+)
+```
+
+We can also explicitly set up indexes that will allow us to quickly process the data by day, carrier, plane, and destination. While creating the right indices is key to good database performance, in common applications this will be taken care of by the database maintainer.
+
+
+
+# Querying the database
+
+Now it's time to start querying our database. First, we generate a reference table from the database using `dplyr`'s `tbl`():
+
+```{r, cache = FALSE}
+flights_db <- tbl(con, "flights")
+```
+
+Note that `flights_db` is a remote source; the table is not stored in our local environment. We can use it as a "pointer" to the actual database. Next, we perform various queries, such as:
+
+```{r}
+flights_db %>% select(year:day, dep_delay, arr_delay) %>% head(3)
+```
+
+Yes, we can use `dplyr` syntax to do database queries! 
+
+
+
+# Querying the database
+
+The most important difference between ordinary data frames and remote database queries is that your R code is translated into SQL and executed in the database on the remote server, not in R on your local machine. When working with databases, `dplyr` **tries to be as lazy as possible**:
+ - It never pulls data into R unless you explicitly ask for it.
+ - It delays doing any work until the last possible moment: it collects together everything you want to do and then sends it to the database in one step.
+
+This even applies when you assign the output of a database query to an object:
+
+```{r}
+tailnum_delay_db <- flights_db %>% 
+  group_by(tailnum) %>%
+  summarise(
+    delay = mean(arr_delay),
+    n = n()
+  ) %>% 
+  arrange(desc(delay)) %>%
+  filter(n > 100)
+```
+
+
+# Querying the database
+
+Laziness also has some downsides. Because there’s generally no way to determine how many rows a query will return unless you actually run it, nrow() is always NA:
+
+```{r, error = TRUE}
+nrow(tailnum_delay_db)
+```
+
+Because you can’t find the last few rows without executing the whole query, you can’t use tail():
+
+```{r, error = TRUE}
+tail(tailnum_delay_db)
+```
+
+If you then want to pull the data into a local data frame, use `dplyr::collect()`:
+
+```{r, warning = FALSE}
+tailnum_delay <- tailnum_delay_db %>% collect()
+tailnum_delay
+```
+
+
+
+# Using SQL directly in R
+
+Again, because it is so cool: Yes, we can use `dplyr` syntax to do database queries! Behind the scenes, `dplyr` is translating your R code into SQL. The `dbplyr` package is doing the work for us.
+
+You can use the `show_query()` function to display the SQL code that was used to generate a queried table: 
+
+```{r, warning = FALSE}
+tailnum_delay_db %>% show_query()
+```
+
+If you still want to formulate SQL queries and pass them on to the DBMS, use `DBI::dbGetQuery()`:
+
+```{r}
+sql_query <- "SELECT * FROM flights WHERE dep_delay > 240.0 LIMIT 5"
+dbGetQuery(con, sql_query)
+```
+
+```{r, echo = FALSE}
+DBI::dbDisconnect(con)
+```
+
