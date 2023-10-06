@@ -1003,7 +1003,7 @@ name: dbr
 ### Three basic forms of DBMS
 
 - **Client-server DBMS**: Runs on a powerful central server, which you connect from your computer (the client). Great for sharing data with multiple people in an organization. Popular client-server DBMS’s include PostgreSQL, MariaDB, SQL Server, and Oracle.
-- **Cloud DBMS**: Similar to client server DBMS's, but they run in the cloud. This means that they can easily handle extremely large datasets and can automatically provide more compute resources as needed. , Popular examples: Snowflake, Amazon’s RedShift, and Google’s BigQuery.
+- **Cloud DBMS**: Similar to client server DBMS's, but they run in the cloud. This means that they can easily handle extremely large datasets and can automatically provide more compute resources as needed. Popular examples: Snowflake, Amazon’s RedShift, and Google’s BigQuery.
 - **Embedded (in-process) DBMS**: Run entirely on your computer or within an application. They’re great for working with large datasets where you're the primary user. Examples: SQLite or [DuckDB](https://duckdb.org/). 
     
 ### What's the right DBMS for you?
