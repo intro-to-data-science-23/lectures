@@ -755,7 +755,7 @@ Relative paths are often preferrable. They are faster to write and more comprehe
 html_elements(parsed_doc, xpath = "/html/body/div/*/i")
 
 # the following does not work:
-html_elements(parsed_doc, xpath = "/html/body/div/*/i")
+html_elements(parsed_doc, xpath = "/html/body/*/i")
 ```
 
 ---

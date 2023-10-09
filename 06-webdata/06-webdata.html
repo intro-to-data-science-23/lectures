@@ -628,9 +628,9 @@ R&gt; parsed_doc
 
 ```
 ## {html_document}
-## &lt;html lang="de" dir="ltr"&gt;
-## [1] &lt;head&gt;\n&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
-## [2] &lt;body&gt;\n&lt;div class="signin"&gt;&lt;a href="https://accounts.google.com/ServiceL ...
+## &lt;html itemscope="" itemtype="http://schema.org/WebPage" lang="de"&gt;
+## [1] &lt;head&gt;\n&lt;meta content="text/html; charset=UTF-8" http-equiv="Content-Type ...
+## [2] &lt;body bgcolor="#fff"&gt;\n&lt;script nonce="fe3VLTlA97vq3sXVoznX1Q"&gt;(function() ...
 ```
 
 There are various functions to inspect the parsed document. They aren't really helpful - better use the browser instead if you want to dive into the HTML.
@@ -811,13 +811,11 @@ R&gt; html_elements(parsed_doc, xpath = "/html/body/div/*/i")
 
 ```r
 R&gt; # the following does not work:
-R&gt; html_elements(parsed_doc, xpath = "/html/body/div/*/i")
+R&gt; html_elements(parsed_doc, xpath = "/html/body/*/i")
 ```
 
 ```
-## {xml_nodeset (2)}
-## [1] &lt;i&gt;'What we have is nice, but we need something very different'&lt;/i&gt;
-## [2] &lt;i&gt;'R is wonderful, but it cannot work magic'&lt;/i&gt;
+## {xml_nodeset (0)}
 ```
 
 ---
