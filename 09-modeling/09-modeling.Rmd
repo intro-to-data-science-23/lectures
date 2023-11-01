@@ -143,7 +143,7 @@ $$Y = f(x) + \epsilon$$
 - In doing so, we decompose a model (or data-generating process) into a random or stochastic part (here: $\epsilon$) and a systematic/structural/deterministic part (here: $f(x)$).
 - (We might go on to impose further assumptions about the stochastic component, e.g., $\epsilon \sim N(0, \sigma^2)$.)
 
-- In many cases, we want to learn how certain variables systematically relate to each other. To that end, we specify the systematic component of a model and then "let the data speak" to estimate parameters associate with elements of the systematic component.
+- In many cases, we want to learn how certain variables systematically relate to each other. To that end, we specify the systematic component of a model and then "let the data speak" to estimate parameters associated with elements of the systematic component.
 - As an example, we might specify
 
 $$f(x) = \beta_{0} + \beta_{1}x$$
@@ -412,7 +412,7 @@ Also there is so much more to learn in terms of [modeling/machine learning/AI](h
 ---
 # Running models: examples
 
-Luckily, these models work all similarly from a programming experience - once you've mastered how to run linear models, you will find it easy to implement others. Understanding and applying them wisely is a different matter though.
+Luckily, these models all work similarly from a programming experience - once you've mastered how to run linear models, you will find it easy to implement others. Understanding and applying them wisely is a different matter though.
 
 **Logistic regression**
 
@@ -554,7 +554,7 @@ ml_out <- lmer(arr_delay ~ distance + origin + (1|carrier) + (1|tailnum), data =
   1. Define the set of reasonable specifications to estimate; 
   2. Estimate all specifications and report the results in a descriptive specification curve; and 
   3. Conduct joint statistical tests using an inferential specification curve.
-- As of now there are two R packages that offer high-level functions for specification: `specr` (see [here](https://cran.r-project.org/web/packages/specr/vignettes/specr.html)) and `Multiverse` (see [here](https://mucollective.github.io/multiverse/)).
+- As of now there are two R packages that offer high-level functions for specification: `specr` (see [here](https://masurp.github.io/specr/)) and `Multiverse` (see [here](https://mucollective.github.io/multiverse/)).
 ]
 
 .pull-right[
@@ -801,7 +801,7 @@ names(model_out)
 - Fitting a model returns an object of a certain model class (here: `lm`).
 - Printing that object returns a quite minimalist set of information - just the input formula and coefficients.
 - The anatomy of the object is considerably more complex. It comes as a list of various components, including the coefficients, residuals, fitted values, and original model input.
-- There's no way to print this list the slide in full - it's just too long.
+- There's no way to print this list on the slide in full - it's just too long.
 ]
 
 .pull-right-wide[
