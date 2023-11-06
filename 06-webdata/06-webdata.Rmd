@@ -1143,7 +1143,8 @@ example.obj <- "1. A small sentence. - 2. Another tiny sentence."
 
 ```{r}
 str_extract(example.obj, "small")
-str_extract(example.obj, "banana")
+str_view(example.obj, "small")
+str_detect(example.obj, "small")
 ```
 ]
 
@@ -1154,7 +1155,7 @@ str_extract(example.obj, "banana")
 
 ```{r}
 multi_vec <- c("text", "manipulation", "basics")
-str_extract_all(multi_vec, "a")
+str_view(multi_vec, "a")
 ```
 ]
 
@@ -1199,8 +1200,8 @@ example.obj <- "1. A small sentence. - 2. Another tiny sentence."
 ### Matching the beginning of a string
 
 ```{r}
-str_extract(example.obj, "^1")
-str_extract(example.obj, "^2")
+str_view(example.obj, "^1")
+str_view(example.obj, "^2")
 ```
 ]
 
@@ -1228,6 +1229,7 @@ example.obj <- "1. A small sentence. - 2. Another tiny sentence."
 ### Express an "or" with the pipe operator
 
 ```{r}
+str_view(example.obj, "tiny|sentence")
 unlist(str_extract_all(example.obj, "tiny|sentence"))
 ```
 ]
@@ -1238,7 +1240,7 @@ unlist(str_extract_all(example.obj, "tiny|sentence"))
 ### The dot: the ultimate wildcard
 
 ```{r}
-str_extract(example.obj, "sm.ll")
+str_extract(example.obj, "sm...")
 ```
 ]
 
@@ -1308,7 +1310,7 @@ Pre-defined character classes are useful because they are efficient and let us
 
 ```{r}
 unlist(str_extract_all(example.obj, "[[:punct:]ABC]"))
-unlist(str_extract_all(example.obj, "[^[:alnum:]]"))
+unlist(str_extract_all(example.obj, "[![:alnum:]]"))
 ```
 
 
@@ -1367,7 +1369,7 @@ The first pattern is defined with round brackets, as in `(pattern)`. We then ref
 **Example:** Match the first letter, then anything until you ﬁnd the first letter again (not greedy).
 
 ```{r}
-str_extract(example.obj, "([[:alpha:]]).+?\\1")
+str_extract(example.obj, "([[:alpha:]]).+?")
 ```
 
 
