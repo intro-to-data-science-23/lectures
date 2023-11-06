@@ -1294,7 +1294,7 @@ modelsummary(
 
 - Tables of coefficients work ok when models are linear and additive.
 - They are good to communicate "precise" information.<sup>1</1>
-- The are, however, less informative for
+- They are, however, less informative for
   - non-linear relationships between $x$ and $y$ ( $x^2$, $log(x)$, etc.),
   - interaction effects,
   - models for categorical data.
@@ -1384,7 +1384,7 @@ modelplot(model_out,
 ### Take care when plotting effect sizes
 
 - One of the major perks of coefficient plots is the comparability of effects across coefficients.
-- This can be, however, also one of the major problems of these kinds of plots
+- This can be, however, also one of the major problems of these kinds of plots.
 - In order for them to make visual sense, the underlying covariates have to be inherently comparable. By showing slopes, the plot shows the effect of a unit change in each covariate on the outcome, but unit changes may not be comparable across variables.
 - Also check out the documentation of the [`effectsize` package](https://easystats.github.io/effectsize/) for a more thorough discussion of the problem (and how to tackle it).
 ]
@@ -1528,7 +1528,7 @@ Some final bits of advice that didn't fit on the main slides:
 
 ### Assignment
 
-No assignment this time. More time to prepare the workshop! 
+No assignment this time - but don't forget about the quiz!
 
 ### Next lecture
 

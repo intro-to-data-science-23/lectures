@@ -133,7 +133,7 @@ background-color: #000000
 - In doing so, we decompose a model (or data-generating process) into a random or stochastic part (here: `\(\epsilon\)`) and a systematic/structural/deterministic part (here: `\(f(x)\)`).
 - (We might go on to impose further assumptions about the stochastic component, e.g., `\(\epsilon \sim N(0, \sigma^2)\)`.)
 
-- In many cases, we want to learn how certain variables systematically relate to each other. To that end, we specify the systematic component of a model and then "let the data speak" to estimate parameters associate with elements of the systematic component.
+- In many cases, we want to learn how certain variables systematically relate to each other. To that end, we specify the systematic component of a model and then "let the data speak" to estimate parameters associated with elements of the systematic component.
 - As an example, we might specify
 
 `$$f(x) = \beta_{0} + \beta_{1}x$$`
@@ -416,7 +416,7 @@ R&gt; models_list[[1]]
    
    Coefficients:
    (Intercept)    dep_delay  
-        -6.119        1.019
+        -5.857        1.026
 ```
 
 
@@ -456,7 +456,7 @@ Also there is so much more to learn in terms of [modeling/machine learning/AI](h
 ---
 # Running models: examples
 
-Luckily, these models work all similarly from a programming experience - once you've mastered how to run linear models, you will find it easy to implement others. Understanding and applying them wisely is a different matter though.
+Luckily, these models all work similarly from a programming experience - once you've mastered how to run linear models, you will find it easy to implement others. Understanding and applying them wisely is a different matter though.
 
 **Logistic regression**
 
@@ -602,7 +602,7 @@ R&gt; ml_out &lt;- lmer(arr_delay ~ distance + origin + (1|carrier) + (1|tailnum
   1. Define the set of reasonable specifications to estimate; 
   2. Estimate all specifications and report the results in a descriptive specification curve; and 
   3. Conduct joint statistical tests using an inferential specification curve.
-- As of now there are two R packages that offer high-level functions for specification: `specr` (see [here](https://cran.r-project.org/web/packages/specr/vignettes/specr.html)) and `Multiverse` (see [here](https://mucollective.github.io/multiverse/)).
+- As of now there are two R packages that offer high-level functions for specification: `specr` (see [here](https://masurp.github.io/specr/)) and `Multiverse` (see [here](https://mucollective.github.io/multiverse/)).
 ]
 
 .pull-right[
@@ -879,7 +879,7 @@ R&gt; names(model_out)
 - Fitting a model returns an object of a certain model class (here: `lm`).
 - Printing that object returns a quite minimalist set of information - just the input formula and coefficients.
 - The anatomy of the object is considerably more complex. It comes as a list of various components, including the coefficients, residuals, fitted values, and original model input.
-- There's no way to print this list the slide in full - it's just too long.
+- There's no way to print this list on the slide in full - it's just too long.
 ]
 
 .pull-right-wide[
@@ -1338,11 +1338,10 @@ R&gt; broom::glance(model_out)
 
 ```
    # A tibble: 1 × 12
-     r.squared adj.r.sq…¹ sigma stati…² p.value    df  logLik    AIC    BIC devia…³
-         &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
-   1   0.00550    0.00549  44.5    604.       0     3 -1.71e6 3.41e6 3.41e6  6.49e8
-   # … with 2 more variables: df.residual &lt;int&gt;, nobs &lt;int&gt;, and abbreviated
-   #   variable names ¹​adj.r.squared, ²​statistic, ³​deviance
+     r.squared adj.r.squared sigma statistic p.value    df    logLik     AIC    BIC
+         &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+   1   0.00550       0.00549  44.5      604.       0     3 -1706997.  3.41e6 3.41e6
+   # ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;
 ```
 
 
@@ -1361,13 +1360,12 @@ R&gt; broom::augment(model_out, se_fit = TRUE) %&gt;% head(3)
 
 ```
    # A tibble: 3 × 11
-     .rownames arr_d…¹ dista…² origin .fitted .se.fit .resid    .hat .sigma .cooksd
-     &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
-   1 1              11    1400 EWR       7.75   0.135   3.25 9.22e-6   44.5 1.23e-8
-   2 2              20    1416 LGA       3.23   0.156  16.8  1.23e-5   44.5 4.37e-7
-   3 3              33    1089 JFK       6.30   0.136  26.7  9.38e-6   44.5 8.43e-7
-   # … with 1 more variable: .std.resid &lt;dbl&gt;, and abbreviated variable names
-   #   ¹​arr_delay, ²​distance
+     .rownames arr_delay distance origin .fitted .se.fit .resid       .hat .sigma
+     &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;
+   1 1                11     1400 EWR       7.75   0.135   3.25 0.00000922   44.5
+   2 2                20     1416 LGA       3.23   0.156  16.8  0.0000123    44.5
+   3 3                33     1089 JFK       6.30   0.136  26.7  0.00000938   44.5
+   # ℹ 2 more variables: .cooksd &lt;dbl&gt;, .std.resid &lt;dbl&gt;
 ```
 
 --
@@ -1398,8 +1396,8 @@ R&gt; models_broom[[1]] # inspect one list entry
    # A tibble: 2 × 5
      term        estimate std.error statistic   p.value
      &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-   1 (Intercept)    -6.12   0.190       -32.1 1.95e-215
-   2 dep_delay       1.02   0.00452     225.  0
+   1 (Intercept)    -5.86   0.198       -29.6 5.79e-185
+   2 dep_delay       1.03   0.00484     212.  0
 ```
 
 Next, let's merge them all into one data frame:
@@ -1425,7 +1423,7 @@ R&gt; models_broom_df %&gt;%
 +   theme_minimal()
 ```
 
-&lt;img src="08-modeling_files/figure-html/unnamed-chunk-47-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="09-modeling_files/figure-html/unnamed-chunk-47-1.png" style="display: block; margin: auto;" /&gt;
 
 
 
@@ -1532,9 +1530,9 @@ R&gt; modelsummary(list(model1_out, model2_out, model3_out))
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; Model 2 &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; Model 3 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  (1) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;   (2) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;   (3) &lt;/th&gt;
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
@@ -1569,10 +1567,10 @@ R&gt; modelsummary(list(model1_out, model2_out, model3_out))
    &lt;td style="text-align:center;"&gt; −0.003 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.000) &lt;/td&gt;
-   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.000) &lt;/td&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1.5px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1.5px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1.5px"&gt; (0.000) &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1.5px"&gt; (0.000) &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
@@ -1662,9 +1660,9 @@ R&gt; modelsummary(models,
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; Model 2 &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; Model 3 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  (1) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;   (2) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;   (3) &lt;/th&gt;
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
@@ -1763,7 +1761,7 @@ R&gt; modelsummary(
 
 - Tables of coefficients work ok when models are linear and additive.
 - They are good to communicate "precise" information.&lt;sup&gt;1&lt;/1&gt;
-- The are, however, less informative for
+- They are, however, less informative for
   - non-linear relationships between `\(x\)` and `\(y\)` ( `\(x^2\)`, `\(log(x)\)`, etc.),
   - interaction effects,
   - models for categorical data.
@@ -1817,7 +1815,7 @@ R&gt; modelsummary(
 R&gt; modelplot(model_out)
 ```
 
-&lt;img src="08-modeling_files/figure-html/unnamed-chunk-52-1.png" width="450px" style="display: block; margin: auto;" /&gt;
+&lt;img src="09-modeling_files/figure-html/unnamed-chunk-52-1.png" width="450px" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1849,7 +1847,7 @@ R&gt; modelplot(model_out,
 +   theme_minimal()
 ```
 
-&lt;img src="08-modeling_files/figure-html/unnamed-chunk-53-1.png" width="550px" style="display: block; margin: auto;" /&gt;
+&lt;img src="09-modeling_files/figure-html/unnamed-chunk-53-1.png" width="550px" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1859,7 +1857,7 @@ R&gt; modelplot(model_out,
 ### Take care when plotting effect sizes
 
 - One of the major perks of coefficient plots is the comparability of effects across coefficients.
-- This can be, however, also one of the major problems of these kinds of plots
+- This can be, however, also one of the major problems of these kinds of plots.
 - In order for them to make visual sense, the underlying covariates have to be inherently comparable. By showing slopes, the plot shows the effect of a unit change in each covariate on the outcome, but unit changes may not be comparable across variables.
 - Also check out the documentation of the [`effectsize` package](https://easystats.github.io/effectsize/) for a more thorough discussion of the problem (and how to tackle it).
 ]
@@ -1975,7 +1973,7 @@ Some final bits of advice that didn't fit on the main slides:
 
 ### Assignment
 
-No assignment this time. More time to prepare the workshop! 
+No assignment this time - but don't forget about the quiz!
 
 ### Next lecture
 
