@@ -325,9 +325,7 @@ library(rvest)
 url_p <- read_html("https://www.nytimes.com")
 # xpath: paste the expression from Selectorgadget!
 # note: we use single quotation marks here (' instead of ") to wrap around the expression!
-# 
-
-xpath <- '//*[contains(concat( " ", @class, " " ), concat( " ", "indicate-hover", " " ))]'
+xpath <- '//*[contains(concat( " ", @class, " " ), concat( " ", "erslblw0", " " ))]//*[contains(concat( " ", @class, " " ), concat( " ", "e1lsht870", " " ))]'
 headlines <- html_elements(url_p, xpath = xpath) 
 headlines_raw <- html_text(headlines)
 length(headlines_raw)
