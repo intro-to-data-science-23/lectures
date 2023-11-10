@@ -1,8 +1,8 @@
 ---
 title: "Introduction to Data Science"
-subtitle: "Session 9: Visualization"
+subtitle: "Session 10: Visualization"
 author: "Simon Munzert"
-institute: "Hertie School | [GRAD-C11/E1339](https://github.com/intro-to-data-science-21)" #"`r format(Sys.time(), '%d %B %Y')`"
+institute: "Hertie School | [GRAD-C11/E1339](https://github.com/intro-to-data-science-23)" #"`r format(Sys.time(), '%d %B %Y')`"
 output:
   xaringan::moon_reader:
     css: [default, 'simons-touch.css', metropolis, metropolis-fonts] 
@@ -2136,7 +2136,7 @@ Assignment 4 is about to go online. Check it out and start plotting!
 
 ### Next lecture
 
-The workshop! 😱
+We'll start to wrap things up with automation, scheduling, and writing R packages.
 
 
 

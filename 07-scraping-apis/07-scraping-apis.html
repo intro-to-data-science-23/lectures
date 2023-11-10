@@ -24,7 +24,7 @@ class: center, middle, inverse, title-slide
 ### Simon Munzert
 ]
 .institute[
-### Hertie School | <a href="https://github.com/intro-to-data-science-21">GRAD-C11/E1339</a>
+### Hertie School | <a href="https://github.com/intro-to-data-science-23">GRAD-C11/E1339</a>
 ]
 
 ---
@@ -823,10 +823,10 @@ R&gt; response
 
 ```
 ## Response [http://ip-api.com/json]
-##   Date: 2022-10-31 10:18
+##   Date: 2023-11-10 08:32
 ##   Status: 200
 ##   Content-Type: application/json; charset=utf-8
-##   Size: 400 B
+##   Size: 311 B
 ```
 ]
 
@@ -861,28 +861,28 @@ R&gt; response_parsed
 ## [1] "Berlin"
 ## 
 ## $zip
-## [1] "10965"
+## [1] "13086"
 ## 
 ## $lat
-## [1] 52.4875
+## [1] 52.553
 ## 
 ## $lon
-## [1] 13.3992
+## [1] 13.4528
 ## 
 ## $timezone
 ## [1] "Europe/Berlin"
 ## 
 ## $isp
-## [1] "Verein zur Foerderung eines Deutschen Forschungsnetzes e.V."
+## [1] "Vodafone Kabel Deutschland"
 ## 
 ## $org
-## [1] "Hertie School of Governance gGmbH, Berlin"
+## [1] "Vodafone Kabel Deutschland GmbH"
 ## 
 ## $as
-## [1] "AS680 Verein zur Foerderung eines Deutschen Forschungsnetzes e.V."
+## [1] "AS3209 Vodafone GmbH"
 ## 
 ## $query
-## [1] "195.37.184.82"
+## [1] "95.91.244.166"
 ```
 ]
 
@@ -921,28 +921,28 @@ R&gt; response_parsed
 ## [1] "Berlin"
 ## 
 ## $zip
-## [1] "10965"
+## [1] "13086"
 ## 
 ## $lat
-## [1] 52.4875
+## [1] 52.553
 ## 
 ## $lon
-## [1] 13.3992
+## [1] 13.4528
 ## 
 ## $timezone
 ## [1] "Europe/Berlin"
 ## 
 ## $isp
-## [1] "Verein zur Foerderung eines Deutschen Forschungsnetzes e.V."
+## [1] "Vodafone Kabel Deutschland"
 ## 
 ## $org
-## [1] "Hertie School of Governance gGmbH, Berlin"
+## [1] "Vodafone Kabel Deutschland GmbH"
 ## 
 ## $as
-## [1] "AS680 Verein zur Foerderung eines Deutschen Forschungsnetzes e.V."
+## [1] "AS3209 Vodafone GmbH"
 ## 
 ## $query
-## [1] "195.37.184.82"
+## [1] "95.91.244.166"
 ```
 ]
 
@@ -962,18 +962,18 @@ R&gt; as.data.frame(response_parsed)
 ## 1 success Germany          DE
 ##   region  regionName   city
 ## 1     BE Land Berlin Berlin
-##     zip     lat     lon
-## 1 10965 52.4875 13.3992
+##     zip    lat     lon
+## 1 13086 52.553 13.4528
 ##        timezone
 ## 1 Europe/Berlin
-##                                                           isp
-## 1 Verein zur Foerderung eines Deutschen Forschungsnetzes e.V.
-##                                         org
-## 1 Hertie School of Governance gGmbH, Berlin
-##                                                                  as
-## 1 AS680 Verein zur Foerderung eines Deutschen Forschungsnetzes e.V.
+##                          isp
+## 1 Vodafone Kabel Deutschland
+##                               org
+## 1 Vodafone Kabel Deutschland GmbH
+##                     as
+## 1 AS3209 Vodafone GmbH
 ##           query
-## 1 195.37.184.82
+## 1 95.91.244.166
 ```
 ]
 
@@ -1028,7 +1028,7 @@ R&gt; response_parsed
 ## [1] "Wikimedia Foundation, Inc."
 ## 
 ## $as
-## [1] "AS14907 Wikimedia Foundation Inc."
+## [1] ""
 ## 
 ## $query
 ## [1] "91.198.174.1"
@@ -1051,15 +1051,15 @@ R&gt; httr::content(response, as = "text") %&gt;%
 ```
 
 ```
-##    status       country countryCode region    regionName      city   zip
-## 1 success United States          US     IL      Illinois   Chicago 60666
-## 2 success   Netherlands          NL     NH North Holland Amsterdam  1012
-##       lat       lon         timezone                       isp
-## 1 41.8781 -87.62980  America/Chicago Wikimedia Foundation Inc.
-## 2 52.3676   4.90414 Europe/Amsterdam  Wikimedia Europe network
+##    status       country countryCode region    regionName          city   zip
+## 1 success United States          US     CA    California San Francisco 94104
+## 2 success   Netherlands          NL     NH North Holland     Amsterdam  1012
+##       lat        lon            timezone                       isp
+## 1 37.7892 -122.40200 America/Los_Angeles Wikimedia Foundation Inc.
+## 2 52.3676    4.90414    Europe/Amsterdam  Wikimedia Europe network
 ##                          org                                as          query
 ## 1   Wikimedia Foundation Inc AS14907 Wikimedia Foundation Inc. 208.80.152.201
-## 2 Wikimedia Foundation, Inc. AS14907 Wikimedia Foundation Inc. 91.198.174.192
+## 2 Wikimedia Foundation, Inc.                                   91.198.174.192
 ```
 ]
 
@@ -1111,35 +1111,25 @@ R&gt; ip_df
 
 ```
 ##     status       country countryCode region  regionName              city   zip
-## 1: success       Germany          DE     BE Land Berlin            Berlin 10965
+## 1: success       Germany          DE     BE Land Berlin            Berlin 13086
 ## 2:    fail          &lt;NA&gt;        &lt;NA&gt;   &lt;NA&gt;        &lt;NA&gt;              &lt;NA&gt;  &lt;NA&gt;
 ## 3: success United States          US     WI   Wisconsin           Madison 53706
 ## 4: success       Germany          DE     HE       Hesse Frankfurt am Main 60314
-##        lat      lon        timezone
-## 1: 52.4875  13.3992   Europe/Berlin
-## 2:      NA       NA            &lt;NA&gt;
-## 3: 43.0713 -89.4063 America/Chicago
-## 4: 50.1103   8.7147   Europe/Berlin
-##                                                            isp
-## 1: Verein zur Foerderung eines Deutschen Forschungsnetzes e.V.
-## 2:                                                        &lt;NA&gt;
-## 3:                             University of Wisconsin Madison
-## 4:                                                 Link11 GmbH
-##                                          org
-## 1: Hertie School of Governance gGmbH, Berlin
-## 2:                                      &lt;NA&gt;
-## 3:           University of Wisconsin Madison
-## 4:                          IP via link11.de
-##                                                                   as
-## 1: AS680 Verein zur Foerderung eines Deutschen Forschungsnetzes e.V.
-## 2:                                                              &lt;NA&gt;
-## 3:                              AS59 University of Wisconsin Madison
-## 4:                                               AS34309 Link11 GmbH
+##        lat      lon        timezone                             isp
+## 1: 52.5530  13.4528   Europe/Berlin      Vodafone Kabel Deutschland
+## 2:      NA       NA            &lt;NA&gt;                            &lt;NA&gt;
+## 3: 43.0713 -89.4063 America/Chicago University of Wisconsin Madison
+## 4: 50.1103   8.7147   Europe/Berlin                     Link11 GmbH
+##                                org                                   as
+## 1: Vodafone Kabel Deutschland GmbH                 AS3209 Vodafone GmbH
+## 2:                            &lt;NA&gt;                                 &lt;NA&gt;
+## 3: University of Wisconsin Madison AS59 University of Wisconsin Madison
+## 4:                IP via link11.de                  AS34309 Link11 GmbH
 ##             query
-## 1:  195.37.184.82
+## 1:  95.91.244.166
 ## 2:       10.0.1.1
 ## 3:    72.33.67.89
-## 4: 128.65.210.181
+## 4: 128.65.210.184
 ```
 
 
@@ -1205,9 +1195,9 @@ R&gt; nytimes_most_popular$results$title[1:3]
 ```
 
 ```
-## [1] "Elon Musk, in a Tweet, Shares Link From Site Known to Publish False News"
-## [2] "Who Is the Man Accused of Attacking Nancy Pelosi’s Husband?"             
-## [3] "Elon Musk Is Said to Have Ordered Job Cuts Across Twitter"
+## [1] "Three Friends Bought a Brooklyn House Where They Could Live Alone Together. Which Was the Right Fit?"
+## [2] "In Congress and on Campuses, ‘From the River to the Sea’ Inflames Debate"                            
+## [3] "Nikki Haley’s Rise Could Turn the Republican Nomination Race Brutal"
 ```
 
 ---
