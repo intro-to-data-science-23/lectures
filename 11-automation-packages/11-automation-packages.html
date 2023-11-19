@@ -14,10 +14,18 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Introduction to Data Science
-## Session 14: Automation, scheduling, and packages
+]
+.subtitle[
+## Session 11: Automation, scheduling, and packages
+]
+.author[
 ### Simon Munzert
-### Hertie School | <a href="https://github.com/intro-to-data-science-21">GRAD-C11/E1339</a>
+]
+.institute[
+### Hertie School | <a href="https://github.com/intro-to-data-science-23">GRAD-C11/E1339</a>
+]
 
 ---
 
@@ -86,7 +94,7 @@ name: automation
 - Time saved by automation &gt;&gt; Time needed to automate.
 ]
 
-.pull-right-small3[
+.pull-right-small2[
 ### Different ways of doing it
 
 We will consider automation
@@ -152,7 +160,7 @@ We will consider automation
 # An example pipeline
 
 .pull-left-small[
-In the following, we will work with this toy pipeline:
+In the following, we will work with this toy pipeline:&lt;sup&gt;1&lt;/sup&gt;
 
 .footnote[&lt;sup&gt;1&lt;/sup&gt;Courtesy of [Jenny Bryan](https://github.com/STAT545-UBC/STAT545-UBC-original-website).]
 ]
@@ -293,18 +301,18 @@ R&gt; slice_sample(lotr_dat, n = 10)
 
 ```
    # A tibble: 10 × 5
-      Film                       Chapter                   Character    Race  Words
-      &lt;chr&gt;                      &lt;chr&gt;                     &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt;
-    1 The Return Of The King     64: The Mouth Of Sauron   Aragorn      Man      23
-    2 The Fellowship Of The Ring 36: The Bridge Of Khazad… Frodo        Hobb…     4
-    3 The Two Towers             36: Isengard Unleashed    Saruman      Wiza…    50
-    4 The Fellowship Of The Ring 42: The Great River       Sam          Hobb…    37
-    5 The Return Of The King     42: Breaking The Gate Of… Gandalf      Wiza…    21
-    6 The Two Towers             45: The Glittering Caves  Legolas      Elf      36
-    7 The Two Towers             35: Helm's Deep           Rohan Warri… Man      22
-    8 The Fellowship Of The Ring 33: Moria                 Aragorn      Man      31
-    9 The Fellowship Of The Ring 43: Parth Galen           Aragorn      Man      79
-   10 The Return Of The King     24: Courage Is The Best … Gothmog      Orc       4
+      Film                       Chapter                      Character Race  Words
+      &lt;chr&gt;                      &lt;chr&gt;                        &lt;chr&gt;     &lt;chr&gt; &lt;dbl&gt;
+    1 The Return Of The King     64: The Mouth Of Sauron      Aragorn   Man      23
+    2 The Fellowship Of The Ring 36: The Bridge Of Khazad-dûm Frodo     Hobb…     4
+    3 The Two Towers             36: Isengard Unleashed       Saruman   Wiza…    50
+    4 The Fellowship Of The Ring 42: The Great River          Sam       Hobb…    37
+    5 The Return Of The King     42: Breaking The Gate Of Go… Gandalf   Wiza…    21
+    6 The Two Towers             45: The Glittering Caves     Legolas   Elf      36
+    7 The Two Towers             35: Helm's Deep              Rohan Wa… Man      22
+    8 The Fellowship Of The Ring 33: Moria                    Aragorn   Man      31
+    9 The Fellowship Of The Ring 43: Parth Galen              Aragorn   Man      79
+   10 The Return Of The King     24: Courage Is The Best Def… Gothmog   Orc       4
 ```
 
 
@@ -621,9 +629,9 @@ name: scheduling
 ---
 # Scheduling scripts and processes on Windows
 
-.pull-left-small3[
+.pull-left-small2[
 ### Scheduling options
-- Processes on Windows can be scheduled with the [Windows Task Scheduler](https://en.wikipedia.org/wiki/Windows_Task_Scheduler).
+- Schedule tasks on Windows with [Windows Task Scheduler](https://en.wikipedia.org/wiki/Windows_Task_Scheduler).
 - Manage them via a GUI (→ Control Panel) or the command line using `schtasks.exe`.
 - The R package [`taskscheduleR`](https://cran.r-project.org/web/packages/taskscheduleR/vignettes/taskscheduleR.html) provides a programmable R interface to the WTS.
 
@@ -632,7 +640,7 @@ name: scheduling
 &lt;/div&gt;
 ]
 
-.pull-right-wide3[
+.pull-right-wide2[
 ### `taskscheduleR` example
 
 
@@ -663,7 +671,7 @@ R&gt; str(tasks)
 ---
 # Scheduling scripts and processes on a Mac
 
-.footnote[&lt;sup&gt;1&lt;/sup&gt;For more resources on scheduling with `launchd`, check out [this](https://babichmorrowc.github.io/post/launchd-jobs/) and [this](https://towardsdatascience.com/a-step-by-step-guide-to-scheduling-tasks-for-your-data-science-project-d7df4531fc41) and [this](https://zerolaunched.herokuapp.com/).]
+.footnote[&lt;sup&gt;1&lt;/sup&gt;For more resources on scheduling with `launchd`, check out [this](https://babichmorrowc.github.io/post/launchd-jobs/) and [this](https://towardsdatascience.com/a-step-by-step-guide-to-scheduling-tasks-for-your-data-science-project-d7df4531fc41).]
 
 .pull-left-small3[
 ### Scheduling options
@@ -896,13 +904,6 @@ The package is [real](https://cosimameyer.github.io/overviewR/) and lives on bot
 
 ```r
 R&gt; library(available)
-```
-
-```
-   Warning: package 'available' was built under R version 4.1.2
-```
-
-```r
 R&gt; # Check for potential names
 R&gt; available::suggest("Easily extract information about sample")
 ```
@@ -914,10 +915,6 @@ R&gt; available::suggest("Easily extract information about sample")
 ```r
 R&gt; # Check whether it's available
 R&gt; available::available("overviewR", browse = FALSE)
-```
-
-```
-   Warning: package 'tidytext' was built under R version 4.1.2
 ```
 
 ```
@@ -1367,6 +1364,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

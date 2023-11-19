@@ -108,6 +108,29 @@ hr, .title-slide h2::after, .mline h1::after {
   width: 58%;
 }
 
+.pull-left-wide2 {
+    margin-top: -20px;
+  float: left;
+  width: 58%;
+}
+
+.pull-right-wide3 {
+  margin-top: -20px;
+  float: right;
+  width: 58%;
+}
+
+.pull-left-small3 {
+    margin-top: -20px;
+  float: left;
+  width: 40%;
+}
+
+.pull-right-small3 {
+    margin-top: -20px;
+  float: right;
+  width: 40%;
+}
 
 .pull-left-small {
     margin-top: -20px;

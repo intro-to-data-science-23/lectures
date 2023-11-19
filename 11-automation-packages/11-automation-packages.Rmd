@@ -1,8 +1,8 @@
 ---
 title: "Introduction to Data Science"
-subtitle: "Session 14: Automation, scheduling, and packages"
+subtitle: "Session 11: Automation, scheduling, and packages"
 author: "Simon Munzert"
-institute: "Hertie School | [GRAD-C11/E1339](https://github.com/intro-to-data-science-21)" #"`r format(Sys.time(), '%d %B %Y')`"
+institute: "Hertie School | [GRAD-C11/E1339](https://github.com/intro-to-data-science-23)" #"`r format(Sys.time(), '%d %B %Y')`"
 output:
   xaringan::moon_reader:
     css: [default, 'simons-touch.css', metropolis, metropolis-fonts] 
@@ -105,7 +105,7 @@ name: automation
 - Time saved by automation >> Time needed to automate.
 ]
 
-.pull-right-small3[
+.pull-right-small2[
 ### Different ways of doing it
 
 We will consider automation
@@ -171,7 +171,7 @@ We will consider automation
 # An example pipeline
 
 .pull-left-small[
-In the following, we will work with this toy pipeline:
+In the following, we will work with this toy pipeline:<sup>1</sup>
 
 .footnote[<sup>1</sup>Courtesy of [Jenny Bryan](https://github.com/STAT545-UBC/STAT545-UBC-original-website).]
 ]
@@ -621,9 +621,9 @@ name: scheduling
 ---
 # Scheduling scripts and processes on Windows
 
-.pull-left-small3[
+.pull-left-small2[
 ### Scheduling options
-- Processes on Windows can be scheduled with the [Windows Task Scheduler](https://en.wikipedia.org/wiki/Windows_Task_Scheduler).
+- Schedule tasks on Windows with [Windows Task Scheduler](https://en.wikipedia.org/wiki/Windows_Task_Scheduler).
 - Manage them via a GUI (→ Control Panel) or the command line using `schtasks.exe`.
 - The R package [`taskscheduleR`](https://cran.r-project.org/web/packages/taskscheduleR/vignettes/taskscheduleR.html) provides a programmable R interface to the WTS.
 
@@ -632,7 +632,7 @@ name: scheduling
 </div>
 ]
 
-.pull-right-wide3[
+.pull-right-wide2[
 ### `taskscheduleR` example
 
 ```{r, eval = FALSE}
@@ -662,7 +662,7 @@ str(tasks)
 ---
 # Scheduling scripts and processes on a Mac
 
-.footnote[<sup>1</sup>For more resources on scheduling with `launchd`, check out [this](https://babichmorrowc.github.io/post/launchd-jobs/) and [this](https://towardsdatascience.com/a-step-by-step-guide-to-scheduling-tasks-for-your-data-science-project-d7df4531fc41) and [this](https://zerolaunched.herokuapp.com/).]
+.footnote[<sup>1</sup>For more resources on scheduling with `launchd`, check out [this](https://babichmorrowc.github.io/post/launchd-jobs/) and [this](https://towardsdatascience.com/a-step-by-step-guide-to-scheduling-tasks-for-your-data-science-project-d7df4531fc41).]
 
 .pull-left-small3[
 ### Scheduling options
