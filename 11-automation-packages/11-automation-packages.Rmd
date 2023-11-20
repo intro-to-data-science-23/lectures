@@ -321,7 +321,7 @@ p <- ggplot(lotr_dat, aes(x = Race, weight = Words)) +
 
 <div align="center">
 <br>
-<img src="examples/01-automation-just-r/barchart-words-by-race.png" width="700"/>
+<img src="examples/01-automation-just-r/barchart-words-by-race.png" width="400"/>
 </div>
 
 
@@ -738,11 +738,11 @@ name: rpackages
 .pull-left-wide[
 1. **Thinking in functions.** R is a functional programming language, and packages bundle functions. Thinking of projects as packages is consistent with a functional mindset.
 
-2. **Automation and transportability.** By turning tasks into functions you save repetitive typing, keep frequently-used code together, and let code travel across projects.
+2. **Automation and transportability.** By turning tasks into functions, you save repetitive typing, keep frequently-used code together, and let code travel across projects.
 
 3. **Collaboration and transparency.** Packages are ideal to make functionality available to others, but also to let others contribute. As a side effect, it nudges you to document your functions properly and gives you the opportunity to let others review and improve your code easily. 
 
-4. **Visibility and productization.** Publishing code in packages is potentially giving you project a big boost in visibility. Also, it is more likely to be perceived as a product than an insular project.
+4. **Visibility and productization.** Publishing code in packages is potentially giving your project a big boost in visibility. Also, it is more likely to be perceived as a product than an insular project.
 ]
 
 .pull-right-small[
@@ -1279,6 +1279,22 @@ Do you think of your work as a project or a product? If it's the latter, maybe a
 <img src="pics/devtools-cheatsheet-2.png" width="350"/>
 </div>
 ]
+
+
+---
+# Next steps
+
+<br>
+
+### Quiz
+
+One more quiz to go!
+
+### Next lecture
+
+One more session to go. We're going to talk about communication and monitoring.
+
+
 
 
 
