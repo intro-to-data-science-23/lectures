@@ -1163,6 +1163,20 @@ background-color: #000000
 ]
 
 
+---
+# Dashboards: another example
+
+<div align="center">
+<br>
+<img src="pics/dashboard-lonny-chen.png" width="950"/>
+</div>
+
+`Source` [Lonny Chen, NECTA PSLE Dashboard 2022 |  https://bit.ly/psle2022mvp](https://bit.ly/psle2022mvp)
+
+
+
+
+
 
 ---
 # Dashboards with R
